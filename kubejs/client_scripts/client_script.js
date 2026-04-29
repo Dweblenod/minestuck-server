@@ -24,17 +24,10 @@ RecipeViewerEvents.removeEntries('item', event => {
 
   event.remove('relics:infinity_ham');
 
-  event.remove('mekanism:mekasuit_helmet');
-  event.remove('mekanism:mekasuit_bodyarmor');
-  event.remove('mekanism:mekasuit_pants');
-  event.remove('mekanism:mekasuit_boots');
-
   event.remove('extrastuck:office_key');
   event.remove('extrastuck:handgun');
   event.remove('extrastuck:handgun_bullet');
   event.remove('extrastuck:heavy_handgun_bullet');
-
-  event.remove('msuportmodi:array_modus_card');
 
   event.remove('minestuck_extended:roulette_modus_card');
 });

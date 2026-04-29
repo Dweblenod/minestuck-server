@@ -3,9 +3,9 @@
 // We try to call generateData() once under the assumption that multiple calls increases load times
 
 ServerEvents.generateData('last', (event) => {
-  generateDwebMisc(event);
-  generateDwebGen(event);
-  generateDwebRecipes(event);
+  generateMisc(event);
+  generateWorldGen(event);
+  generateRecipes(event);
   generateMedliTweaks(event);
   generateGateways(event);
   generateAmmo(event);

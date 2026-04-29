@@ -211,5 +211,3 @@ const generateCaptchas = function (event) {
 
   console.log('Ending gen in captchas.');
 };
-
-//global.salt = '197371'; //example of global declaration that would go in startup script. Dont do that for this because then client would see it

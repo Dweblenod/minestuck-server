@@ -3,9 +3,10 @@
 // TODO continue adapting lich tower
 
 // ServerEvents.generateData('last', (event) => {
-const generateDwebGen = function (event) {
-  console.log('Started generating custom data in dweb_gen. If no finish log, then something may be broken!');
+const generateWorldGen = function (event) {
+  console.log('Started generating custom data in world_gen. If no finish log, then something may be broken!');
 
+  /*
   newDataFullPath(event, 'irons_spellbooks:tags/worldgen/biome/has_structure/catacombs', newTag(true, ['#minestuck:land']));
   // newDataFullPath(event, `irons_spellbooks:tags/worldgen/structure/wayward_compass_locator`, newTag(true, ["irons_spellbooks:catacombs"])); //wayward compass is disabled
   newDataFullPath(event, 'irons_spellbooks:worldgen/processor_list/catacombs_randomization', {
@@ -1382,6 +1383,8 @@ const generateDwebGen = function (event) {
     ],
   });
 
+  */
+
   // Needs to be placed manually for now
   /*newDataFullPath(event, 'minestuck:worldgen/structure_set/prospit_dream_tower', {
     "placement": {
@@ -1410,6 +1413,8 @@ const generateDwebGen = function (event) {
 
 
   // WFC Prospit ====================================================================================================================================================
+  
+  /*
   //Takes the existing wfc prospit datapack and adds/tweaks content
 
   //edited to be on prospit proper
@@ -1772,6 +1777,7 @@ const generateDwebGen = function (event) {
 
   // for simplicity, kept template pool in normal data folder
 
-  console.log('Ending gen in dweb_gen.');
+  console.log('Ending gen in world_gen.');
   // });
+  */
 };

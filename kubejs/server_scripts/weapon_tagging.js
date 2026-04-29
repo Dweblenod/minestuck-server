@@ -1,4 +1,5 @@
 ServerEvents.tags('item', event => {
+    /*
     event.add('kubejs:malum_compatible', 'minestuck:spines_of_fluthlu')
     event.add('kubejs:malum_compatible/scythe', 'minestuck:claw_of_nrubyiglith')
     event.add('kubejs:malum_compatible', 'minestuck:thorn_of_oglogoth')
@@ -140,6 +141,7 @@ ServerEvents.tags('item', event => {
     event.add('e2s2:bedrock_breaking_pickaxes', 'minestuck:zillyhoo_hammer')
     event.add('e2s2:bedrock_breaking_pickaxes', 'minestuck:mwrthwl')
     event.add('e2s2:bedrock_breaking_pickaxes', 'minestuck:fear_no_anvil')
+    */
     event.add('curios:ring', 'minestuck:black_queens_ring')
     event.add('curios:ring', 'minestuck:white_queens_ring')
 })

@@ -1,7 +1,7 @@
 // priority: 15
 
-const generateDwebRecipes = function (event) {
-  console.log('Started generating custom data in dweb_recipes. If no finish log, then something may be broken!');
+const generateRecipes = function (event) {
+  console.log('Started generating custom data in recipes. If no finish log, then something may be broken!');
 
   function dndRecipe(material, bolt) {
     return {
@@ -211,7 +211,7 @@ const generateDwebRecipes = function (event) {
   newData(event, 'recipe/combinations/giant_leaves', alchemyCombination('twilightforest:giant_leaves', 'and', 'twilightforest:magic_beans', 'minecraft:oak_leaves'));
   newData(event, 'recipe/grist_costs/giant_leaves', gristCost('twilightforest:giant_leaves', { 'minestuck:build': 64 }));
 
-  console.log('Ending gen in dweb_recipes.');
+  console.log('Ending gen in recipes.');
 };
 
 

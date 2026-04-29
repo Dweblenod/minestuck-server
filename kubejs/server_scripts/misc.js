@@ -249,11 +249,11 @@ EntityEvents.spawned((event) => {
   };
 
   // disable twilight animals due to incompat with no mans
-  conversion('twilightforest:boar', 'minecraft:pig');
-  conversion('twilightforest:raven', 'hexerei:crow');
-  conversion('twilightforest:bighorn_sheep', 'minecraft:sheep');
+  //conversion('twilightforest:boar', 'minecraft:pig');
+  //conversion('twilightforest:raven', 'hexerei:crow');
+  //conversion('twilightforest:bighorn_sheep', 'minecraft:sheep');
 
-  bossConversion('twilightforest:snow_queen', 'cataclysm:ignis', 'cataclysm:maledictus');
+  //bossConversion('twilightforest:snow_queen', 'cataclysm:ignis', 'cataclysm:maledictus');
 });
 
 
@@ -268,8 +268,8 @@ EntityEvents.spawned((event) => {
 
 EntityJSEvents.biomeSpawns((event) => {
   // players shouldnt be able to get to the dimension under normal circumstances, but will prevent client crashes in creative mode hyjinks
-  event.removeSpawn('twilightforest:boar', ['#twilightforest:in_twilight_forest']);
-  event.removeSpawn('twilightforest:bighorn_sheep', ['#twilightforest:in_twilight_forest']);
+  //event.removeSpawn('twilightforest:boar', ['#twilightforest:in_twilight_forest']);
+  //event.removeSpawn('twilightforest:bighorn_sheep', ['#twilightforest:in_twilight_forest']);
 });
 
 
@@ -408,10 +408,10 @@ function bedHandle(event) {
 // Custom data =====================================================================================================================================================
 
 // ServerEvents.generateData('last', (event) => {
-const generateDwebMisc = function (event) {
-  console.log('Started generating custom data in dweb_misc. If no finish log, then something may be broken!');
+const generateMisc = function (event) {
+  console.log('Started generating custom data in misc. If no finish log, then something may be broken!');
 
-  newDataFullPath(event, 'restrictedportals:advancement/thenether', dummyAdvancement('minecraft:crying_obsidian', 'Unlock The Nether'));
+  /*newDataFullPath(event, 'restrictedportals:advancement/thenether', dummyAdvancement('minecraft:crying_obsidian', 'Unlock The Nether'));
   newDataFullPath(event, 'restrictedportals:advancement/theend', dummyAdvancement('minecraft:end_portal_frame', 'Unlock The End'));
   newDataFullPath(event, 'restrictedportals:advancement/theveil', dummyAdvancement('minestuck:meteoric_stone', 'Unlock The Veil'));
   newDataFullPath(event, 'restrictedportals:advancement/prospit', dummyAdvancement('minestuck:prospit_tarnished_brick', 'Unlock Prospit'));
@@ -697,6 +697,7 @@ const generateDwebMisc = function (event) {
   newData(event, 'minestuck/rung_extension/space_extra', rungExtension('space', 'irons_spellbooks:ice_spell_power', 0.004));
   newData(event, 'minestuck/rung_extension/mind_extra', rungExtension('mind', 'irons_spellbooks:lightning_spell_power', 0.004));
   newData(event, 'minestuck/rung_extension/hope_extra', rungExtension('hope', 'irons_spellbooks:ender_spell_power', 0.004));
+  */
 
   //already added via minestuck_extended
   /*newData(event, 'minestuck/rung_extension/god_tier', {
@@ -712,7 +713,7 @@ const generateDwebMisc = function (event) {
     ],
   });*/
 
-  newDataFullPath(event, 'minestuck:minestuck/config/rungs', [
+  /*newDataFullPath(event, 'minestuck:minestuck/config/rungs', [
     {
       background_color: -11545600,
       boondollars: 0,
@@ -1183,6 +1184,7 @@ const generateDwebMisc = function (event) {
       },
     ],
   });
+  */
 
-  console.log('Ending gen in dweb_misc.');
+  console.log('Ending gen in misc.');
 };
