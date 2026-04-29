@@ -1,6 +1,0 @@
-- NeOculus has proven incompatible. That + Embeddium have been replaced with Iris/Sodium
-- Astrological has proven incompatible. Causes a server side crash when loading a chunk in the End
-- no mans and hex willow
-- no mans textures screwed up on map
-- oil deposit placed feature logging errors, silenced with console filter mod
-- Shaders which modify the skybox are likely to be incompatible. This includes BSL and Complimentary. They can cause issues in the Medium and in the End
