@@ -12,7 +12,7 @@ LootJS.modifiers((event) => {
 
 
 LootJS.lootTables((event) => {
-  event.create('custom:chests/rare').createPool((pool) => {
+  /*event.create('custom:chests/rare').createPool((pool) => {
     pool.addEntry(LootEntry.reference('minestuck:chests/rare_item')).rolls([1, 3]);
     pool.addEntry(LootEntry.reference('minestuck:chests/supply_item')).rolls([4, 7]);
   });
@@ -182,6 +182,8 @@ LootJS.lootTables((event) => {
 
   // there is no crow loot table
   // event.getLootTable('hexerei:entities/crow').firstPool().addEntry(LootEntry.reference('twilightforest:entities/raven'));
+
+  */
 });
 
 

@@ -1,6 +1,6 @@
 // priority: 30
 
-ServerEvents.recipes(event => {
+/*ServerEvents.recipes(event => {
     event.custom({
         "type": "ae2:matter_cannon",
         "ammo": {
@@ -92,7 +92,7 @@ ServerEvents.recipes(event => {
         },
         "weight": 1000.0
     })
-})
+})*/
 
 const generateAmmo = function (event) {
     console.log('Started generating custom data in ammo. If no finish log, then something may be broken!');

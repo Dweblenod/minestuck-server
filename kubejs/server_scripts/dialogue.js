@@ -1,7 +1,7 @@
 // priority: 20
 
-const generateDwebDialogue = function (event) {
-  console.log('Started generating custom data in dweb_dialogue. If no finish log, then something may be broken!');
+const generateDialogue = function (event) {
+  console.log('Started generating custom data in dialogue. If no finish log, then something may be broken!');
 
 
   newTextFullPath(event, 'computercraft:lua/rom/skaianet-4.13.0.0.1-log',
@@ -753,5 +753,5 @@ and convert using following: A=>T, T=>A, C=>G, G=>C
       ),
     ));
 
-  console.log('Ending gen in dweb_dialogue.');
+  console.log('Ending gen in dialogue.');
 };

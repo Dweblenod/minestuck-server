@@ -7,6 +7,7 @@
  */
 
 
+/*
 const generateGateways = function (event) {
     console.log('Started generating custom data in gateways. If no finish log, then something may be broken!');
 
@@ -1491,3 +1492,4 @@ const generateGateways = function (event) {
 
     console.log('Ending gen in gateways.');
 };
+*/

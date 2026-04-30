@@ -5,12 +5,12 @@
 ServerEvents.generateData('last', (event) => {
   generateMisc(event);
   generateWorldGen(event);
-  generateRecipes(event);
-  generateMedliTweaks(event);
-  generateGateways(event);
-  generateAmmo(event);
-  generateTemp(event);
-  generateWeapons(event);
-  generateDwebDialogue(event);
+  //generateRecipes(event);
+  //generateMedliTweaks(event);
+  //generateGateways(event);
+  //generateAmmo(event);
+  //generateTemp(event);
+  //generateWeapons(event);
+  generateDialogue(event);
   generateCaptchas(event);
 });

@@ -1,6 +1,6 @@
 // priority: 45
 
-const generateWeapons = function (event) {
+/*const generateWeapons = function (event) {
     console.log('Started generating custom data in bettercombat. If no finish log, then something may be broken!');
 
     newDataFullPath(event, 'alchemyexpanded:weapon_attributes/tildeath_do_us_part', {
@@ -33,6 +33,8 @@ const generateWeapons = function (event) {
     newDataFullPath(event, 'alchemyexpanded:weapon_attributes/gold_scepter', {
         "parent": "bettercombat:staff"
     });
+    */
+    
     /*newDataFullPath(event, 'alchemyexpanded:weapon_attributes/boxing_glove', {
         "parent": "bettercombat:fist"
     });
@@ -75,6 +77,8 @@ const generateWeapons = function (event) {
     newDataFullPath(event, 'alchemyexpanded:weapon_attributes/maneg', {
         "parent": "bettercombat:fist"
     });*/
+
+    /*
     newDataFullPath(event, 'alchemyexpanded:weapon_attributes/gunblade', {
         "parent": "bettercombat:dagger"
     });
@@ -99,3 +103,4 @@ const generateWeapons = function (event) {
 
     console.log('Ending gen in bettercombat.');
 };
+*/
