@@ -1,193 +1,5 @@
 // priority: 5
 
-LootJS.modifiers((event) => {
-  event.removeGlobalModifiers(/.*relics.*/); // remove relics from loot
-
-  // let mods = event.getGlobalModifiers()
-  // console.info(mods) //shows all global modifiers
-});
-
-
-
-
-
-LootJS.lootTables((event) => {
-  /*event.create('custom:chests/rare').createPool((pool) => {
-    pool.addEntry(LootEntry.reference('minestuck:chests/rare_item')).rolls([1, 3]);
-    pool.addEntry(LootEntry.reference('minestuck:chests/supply_item')).rolls([4, 7]);
-  });
-
-  event.create('custom:gameplay/ruined_artifact').createPool((pool) => {
-    pool.addEntry(LootEntry.of('season_x:ruined_artifact_sword'));
-    pool.addEntry(LootEntry.of('season_x:ruined_artifact_knife'));
-    pool.addEntry(LootEntry.of('season_x:ruined_artifact_gear'));
-    pool.addEntry(LootEntry.of('season_x:ruined_artifact_orb'));
-    pool.addEntry(LootEntry.of('season_x:ruined_artifact_cube'));
-    pool.addEntry(LootEntry.of('season_x:ruined_artifact_debris'));
-    pool.addEntry(LootEntry.of('season_x:ruined_artifact_blade'));
-  });
-
-  event.create('custom:gameplay/scientist_map').createPool((pool) => {
-    pool.addEntry(furledMap('cataclysm:ancient_factory', 'Research Facility Map', 1));
-  });
-
-  event.getLootTable('minecraft:chests/spawn_bonus_chest').createPool((pool) => {
-    pool.addEntry(LootEntry.of('minecraft:bundle')).rolls([1, 2]);
-    pool.addEntry(LootEntry.of('paldelight:sumac_berries')).rolls([3, 8]);
-  });
-
-  // any eyes that get modified are done so through here instead of config for easier management and visibility
-  event.getLootTable('cataclysm:entities/scylla').createPool((pool) => {
-    pool.addEntry(LootEntry.of('endrem:black_eye'));
-  }).createPool((pool) => {
-    pool.addEntry(LootEntry.reference('custom:gameplay/ruined_artifact').withWeight(1));
-    pool.addEntry(LootEntry.empty().withWeight(2));
-  });
-  event.getLootTable('irons_spellbooks:entities/cryomancer').firstPool((pool) => {
-    pool.addEntry(LootEntry.of('endrem:cold_eye'));
-  });
-  event.getLootTable('cataclysm:entities/aptrgangr').firstPool((pool) => {
-    pool.addEntry(LootEntry.of('endrem:cold_eye'));
-  });
-  event.getLootTable('irons_spellbooks:entities/archevoker').firstPool((pool) => {
-    pool.addEntry(LootEntry.of('endrem:corrupted_eye'));
-  }).createPool((pool) => {
-    pool.addEntry(LootEntry.reference('custom:gameplay/ruined_artifact').withWeight(1));
-    pool.addEntry(LootEntry.empty().withWeight(15));
-  });
-  // cryptic through tech
-  // cursed unmodded
-  // evil through magic
-  // exotic through magic
-  // guardian unmodded
-  // lost through dialogue
-  // magical through magic
-  event.getLootTable('cataclysm:entities/netherite_monstrosity').createPool((pool) => {
-    pool.addEntry(LootEntry.of('endrem:nether_eye'));
-  }).createPool((pool) => {
-    pool.addEntry(LootEntry.reference('custom:gameplay/ruined_artifact').withWeight(1));
-    pool.addEntry(LootEntry.empty().withWeight(2));
-  });
-  event.getLootTable('cataclysm:entities/ancient_remnant').createPool((pool) => {
-    pool.addEntry(LootEntry.of('endrem:old_eye'));
-  }).createPool((pool) => {
-    pool.addEntry(LootEntry.reference('custom:gameplay/ruined_artifact').withWeight(1));
-    pool.addEntry(LootEntry.empty().withWeight(2));
-  });
-  // rogue through ??
-  // undead through magic
-  // witch through magic
-  // wither unmodded
-  event.getLootTable('irons_spellbooks:entities/dead_king').createPool((pool) => {
-    pool.addEntry(LootEntry.of('endrem:undead_soul')).rolls([1, 2]);
-  }).createPool((pool) => {
-    pool.addEntry(furledMap('minestuck:imp_bunker', 'Imp Bunker Map', 1));
-    pool.addEntry(furledMap('minestuck:consort_village', 'Village Map', 1));
-    pool.addEntry(furledMap('custom:lich', 'Lich Tower Map', 2));
-    pool.addEntry(furledMap('custom:naga', 'Naga Map', 1));
-    pool.addEntry(furledMap('custom:hydra', 'Hydra Map', 1));
-    pool.addEntry(LootEntry.reference('custom:gameplay/ruined_artifact').withWeight(1));
-  });
-  event.getLootTable('twilightforest:entities/lich').firstPool((pool) => {
-    pool.addEntry(LootEntry.of('endrem:undead_soul'));
-  }).createPool((pool) => {
-    pool.addEntry(furledMap('minestuck:imp_bunker', 'Imp Bunker Map', 2));
-    pool.addEntry(furledMap('minestuck:consort_village', 'Village Map', 2));
-    pool.addEntry(furledMap('irons_spellbooks:catacombs', 'Catacombs Map', 1));
-    pool.addEntry(furledMap('custom:naga', 'Naga Map', 2));
-    pool.addEntry(furledMap('custom:hydra', 'Hydra Map', 1));
-    pool.addEntry(LootEntry.reference('custom:gameplay/ruined_artifact').withWeight(1));
-    pool.addEntry(LootEntry.empty().withWeight(2));
-  });
-  event.getLootTable('twilightforest:entities/naga').createPool((pool) => {
-    pool.addEntry(furledMap('minestuck:imp_bunker', 'Imp Bunker Map', 2));
-    pool.addEntry(furledMap('minestuck:consort_village', 'Village Map', 2));
-    pool.addEntry(furledMap('irons_spellbooks:catacombs', 'Catacombs Map', 1));
-    pool.addEntry(furledMap('custom:lich', 'Lich Tower Map', 1));
-    pool.addEntry(furledMap('custom:hydra', 'Hydra Map', 1));
-    pool.addEntry(LootEntry.reference('custom:gameplay/ruined_artifact').withWeight(1));
-    pool.addEntry(LootEntry.empty().withWeight(1));
-  });
-  event.getLootTable('twilightforest:entities/hydra').createPool((pool) => {
-    pool.addEntry(furledMap('minestuck:imp_bunker', 'Imp Bunker Map', 1));
-    pool.addEntry(furledMap('minestuck:consort_village', 'Village Map', 1));
-    pool.addEntry(furledMap('irons_spellbooks:catacombs', 'Catacombs Map', 1));
-    pool.addEntry(furledMap('custom:lich', 'Lich Tower Map', 2));
-    pool.addEntry(furledMap('custom:naga', 'Naga Map', 2));
-    pool.addEntry(LootEntry.reference('custom:gameplay/ruined_artifact').withWeight(1));
-  });
-
-  event.getLootTable('twilightforest:chests/tower_foyer').firstPool((pool) => {
-    pool.addEntry(LootEntry.of('minecraft:skeleton_skull').withWeight(1));
-  }).createPool((pool) => {
-    pool.addEntry(LootEntry.reference('minestuck:chests/medium_basic').withWeight(1));
-  });
-
-  event.getLootTable('minestuck:gameplay/consort_general').firstPool((pool) => {
-    pool.addEntry(furledMap('minestuck:imp_bunker', 'Imp Bunker Map', 2));
-    pool.addEntry(furledMap('custom:lich_tower', 'Lich Map', 2));
-    pool.addEntry(furledMap('custom:well', 'Occult Map', 1));
-  });
-
-  event.getLootTable('minestuck:gameplay/consort_food').firstPool((pool) => {
-    pool.addEntry(LootEntry.of('create:dough').withWeight(3));
-  });
-
-  event.getLootTable('minestuck:chests/supply_item').firstPool((pool) => {
-    // pool.addEntry(LootEntry.of("minecraft:iron_ingot").setCount([0, 5]).withWeight(8))
-    // pool.addEntry(LootEntry.of("minecraft:gold_ingot").setCount([0, 4]).withWeight(6));
-  });
-
-  event.getLootTable('minestuck:chests/rare_item').firstPool((pool) => {
-    pool.removeItem('minestuck:transportalizer');
-    pool.addEntry(furledMap('irons_spellbooks:catacombs', 'Catacombs Map', 4));
-    pool.addEntry(furledMap('custom:lich_tower', 'Lich Map', 2));
-    pool.addEntry(furledMap('twilightforest:knight_stronghold', 'Knight Stronghold Map', 3));
-    // pool.addEntry(furledMap('cataclysm:acropolis', 'Acropolis Map', 4));
-    // pool.addEntry(furledMap('twilightforest:final_castle', 'Castle Map', 2));
-    // pool.addEntry(LootEntry.of('twilightforest:magic_painting').withWeight(1));
-    pool.addEntry(LootEntry.of('twilightforest:charm_of_keeping_1').withWeight(10));
-    pool.addEntry(LootEntry.of('twilightforest:charm_of_life_1').withWeight(3));
-    pool.addEntry(LootEntry.reference('irons_spellbooks:chests/additional_treasure_loot').withWeight(1));
-    pool.addEntry(LootEntry.of('twilightforest:emperors_cloth').withWeight(1));
-  }).createPool((pool) => {
-    pool.addEntry(LootEntry.reference('custom:gameplay/ruined_artifact').withWeight(1));
-    pool.addEntry(LootEntry.empty().withWeight(85));
-  });
-
-  event.getLootTable('minestuck:chests/laboratory/supply').firstPool((pool) => {
-    pool.addEntry(LootEntry.of('minestuck:chessboard').setCount([1, 2]).withWeight(1));
-    pool.addEntry(LootEntry.of('tempad:time_steel').setCount([0, 1]).withWeight(1));
-    pool.addEntry(LootEntry.of('tempad:location_card').setCount([1, 2]).withWeight(3));
-  }).createPool((pool) => {
-    pool.addEntry(LootEntry.reference('minestuck:chests/supply_item').withWeight(1));
-  });
-
-  event.getLootTable('irons_spellbooks:magic_items/basic_curios').firstPool((pool) => {
-    pool.removeItem('irons_spellbooks:fireward_ring');
-    pool.removeItem('irons_spellbooks:frostward_ring');
-    pool.removeItem('irons_spellbooks:poisonward_ring');
-  });
-
-  event.getLootTable('irons_spellbooks:chests/filler_storage_loot').firstPool().addEntry(LootEntry.reference('minestuck:chests/misc_item').withWeight(1));
-
-  event.getLootTable('minestuck:chests/supply_item/terrain/minestuck/rain').firstPool((pool) => {
-    pool.addEntry(LootEntry.of('twilightforest:magic_beans').withWeight(1));
-    pool.addEntry(LootEntry.of('twilightforest:uberous_soil').withWeight(1));
-  });
-
-  event.getLootTable('minestuck:chests/supply_item/terrain/minestuck/rainbow').firstPool((pool) => {
-    pool.removeItem('faygoplus:ultimate_faygo');
-  });
-
-  // there is no crow loot table
-  // event.getLootTable('hexerei:entities/crow').firstPool().addEntry(LootEntry.reference('twilightforest:entities/raven'));
-
-  */
-});
-
-
-
 
 
 
@@ -408,12 +220,12 @@ function bedHandle(event) {
 
 
 // Custom data =====================================================================================================================================================
-
+/*
 // ServerEvents.generateData('last', (event) => {
 const generateMisc = function (event) {
   console.log('Started generating custom data in misc. If no finish log, then something may be broken!');
 
-  /*newDataFullPath(event, 'restrictedportals:advancement/thenether', dummyAdvancement('minecraft:crying_obsidian', 'Unlock The Nether'));
+  newDataFullPath(event, 'restrictedportals:advancement/thenether', dummyAdvancement('minecraft:crying_obsidian', 'Unlock The Nether'));
   newDataFullPath(event, 'restrictedportals:advancement/theend', dummyAdvancement('minecraft:end_portal_frame', 'Unlock The End'));
   newDataFullPath(event, 'restrictedportals:advancement/theveil', dummyAdvancement('minestuck:meteoric_stone', 'Unlock The Veil'));
   newDataFullPath(event, 'restrictedportals:advancement/prospit', dummyAdvancement('minestuck:prospit_tarnished_brick', 'Unlock Prospit'));
@@ -1186,7 +998,234 @@ const generateMisc = function (event) {
       },
     ],
   });
-  */
 
   console.log('Ending gen in misc.');
 };
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//viksy
+/*ServerEvents.tags('item', event => {
+  event.add('c:storage_blocks/raw_uranium', 'minestuck:uranium_block')
+  event.add('c:raw_materials/uranium', 'minestuck:raw_uranium')
+  event.add('c:chunks/uranium', 'mekanism:raw_uranium')
+  event.add('c:sausage/cooked', 'mynethersdelight:roasted_sausage')
+  event.add('c:sausage/cooked', 'ends_delight:ender_sausage')
+  event.add('c:sausage/raw', 'mynethersdelight:hoglin_sausage')
+  event.add('c:sausage/raw', 'ends_delight:raw_ender_sausage')
+  event.add('c:sausage', 'mynethersdelight:roasted_sausage')
+  event.add('c:sausage', 'ends_delight:ender_sausage')
+  event.add('c:sausage', 'mynethersdelight:hoglin_sausage')
+  event.add('c:sausage', 'ends_delight:raw_ender_sausage')
+  event.add('c:fat', 'hexerei:animal_fat')
+  event.add('c:tallow', 'hexerei:animal_fat')
+  event.add('c:ash', 'netherex:ash')
+  event.add('c:nuggets/netherite', 'netherex:netherite_nugget')
+  event.add('hexerei:tallow_meltable', 'occultism:tallow')
+  event.add('c:meat/ribs/raw', 'netherex:ribs')
+  event.add('c:mutton/ribs', 'netherex:ribs')
+  event.add('c:chocolate/bar', 'create:bar_of_chocolate')
+  event.add('c:chocolate/milk/bar', 'create:bar_of_chocolate')
+  event.add('c:candy', '#minestuck:grist_candy')
+  event.add('c:candy', 'minestuck:candy_corn')
+  event.add('c:bread/crumbs', 'minestuck:breadcrumbs')
+  event.add('c:candy', 'supplementaries:candy')
+  event.add('c:foods/onion', 'minestuck:onion')
+  event.add('c:crops/onion', 'minestuck:onion')
+  event.add('c:fruits', 'minestuck:desert_fruit')
+  event.add('c:foods/fruit', 'minestuck:desert_fruit')
+  event.add('c:fruit', 'minestuck:desert_fruit')
+  event.add('c:fruits', 'nomansland:pear')
+  event.add('c:foods/fruit', 'nomansland:pear')
+  event.add('c:fruit', 'nomansland:pear')
+  event.add('c:fruits', 'minestuck:strawberry_chunk')
+  event.add('c:foods/fruit', 'minestuck:strawberry_chunk')
+  event.add('c:fruit', 'minestuck:strawberry_chunk')
+  event.add('c:foods/berry', 'alchemyexpanded:wizard_berries')
+  event.add('c:fruit', 'alchemyexpanded:wizard_berries')
+  event.add('c:fruits', 'alchemyexpanded:wizard_berries')
+  event.add('c:chicken/breast/raw', 'farmersdelight:chicken_cuts')
+  event.add('c:chicken/cubed/raw', 'farmersdelight:chicken_cuts')
+  event.add('c:chicken/thigh/raw', 'farmersdelight:chicken_cuts')
+  event.add('c:beef/cubed/raw', 'farmersdelight:minced_beef')
+  event.add('c:pork/ground/raw', 'farmersdelight:minced_beef')
+  event.add('mynethersdelight:hot_spice', 'extradelight:hot_sauce_item')
+  event.add('c:bricks/nether', 'netherex:fiery_nether_brick')
+  event.add('c:bricks/nether', 'netherex:gloomy_nether_brick')
+  event.add('c:bricks/nether', 'netherex:lively_nether_brick')
+  event.add('supplementaries:throwable_bricks', 'netherex:fiery_nether_brick')
+  event.add('supplementaries:throwable_bricks', 'netherex:gloomy_nether_brick')
+  event.add('supplementaries:throwable_bricks', 'netherex:lively_nether_brick')
+  event.add('c:bricks', 'supplementaries:ash_brick')
+  event.add('c:crushed_aluminum', 'create:crushed_raw_aluminum')
+  event.add('c:beef/ground', 'farmersdelight:minced_beef')
+  event.add('c:foods/milk', 'hexerei:milk_bottle')
+  event.add('c:foods/milk', 'extradelight:soy_milk')
+  event.add('c:ores/stellarite', 'e2s2:asterite_ore')
+  event.add('c:ores/nebulite', 'enderscape:nebulite_ore')
+  event.add('c:ores/shadoline', 'enderscape:shadoline_ore')
+  event.add('c:ores/iridium', 'malum:cthonic_gold_ore')
+  event.add('c:ores/soulstone', 'malum:soulstone_ore')
+  event.add('c:ores/blazing_quartz', 'malum:blazing_quartz_ore')
+  event.add('c:ingots/black_steel', 'cataclysm:black_steel_ingot')
+  event.add('irons_spellbooks:blood_focus', 'hexerei:blood_bottle')
+  event.add('c:raw_materials/soulstone', 'malum:raw_soulstone')
+  event.add('malum:crushed_soulstone', 'malum:crushed_soulstone')
+  event.add('c:raw_materials/brilliance', 'malum:raw_brilliance')
+  event.add('malum:crushed_brilliance', 'malum:crushed_brilliance')
+  event.add('kubejs:ink_base', 'minecraft:ink_sac')
+  event.add('kubejs:ink_base', 'minecraft:glow_ink_sac')
+  event.add('kubejs:ink_base', 'minestuck:ink_squid_pro_quo')
+  event.add('kubejs:ink_base', 'supplementaries:antique_ink')
+  event.add('kubejs:taboo_books', 'minestuck:grimoire')
+  event.add('kubejs:godspec', 'e2s2:godsoul_ingot')
+  event.add('kubejs:godspec', 'e2s2:godspec_helmet')
+  event.add('kubejs:godspec', 'e2s2:godspec_chestplate')
+  event.add('kubejs:godspec', 'e2s2:godspec_leggings')
+  event.add('kubejs:godspec', 'e2s2:godspec_boots')
+  event.add('sillyworks:power_armor', 'e2s2:godspec_helmet')
+  event.add('sillyworks:power_armor', 'e2s2:godspec_chestplate')
+  event.add('sillyworks:power_armor', 'e2s2:godspec_leggings')
+  event.add('sillyworks:power_armor', 'e2s2:godspec_boots')
+  event.add('sillyworks:prevents_power_armor_setbonus', 'e2s2:godspec_helmet')
+  event.add('sillyworks:prevents_power_armor_setbonus', 'e2s2:godspec_chestplate')
+  event.add('sillyworks:prevents_power_armor_setbonus', 'e2s2:godspec_leggings')
+  event.add('sillyworks:prevents_power_armor_setbonus', 'e2s2:godspec_boots')
+  event.add('sillyworks:power_armor', 'minestuck:iron_lass_glasses')
+  event.add('sillyworks:power_armor', 'minestuck:iron_lass_chestplate')
+  event.add('sillyworks:power_armor', 'minestuck:iron_lass_skirt')
+  event.add('sillyworks:power_armor', 'minestuck:iron_lass_shoes')
+  event.add('sillyworks:prevents_power_armor_setbonus', 'minestuck:iron_lass_glasses')
+  event.add('sillyworks:prevents_power_armor_setbonus', 'minestuck:iron_lass_chestplate')
+  event.add('sillyworks:prevents_power_armor_setbonus', 'minestuck:iron_lass_skirt')
+  event.add('sillyworks:prevents_power_armor_setbonus', 'minestuck:iron_lass_shoes')
+  event.add('kubejs:godspec', 'e2s2:unfinished_godspec_helmet')
+  event.add('kubejs:godspec', 'e2s2:unfinished_godspec_chestplate')
+  event.add('kubejs:godspec', 'e2s2:unfinished_godspec_leggings')
+  event.add('kubejs:godspec', 'e2s2:unfinished_godspec_boots')
+  event.add('kubejs:wizardberries', 'alchemyexpanded:wizard_berries')
+  event.add('kubejs:wizardberries', 'alchemyexpanded:wizardberry_gushers')
+  event.add('e2s2:void_guard', 'e2s2:godspec_chestplate')
+  event.add('mekanism:alloys/infused', 'sillyworks:superconductor_ingot')
+  event.add('c:alloys/advanced', 'sillyworks:superconductor_ingot')
+  event.add('c:bones/wither', 'netherex:wither_bone')
+  event.add('c:mushrooms', 'netherex:red_elder_mushroom')
+  event.add('c:mushrooms', 'netherex:brown_elder_mushroom')
+  event.add('c:mushrooms', 'minestuck:morel_mushroom')
+  event.add('c:mushrooms', 'minestuck:glowing_mushroom')
+  event.add('c:mushrooms', 'minestuck:paradises_portabello')
+  event.add('c:mushrooms', 'nomansland:shelf_mushroom')
+  event.add('c:mushrooms', 'nomansland:grilled_mushrooms')
+  event.add('c:mushrooms', 'minestuck:sushroom')
+  event.add('c:mushrooms', 'enderscape:celestial_chanterelle')
+  event.add('c:mushrooms', 'enderscape:murublight_chanterelle')
+  event.add('c:mushrooms', 'enderscape:murublight_shelf')
+  event.add('nomansland:edible_mushrooms', 'minestuck:morel_mushroom')
+  event.add('c:foods/dough', 'create:dough')
+  event.add('c:doughs', 'farmersdelight:wheat_dough')
+  event.add('c:doughs/wheat', 'farmersdelight:wheat_dough')
+  event.add('c:beef/roast', 'minecraft:beef')
+  event.add('c:liver', 'minecraft:beef')
+  event.add('c:bread/sliced', 'mynethersdelight:slices_of_bread')
+  event.add('c:toast', 'mynethersdelight:toasts')
+  event.add('kubejs:strange_crystals', 'malum:strange_crystal')
+  event.add('kubejs:strange_crystals', 'malum:large_strange_crystal')
+  event.add('minestuck:unreadable', '#c:ingots/uranium')
+  event.add('sillyworks:power_armor_wiring', 'createaddition:electrum_spool')
+  event.add('minecraft:coals', 'tfmg:coal_coke')
+  event.add('ae2:all_quartz_dust', 'mekanism:dust_quartz')
+  event.add('c:tools/shield', 'endermanoverhaul:corrupted_shield')
+  event.add('minecraft:enchantable/durability', 'endermanoverhaul:corrupted_shield')
+  event.add('kubejs:french_fries', 'extradelight:french_fries')
+  event.add('kubejs:french_fries', 'minestuck:french_fry')
+  event.add('c:condiments', 'minestuck:grub_sauce')
+  event.add('neoforge:dusts/obsidian', '#c:dusts/obsidian')
+  event.add('neoforge:dusts/gold', '#c:dusts/gold')
+  event.add('c:foods/cookie', 'minestuck_extended:lancer_cookie')
+  event.add('c:slag', 'tfmg:slag')
+  event.add('immersiveengineering:treated_wood', 'minestuck:treated_planks')
+  event.add('immersiveengineering:treated_wood', 'minestuck:treated_heavy_planks')
+  event.add('immersiveengineering:treated_wood', 'minestuck:treated_uncarved_wood')
+  event.add('immersiveengineering:treated_wood', 'tfmg:hardened_planks')
+  event.add('immersiveengineering:treated_wood_slab', 'minestuck:treated_planks_slab')
+  event.add('immersiveengineering:treated_wood_slab', 'minestuck:treated_heavy_plank_slab')
+  event.add('immersiveengineering:treated_wood_slab', 'minestuck:treated_uncarved_wood_slab')
+  event.add('minestuck:unreadable', 'season_x:cueball_round')
+  event.add('minestuck:unreadable', '#c:ingots/plastic')
+  event.add('minestuck:unreadable', '#c:ingots/silicon')
+  event.add('minestuck:unreadable', '#c:ingots/superconductor')
+  event.add('minestuck:unreadable', '#c:ingots/steel')
+  event.add('minestuck:unreadable', '#c:ingots/iesnium')
+  event.add('minestuck:unreadable', 'tfmg:steel_mechanism')
+  event.add('minestuck:unreadable', 'tfmg:circuit_board')
+  event.add('minestuck:unreadable', 'malum:soul_stained_steel_ingot')
+  event.add('minestuck:unreadable', 'malum:hallowed_gold_ingot')
+  event.add('kubejs:cast_iron_blocks', 'minestuck:cast_iron')
+  event.add('kubejs:cast_iron_blocks', 'minestuck:cast_iron_tile')
+  event.add('kubejs:cast_iron_blocks', 'minestuck:cast_iron_sheet')
+  event.add('kubejs:cast_iron_blocks', 'minestuck:cast_iron_slab')
+  event.add('kubejs:cast_iron_blocks', 'minestuck:cast_iron_tile_slab')
+  event.add('kubejs:cast_iron_blocks', 'minestuck:cast_iron_sheet_slab')
+  event.add('kubejs:cast_iron_blocks', 'minestuck:cast_iron_stairs')
+  event.add('kubejs:cast_iron_blocks', 'minestuck:cast_iron_tile_stairs')
+  event.add('kubejs:cast_iron_blocks', 'minestuck:cast_iron_sheet_stairs')
+  event.add('kubejs:cast_iron_blocks', 'minestuck:cast_iron_wall')
+  event.add('kubejs:cast_iron_blocks', 'minestuck:cast_iron_button')
+  event.add('kubejs:cast_iron_blocks', 'minestuck:cast_iron_pressure_plate')
+  event.add('kubejs:cast_iron_blocks', 'minestuck:cast_iron_frame')
+  event.add('kubejs:cast_iron_blocks', 'minestuck:chiseled_cast_iron')
+  event.add('kubejs:final_materials', 'season_x:phantasmagorium')
+  event.add('kubejs:final_materials', 'sillyworks:supercomputer')
+  event.add('sillyworks:superheavy', 'immersiveengineering:railgun')
+  event.add('sillyworks:superheavy', 'immersiveengineering:chemthrower')
+  event.add('sillyworks:superheavy', 'tfmg:flamethrower')
+  event.add('sillyworks:superheavy', 'tfmg:advanced_potato_cannon')
+  event.add('sillyworks:superheavy', 'tfmg:quad_potato_cannon')
+  event.add('kubejs:lithium_charge', 'tfmg:lithium_charge')
+  event.add('kubejs:magic_cloth', 'irons_spellbooks:magic_cloth')
+  event.add('kubejs:magic_cloth', 'malum:soulwoven_silk')
+  event.add('supplementaries:ropes', 'immersiveengineering:wirecoil_structure_rope')
+  event.add('malum:artifice_tool', 'minestuck:tuning_fork')
+  event.add('sillyworks:stone_alloys', 'create:andesite_alloy')
+  event.add('hexerei:herbs', 'alchemyexpanded:wizard_berries')
+  //---------------------------------------------------------------------
+  event.remove('c:storage_blocks/uranium', 'minestuck:uranium_block')
+  event.remove('c:ingots/silicon', 'tfmg:silicon_ingot')
+  event.remove('minestuck:faygo', 'faygoplus:ultimate_faygo')
+  event.remove('c:dusts/amethyst', 'occultism:amethyst_dust')
+  event.remove('c:dusts/netherite_scrap', 'occultism:netherite_scrap_dust')
+  event.remove('c:dusts/blackstone', 'occultism:crushed_blackstone')
+  event.remove('sillyworks:power_armor_plates', '#c:plates/iron')
+  event.remove('sillyworks:power_armor_wiring', 'minecraft:copper_ingot')
+  event.remove('sillyworks:ae2_redstone', '#c:dusts/redstone')
+})
+
+
+
+ServerEvents.tags('block', event => {
+  event.add('minecraft:enchantment_power_provider', '#minestuck:bookshelves/aspect')
+  event.add('minecraft:enchantment_power_provider', '#c:bookshelves')
+})
+
+
+//---------------------------------------------------------------------
+ServerEvents.tags('fluid', event => {
+  event.add('c:blood', 'minestuck:blood')
+  event.add('c:blood', 'hexerei:blood_fluid')
+  event.add('c:blood', 'irons_spellbooks:blood')
+  event.add('sillyworks:strong_acid', 'sillyworks:strong_acid')
+})
+*/

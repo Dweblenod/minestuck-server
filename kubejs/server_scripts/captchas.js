@@ -177,6 +177,7 @@ const generateCaptchas = function (event) {
   let salt2 = 7999993;
   let salt3 = 7.27;
 
+  /*
   let captchas = [
     //royal_deringer handled via season_x
     [randomizeCaptcha('SPclNEdl', salt1, salt2, salt3), 'minestuck:quill_of_echidna'],
@@ -208,6 +209,7 @@ const generateCaptchas = function (event) {
   });
 
   newData(event, `minestuck/captcha_codes`, createExtendablePair(captchas));
+  */
 
   console.log('Ending gen in captchas.');
 };
