@@ -2,16 +2,38 @@
 
 // functions that get loaded first and can be used in any other server script
 
-const newData = function (event, path, jsonIn) {
+/**
+ * Creates a new data driven json file, with `path` as the file location and `json` as the contents
+ * 
+ * If the namespace is skipped it will default to `custom`
+ */
+const newData = function (event, path, json) {
   //console.log(`custom:${path}.json : ` + JsonIO.toString(jsonIn));
-  event.json(`custom:${path}.json`, jsonIn);
+
+  if (!path.includes(":"))
+      path = "custom:" + path;
+  event.json(`${path}.json`, json);
 };
 
+/**@deprecated */
 const newDataFullPath = function (event, path, jsonIn) {
   //console.log(`custom:${path}.json : ` + JsonIO.toString(jsonIn));
   event.json(`${path}.json`, jsonIn);
 };
 
+/**
+ * Creates a new data driven text file, with `path` as the file location and `text` as the contents
+ * 
+ * If the namespace is skipped it will default to `custom`
+ */
+const newText = function (event, path, text) {
+  if (!path.includes(":"))
+      path = "custom:" + path;
+  
+  event.text(`${path}.txt`, text);
+};
+
+/**@deprecated */
 const newTextFullPath = function (event, path, textIn) {
   event.text(`${path}.txt`, textIn);
 };

@@ -96,11 +96,11 @@
 
 const generateAmmo = function (event) {
     console.log('Started generating custom data in ammo. If no finish log, then something may be broken!');
-
+    
     newData(event, `create/potato_projectile/type/cannonball`,         //File Loation
         ammunitionWithBlockHit("supplementaries:cannonball",    //Ammo to use
             20,                                                 //Damage
-            2,                                                  //Knockback
+            3,                                                  //Knockback
             {
                 "type": "create:place_block_on_ground",
                 "block": "supplementaries:cannonball"
@@ -136,6 +136,7 @@ const generateAmmo = function (event) {
             20
         )
     );
+    /*
     newData(event, `create/potato_projectile/type/glizzy`,
         ammunitionWithEntityHit("mynethersdelight:roasted_sausage",
             5,
@@ -249,6 +250,7 @@ const generateAmmo = function (event) {
             30
         )
     );
+    */
 
     console.log('Ending gen in ammo.');
 };

@@ -220,12 +220,12 @@ function bedHandle(event) {
 
 
 // Custom data =====================================================================================================================================================
-/*
+/**/
 // ServerEvents.generateData('last', (event) => {
 const generateMisc = function (event) {
   console.log('Started generating custom data in misc. If no finish log, then something may be broken!');
 
-  newDataFullPath(event, 'restrictedportals:advancement/thenether', dummyAdvancement('minecraft:crying_obsidian', 'Unlock The Nether'));
+  /*newDataFullPath(event, 'restrictedportals:advancement/thenether', dummyAdvancement('minecraft:crying_obsidian', 'Unlock The Nether'));
   newDataFullPath(event, 'restrictedportals:advancement/theend', dummyAdvancement('minecraft:end_portal_frame', 'Unlock The End'));
   newDataFullPath(event, 'restrictedportals:advancement/theveil', dummyAdvancement('minestuck:meteoric_stone', 'Unlock The Veil'));
   newDataFullPath(event, 'restrictedportals:advancement/prospit', dummyAdvancement('minestuck:prospit_tarnished_brick', 'Unlock Prospit'));
@@ -998,10 +998,10 @@ const generateMisc = function (event) {
       },
     ],
   });
+  */
 
   console.log('Ending gen in misc.');
 };
-*/
 
 
 

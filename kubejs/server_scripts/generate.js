@@ -3,11 +3,11 @@
 // We try to call generateData() once under the assumption that multiple calls increases load times
 
 ServerEvents.generateData('last', (event) => {
-  //generateMisc(event);
+  generateMisc(event);
   generateWorldGen(event);
   //generateRecipes(event);
   //generateGateways(event);
-  //generateAmmo(event);
+  generateAmmo(event);
   //generateTemp(event);
   //generateWeapons(event);
   generateDialogue(event);
