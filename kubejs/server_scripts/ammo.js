@@ -96,46 +96,29 @@
 
 const generateAmmo = function (event) {
     console.log('Started generating custom data in ammo. If no finish log, then something may be broken!');
-    
-    newData(event, `create/potato_projectile/type/cannonball`,         //File Loation
-        ammunitionWithBlockHit("supplementaries:cannonball",    //Ammo to use
-            20,                                                 //Damage
-            3,                                                  //Knockback
-            {
-                "type": "create:place_block_on_ground",
-                "block": "supplementaries:cannonball"
-            },
-            {                                                   //Render Mode
-                "type": "create:tumble"
-            },
-            0.8,                                                //Sound Pitch
-            1,                                                  //Projectile split?
-            1.05,                                               //Velocity multiplier
-            false,                                              //Sticky?
-            60                                                  //Reload Ticks
-        )
-    );
-    newData(event, `create/potato_projectile/type/spore_blast`,
-        ammunitionWithEntityHit("minestuck:fungal_spore",
-            5,
-            0.1,
-            {
-                "type": "create:potion_effect",
-                "effect": "minecraft:poison",
-                "level": 1,
-                "recoverable": false,
-                "ticks": 100
-            },
-            {
-                "type": "create:tumble"
-            },
-            0.5,
-            5,
-            0.3,
-            true,
-            20
-        )
-    );
+
+    new PotatoAmmo(['supplementaries:cannonball']).setDamage(8).setKnockback(1).setVelocMult(0.65).setReloadTicks(60).setSoundPitch(0.8)
+        .setPath('create:create/potato_projectile/type/tnt') //replace create expanded potato cannon version
+        .setEntityHit({
+            "type": "create_expanded_potato_cannon:explosion",
+            "radius": 4.0,
+            "causes_fire": false,
+            "interaction": "tnt"
+        }).setBlockHit({
+            "type": "create_expanded_potato_cannon:explosion",
+            "radius": 4.0,
+            "causes_fire": false,
+            "interaction": "tnt"
+        }).build(event);
+    new PotatoAmmo('minestuck:fungal_spore').setKnockback(0.1).setVelocMult(1.05).setReloadTicks(60).setSplit(5).setSticky(true).setSoundPitch(0.8)
+        .setEntityHit({
+            "type": "create:potion_effect",
+            "effect": "minecraft:poison",
+            "level": 1,
+            "recoverable": false,
+            "ticks": 100
+        }).build(event);
+
     /*
     newData(event, `create/potato_projectile/type/glizzy`,
         ammunitionWithEntityHit("mynethersdelight:roasted_sausage",

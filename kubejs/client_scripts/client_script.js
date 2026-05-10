@@ -35,6 +35,8 @@ RecipeViewerEvents.removeEntries('item', event => {
 RecipeViewerEvents.addInformation('item', event => {
   event.add('minestuck:sburb_code', ['Check the Quests for help if you get stuck!']);
 
+  event.add('create:potato_cannon', ['Can accept the following as custom ammo:', '-cannon balls', '-fungal spores', 'The deployer may accept things not listed here!']);
+
   event.addItem('endrem:black_eye', ['Dropped by the scourge of the Prospitians']);
   event.addItem('endrem:cold_eye', ['Dropped by the strongest within a frozen prison, or by the ice inclined mages']);
   event.addItem('endrem:corrupted_eye', ['Dropped by the most powerful of Illager kind']);

@@ -11,7 +11,7 @@ const newData = function (event, path, json) {
   //console.log(`custom:${path}.json : ` + JsonIO.toString(jsonIn));
 
   if (!path.includes(":"))
-      path = "custom:" + path;
+    path = "custom:" + path;
   event.json(`${path}.json`, json);
 };
 
@@ -28,8 +28,8 @@ const newDataFullPath = function (event, path, jsonIn) {
  */
 const newText = function (event, path, text) {
   if (!path.includes(":"))
-      path = "custom:" + path;
-  
+    path = "custom:" + path;
+
   event.text(`${path}.txt`, text);
 };
 
@@ -46,6 +46,28 @@ const newTag = function (replaceIn, valuesIn) {
 };
 
 /**
+ * @param {*} jsonIn accepts an initial set of json
+ */
+function JsonBuilder(jsonIn) {
+  // initial/default fields & values
+  this.obj = jsonIn;
+}
+JsonBuilder.prototype.setField = function (key, value) {
+  this.obj[key] = value;
+  return this;
+};
+JsonBuilder.prototype.removeField = function (key) {
+  if (this.obj.hasOwnProperty(key)) {
+    delete this.obj[key];
+  }
+  return this;
+};
+JsonBuilder.prototype.build = function () {
+  return JSON.parse(JSON.stringify(this.obj));
+};
+
+/**
+ * @deprecated
  * Create multiple field value pairs in JSON
  * 
  * Will skip any field value pairs where the value was never defined
@@ -286,6 +308,80 @@ const malumReap = function (entityIn, itemIn, countIn, chanceIn, minIn, maxIn) {
     ],
   };
 };
+
+/**
+ * Creates a new potato ammo with the defaults:
+ * 5 damage, 1 knockback, 20 reload ticks, render mode of tumble
+ * Will pick name based off the first entry if there are multiple
+ */
+function PotatoAmmo(itemIn) {
+  let name = itemIn;
+  if (Array.isArray(name))
+    name = name[0]; //accept the first entry
+  this.path = `create/potato_projectile/type/${name.toString().replace(":", "")}`
+  this.obj = new JsonBuilder({
+    "items": itemIn,
+    "damage": 5,
+    "knockback": 1,
+    "render_mode": { "type": "create:tumble" },
+    "sound_pitch": 1.0,
+    "split": 1,
+    "velocity_multiplier": 1,
+    "reload_ticks": 20,
+    "sticky": false
+  });
+}
+PotatoAmmo.prototype.setPath = function (pathIn) {
+  this.path = pathIn;
+  return this;
+};
+PotatoAmmo.prototype.setDamage = function (damageIn) {
+  this.obj.setField("damage", damageIn);
+  return this;
+};
+PotatoAmmo.prototype.setKnockback = function (knockbackIn) {
+  this.obj.setField("knockback", knockbackIn);
+  return this;
+};
+/**
+ * @param {*} renderModeIn accepts types of: `billboard`, `tumble`, `toward_motion`, `stuck_to_entity`
+ */
+PotatoAmmo.prototype.setRenderMode = function (renderModeIn) {
+  this.obj.setField("render_mode", renderModeIn);
+  return this;
+};
+PotatoAmmo.prototype.setSoundPitch = function (soundPitchIn) {
+  this.obj.setField("sound_pitch", soundPitchIn);
+  return this;
+};
+PotatoAmmo.prototype.setSplit = function (splitIn) {
+  this.obj.setField("split", splitIn);
+  return this;
+};
+PotatoAmmo.prototype.setVelocMult = function (velocityMultiplierIn) {
+  this.obj.setField("velocity_multiplier", velocityMultiplierIn);
+  return this;
+};
+PotatoAmmo.prototype.setReloadTicks = function (reloadTicksIn) {
+  this.obj.setField("reload_ticks", reloadTicksIn);
+  return this;
+};
+PotatoAmmo.prototype.setSticky = function (stickyIn) {
+  this.obj.setField("sticky", stickyIn);
+  return this;
+};
+PotatoAmmo.prototype.setEntityHit = function (entityHitIn) {
+  this.obj.setField("on_entity_hit", entityHitIn);
+  return this;
+};
+PotatoAmmo.prototype.setBlockHit = function (blockHitIn) {
+  this.obj.setField("on_block_hit", blockHitIn);
+  return this;
+};
+PotatoAmmo.prototype.build = function (event) {
+  return newData(event, this.path, this.obj.build())
+};
+
 
 const ammunitionWithEntityHit = function (itemsIn, damageIn, knockbackIn, onEntityHitIn, renderModeIn, soundPitchIn, splitIn, velocityMultiplierIn, stickyIn, reloadTicksIn) {
   return {
@@ -872,7 +968,7 @@ const condTag = function (tagIn) {
 const condItem = function (itemIn, amountIn) {
   if (amountIn === undefined)
     amountIn = 1;
-  
+
   return {
     type: 'minestuck:player_item',
     item: itemIn,
@@ -923,7 +1019,7 @@ const trigCommand = function (commandIn) {
 const trigTakeItem = function (itemIn, amountIn) {
   if (amountIn === undefined)
     amountIn = 1;
-  
+
   return {
     type: 'minestuck:take_item',
     item: itemIn,
@@ -940,7 +1036,7 @@ const trigTakeItem = function (itemIn, amountIn) {
 const trigGiveItem = function (itemIn, amountIn) {
   if (amountIn === undefined)
     amountIn = 1;
-  
+
   return {
     type: 'minestuck:give_item',
     item: itemIn,
