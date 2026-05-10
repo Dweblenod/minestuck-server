@@ -97,7 +97,7 @@
 const generateAmmo = function (event) {
     console.log('Started generating custom data in ammo. If no finish log, then something may be broken!');
 
-    new PotatoAmmo(['supplementaries:cannonball']).setDamage(8).setKnockback(1).setVelocMult(0.65).setReloadTicks(60).setSoundPitch(0.8)
+    new PotatoAmmo(['supplementaries:cannonball']).setDamage(8).setKnockback(1).setVelocMult(0.65).setReloadTicks(60).setSoundPitch(0.6)
         .setPath('create:create/potato_projectile/type/tnt') //replace create expanded potato cannon version
         .setEntityHit({
             "type": "create_expanded_potato_cannon:explosion",

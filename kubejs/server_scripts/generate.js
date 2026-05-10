@@ -5,7 +5,7 @@
 ServerEvents.generateData('last', (event) => {
   generateMisc(event);
   generateWorldGen(event);
-  //generateRecipes(event);
+  generateRecipes(event);
   //generateGateways(event);
   generateAmmo(event);
   //generateTemp(event);

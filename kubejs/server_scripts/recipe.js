@@ -3,7 +3,7 @@
 const generateRecipes = function (event) {
   console.log('Started generating custom data in recipes. If no finish log, then something may be broken!');
 
-  function dndRecipe(material, bolt) {
+  /*function dndRecipe(material, bolt) {
     return {
       'neoforge:conditions': [
         {
@@ -157,8 +157,6 @@ const generateRecipes = function (event) {
   newDrillingAndVein(event, 'kurodite', 'Kurodite', [itemOutput('enderscape:kurodite', 3)], 192, 120, 'minecraft:is_end', 3, 'enderscape:kurodite', 1868524198, 8, 120);
   newDrillingAndVein(event, 'void_shale', 'Void_Shale', [itemOutput('enderscape:void_shale', 1)], 192, 140, 'minecraft:is_end', 1, 'enderscape:void_shale', 1868524199, 8, 214);
 
-  newDataFullPath(event, 'c:tags/item/tea_ingredients', newTag(false, ['nomansland:thistle']));
-
   newDataFullPath(event, 'apothic_attributes:brewing_mixes/flying_from_levitation', brewMix(`apothic_attributes:levitation`, itemEntry('e2s2:godsoul_ingot'), 'apothic_attributes:flying'));
 
   newDataFullPath(event, 'supplementaries:recipe/sack', {
@@ -176,13 +174,20 @@ const generateRecipes = function (event) {
     result: {
       id: 'supplementaries:sack',
     },
-  });
+  });*/
 
 
-  newDataFullPath(event, 'minestuck:recipe/combinations/subtractshumidire_zomorrodnegative', alchemyCombination('minestuck:subtractshumidire_zomorrodnegative', 'and', 'tfmg:turbine_engine', 'minecraft:iron_sword'));
-
-  newDataFullPath(event, 'minestuck:recipe/combinations/transportalizer', alchemyCombination('minestuck:transportalizer', 'or', 'tempad:chronomark', 'endermanoverhaul:warped_pearl'));
-  newDataFullPath(event, 'minestuck:recipe/grist_costs/transportalizer', gristCost('minestuck:transportalizer', {
+  //newDataFullPath(event, 'minestuck:recipe/combinations/transportalizer', alchemyCombination('minestuck:transportalizer', 'or', 'tempad:chronomark', 'endermanoverhaul:warped_pearl'));
+  //TODO not working
+  new GristCost('minestuck:transportalizer').setPath('minestuck:recipe/grist_costs/transportalizer')
+    .addGrist('minestuck:build', 10000)
+    .addGrist('minestuck:amethyst', 800)
+    .addGrist('minestuck:rust', 580)
+    .addGrist('minestuck:uranium', 200)
+    .addGrist('minestuck:quartz', 800)
+    .addGrist('minestuck:diamond', 20)
+    .build(event);
+  /*newDataFullPath(event, 'minestuck:recipe/grist_costs/transportalizer', gristCost('minestuck:transportalizer', {
     'minestuck:build': 10000,
     'minestuck:amethyst': 800,
     'minestuck:rust': 580,
@@ -204,12 +209,14 @@ const generateRecipes = function (event) {
     'minestuck:iodine': 2732,
     'minestuck:quartz': 2914,
     'minestuck:ruby': 10639,
-  }));
+  }));*/
 
+  /*
   newData(event, 'recipe/combinations/giant_cobblestone', alchemyCombination('twilightforest:giant_cobblestone', 'and', 'twilightforest:magic_beans', 'minecraft:cobblestone'));
   newData(event, 'recipe/grist_costs/giant_cobblestone', gristCost('twilightforest:giant_cobblestone', { 'minestuck:build': 128 }));
   newData(event, 'recipe/combinations/giant_leaves', alchemyCombination('twilightforest:giant_leaves', 'and', 'twilightforest:magic_beans', 'minecraft:oak_leaves'));
   newData(event, 'recipe/grist_costs/giant_leaves', gristCost('twilightforest:giant_leaves', { 'minestuck:build': 64 }));
+*/
 
   console.log('Ending gen in recipes.');
 };
@@ -243,7 +250,46 @@ const generateRecipes = function (event) {
 // Recipe event =============================================================================================================================================
 
 ServerEvents.recipes((event) => {
-  
+  event.shaped('computercraft:computer_normal', [
+    'ABA',
+    'ACA',
+    'ADA',
+  ], {
+    A: 'sillyworks:stone_brick',
+    B: 'create:iron_sheet',
+    C: '#sillyworks:processors/bad',
+    D: 'ae2:quartz_glass',
+  });
+  event.shaped('computercraft:computer_advanced', [
+    'ABA',
+    'ACA',
+    'ADA',
+  ], {
+    A: 'sillyworks:diorite_alloy',
+    B: 'create:golden_sheet',
+    C: '#sillyworks:processors/good',
+    D: 'ae2:quartz_glass',
+  });
+  event.shaped('computercraft:pocket_computer_normal', [
+    'ABA',
+    'ACA',
+    'ADA',
+  ], {
+    A: 'sillyworks:clay_polymer_ingot',
+    B: 'minecraft:apple',
+    C: '#sillyworks:processors/good',
+    D: 'ae2:quartz_vibrant_glass',
+  });
+  event.shaped('computercraft:pocket_computer_advanced', [
+    'ABA',
+    'ACA',
+    'ADA',
+  ], {
+    A: 'sillyworks:clay_polymer_ingot',
+    B: 'minecraft:golden_apple',
+    C: 'sillyworks:microprocessor',
+    D: 'ae2:quartz_vibrant_glass',
+  });
 });
 
 
@@ -291,18 +337,18 @@ ServerEvents.recipes((event) => {
   event.remove({ output: 'hexerei:dowsing_rod' });
   event.remove({ output: 'minestuck:transportalizer' }); //readded farther down
 
-  createRecipe(event, 'create:compacting', 'heated', 
-    [fluidEntry("minestuck:oil", 250), itemEntry('sillyworks:sawdust', 8)], 
+  createRecipe(event, 'create:compacting', 'heated',
+    [fluidEntry("minestuck:oil", 250), itemEntry('sillyworks:sawdust', 8)],
     [itemOutput("minecraft:coal", 6)]
   );
 
-  createRecipe(event, 'create:mixing', 'superheated', 
-    [fluidEntry("minestuck:light_water", 1000), itemEntry('ae2:certus_quartz_dust', 2)], 
+  createRecipe(event, 'create:mixing', 'superheated',
+    [fluidEntry("minestuck:light_water", 1000), itemEntry('ae2:certus_quartz_dust', 2)],
     [itemOutput("minecraft:glowstone_dust", 2), fluidOutput('minecraft:water', 500)]
   );
 
-  createRecipe(event, 'create:compacting', 'none', 
-    [fluidEntry("minestuck:molten_amber", 1000)], 
+  createRecipe(event, 'create:compacting', 'none',
+    [fluidEntry("minestuck:molten_amber", 1000)],
     [itemOutput("minecraft:magma_block")]
   );
 
@@ -319,8 +365,8 @@ ServerEvents.recipes((event) => {
     }
   });
 
-  createRecipe(event, 'create:compacting', 'none', 
-    [fluidEntry("minestuck:ender", 1000), tagEntry("c:dusts/quartz")], 
+  createRecipe(event, 'create:compacting', 'none',
+    [fluidEntry("minestuck:ender", 1000), tagEntry("c:dusts/quartz")],
     [itemOutput("ae2:ender_dust")]
   );
 
@@ -338,24 +384,24 @@ ServerEvents.recipes((event) => {
         },
       ],
       sequence: [
-        createRecipeData('create:deploying', 'none', 
-          [itemEntry('hexerei:moon_dust_brush'), itemEntry('tfmg:aluminum_pipe')], 
+        createRecipeData('create:deploying', 'none',
+          [itemEntry('hexerei:moon_dust_brush'), itemEntry('tfmg:aluminum_pipe')],
           [itemOutput('hexerei:moon_dust_brush')]
         ),
-        createRecipeData('create:deploying', 'none', 
-          [itemEntry('hexerei:moon_dust_brush'), itemEntry('create:fluid_tank')], 
+        createRecipeData('create:deploying', 'none',
+          [itemEntry('hexerei:moon_dust_brush'), itemEntry('create:fluid_tank')],
           [itemOutput('hexerei:moon_dust_brush')]
         ),
-        createRecipeData('create:deploying', 'none', 
-          [itemEntry('hexerei:moon_dust_brush'), itemEntry('mekanism:alloy_reinforced')], 
+        createRecipeData('create:deploying', 'none',
+          [itemEntry('hexerei:moon_dust_brush'), itemEntry('mekanism:alloy_reinforced')],
           [itemOutput('hexerei:moon_dust_brush')]
         ),
-        createRecipeData('create:deploying', 'none', 
-          [itemEntry('hexerei:moon_dust_brush'), itemEntry('ae2:speed_card')], 
+        createRecipeData('create:deploying', 'none',
+          [itemEntry('hexerei:moon_dust_brush'), itemEntry('ae2:speed_card')],
           [itemOutput('hexerei:moon_dust_brush')]
         ),
-        createRecipeData('create:deploying', 'none', 
-          [itemEntry('hexerei:moon_dust_brush'), itemEntry('sillyworks:ceramic_plate')], 
+        createRecipeData('create:deploying', 'none',
+          [itemEntry('hexerei:moon_dust_brush'), itemEntry('sillyworks:ceramic_plate')],
           [itemOutput('hexerei:moon_dust_brush')]
         )
       ],
@@ -387,16 +433,16 @@ ServerEvents.recipes((event) => {
         },
       ],
       sequence: [
-        createRecipeData('create:filling', 'none', 
-          [tagEntry('c:dusts/quartz'), fluidEntry('minecraft:water', 500)], 
+        createRecipeData('create:filling', 'none',
+          [tagEntry('c:dusts/quartz'), fluidEntry('minecraft:water', 500)],
           [itemOutput('sillyworks:quartz_dust')]
         ),
-        createRecipeData('create:deploying', 'none', 
-          [tagEntry('c:dusts/quartz'), itemEntry('sillyworks:glass_dust')], 
+        createRecipeData('create:deploying', 'none',
+          [tagEntry('c:dusts/quartz'), itemEntry('sillyworks:glass_dust')],
           [itemOutput('sillyworks:quartz_dust')]
         ),
-        createRecipeData('create:deploying', 'none', 
-          [tagEntry('c:dusts/quartz'), itemEntry('sillyworks:glass_dust')], 
+        createRecipeData('create:deploying', 'none',
+          [tagEntry('c:dusts/quartz'), itemEntry('sillyworks:glass_dust')],
           [itemOutput('sillyworks:quartz_dust')]
         )
       ],
@@ -420,16 +466,16 @@ ServerEvents.recipes((event) => {
         },
       ],
       sequence: [
-        createRecipeData('create:filling', 'none', 
-          [itemEntry('ae2:quartz_fiber'), fluidEntry('minecraft:water', 500)], 
+        createRecipeData('create:filling', 'none',
+          [itemEntry('ae2:quartz_fiber'), fluidEntry('minecraft:water', 500)],
           [itemOutput('ae2:quartz_fiber')]
         ),
-        createRecipeData('create:deploying', 'none', 
-          [itemEntry('ae2:quartz_fiber'), itemEntry('ae2:fluix_dust')], 
+        createRecipeData('create:deploying', 'none',
+          [itemEntry('ae2:quartz_fiber'), itemEntry('ae2:fluix_dust')],
           [itemOutput('ae2:quartz_fiber')]
         ),
-        createRecipeData('create:deploying', 'none', 
-          [itemEntry('ae2:quartz_fiber'), itemEntry('ae2:fluix_dust')], 
+        createRecipeData('create:deploying', 'none',
+          [itemEntry('ae2:quartz_fiber'), itemEntry('ae2:fluix_dust')],
           [itemOutput('ae2:quartz_fiber')]
         )
       ],
@@ -536,16 +582,7 @@ ServerEvents.recipes((event) => {
 
 
   // CCTWEAKED computer & tablet recipe reworks ============================================================================================================
-  event.shaped('computercraft:computer_advanced', [
-    'ABA',
-    'ACA',
-    'ADA',
-  ], {
-    A: 'sillyworks:diorite_alloy',
-    B: 'create:golden_sheet',
-    C: '#sillyworks:processors/good',
-    D: 'ae2:quartz_glass',
-  });
+
   event.custom({
     type: 'minestuck:grist_cost',
     grist_cost: {
@@ -556,16 +593,6 @@ ServerEvents.recipes((event) => {
     ingredient: {
       item: 'computercraft:computer_advanced',
     },
-  });
-  event.shaped('computercraft:computer_normal', [
-    'ABA',
-    'ACA',
-    'ADA',
-  ], {
-    A: 'sillyworks:stone_brick',
-    B: 'create:iron_sheet',
-    C: '#sillyworks:processors/bad',
-    D: 'ae2:quartz_glass',
   });
   event.custom({
     type: 'minestuck:grist_cost',
@@ -578,16 +605,6 @@ ServerEvents.recipes((event) => {
       item: 'computercraft:computer_normal',
     },
   });
-  event.shaped('computercraft:pocket_computer_normal', [
-    'ABA',
-    'ACA',
-    'ADA',
-  ], {
-    A: 'sillyworks:clay_polymer_ingot',
-    B: 'minecraft:apple',
-    C: '#sillyworks:processors/good',
-    D: 'ae2:quartz_vibrant_glass',
-  });
   event.custom({
     type: 'minestuck:grist_cost',
     grist_cost: {
@@ -598,16 +615,6 @@ ServerEvents.recipes((event) => {
     ingredient: {
       item: 'computercraft:pocket_computer_normal',
     },
-  });
-  event.shaped('computercraft:pocket_computer_advanced', [
-    'ABA',
-    'ACA',
-    'ADA',
-  ], {
-    A: 'sillyworks:clay_polymer_ingot',
-    B: 'minecraft:golden_apple',
-    C: 'sillyworks:microprocessor',
-    D: 'ae2:quartz_vibrant_glass',
   });
   event.custom({
     type: 'minestuck:grist_cost',
@@ -629,7 +636,7 @@ ServerEvents.recipes((event) => {
 
 
   // vin's sillyworks inscribing recipes=============================================================================================
-  
+
   event.custom(
     {
       type: 'ae2:inscriber',
@@ -926,55 +933,6 @@ ServerEvents.recipes((event) => {
     }
   });
 
-  event.custom(
-    {
-      type: 'minestuck:grist_cost',
-      grist_cost: {
-        'minestuck:iodine': 4,
-        'minestuck:ruby': 1,
-      },
-      ingredient: {
-        item: 'farmersdelight:tomato',
-      },
-    },
-  );
-  event.custom(
-    {
-      type: 'minestuck:grist_cost',
-      grist_cost: {
-        'minestuck:iodine': 8,
-        'minestuck:ruby': 2,
-        'minestuck:build': 1,
-      },
-      ingredient: {
-        item: 'farmersdelight:tomato_sauce',
-      },
-    },
-  );
-  event.custom(
-    {
-      type: 'minestuck:grist_cost',
-      grist_cost: {
-        'minestuck:iodine': 2,
-        'minestuck:marble': 3,
-      },
-      ingredient: {
-        item: 'farmersdelight:cabbage',
-      },
-    },
-  );
-  event.custom(
-    {
-      type: 'minestuck:grist_cost',
-      grist_cost: {
-        'minestuck:iodine': 4,
-      },
-      ingredient: {
-        item: 'farmersdelight:rice',
-      },
-    },
-  );
-
 });
 
 */
@@ -1150,7 +1108,7 @@ ServerEvents.recipes(event => {
             "id": "tfmg:molten_plastic"
         }
     })
-    //molten plastic bottling => sheets 
+    //molten plastic bottling => sheets
     event.custom({
         "type": "immersiveengineering:bottling_machine",
         "fluid": {

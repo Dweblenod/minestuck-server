@@ -3,7 +3,7 @@
 	#Effective thrust uses: baseThrust * fuel_thrust_percent / 100.
 	# Default: 600.0
 	# Range: 1.0 ~ 1.0E7
-	baseThrust = 6.0
+	baseThrust = 600.0
 	#How many blocks behind the nozzle are checked for obstruction.
 	# Default: 10
 	# Range: 1 ~ 64
@@ -17,17 +17,17 @@
 	#Standard thruster speed limit in blocks per second.
 	# Default: 600
 	# Range: 1 ~ 10000000
-	thrusterMaxSpeed = 150
+	thrusterMaxSpeed = 600
 	#Fuel consumption in millibuckets per tick at full redstone throttle.
 	# Default: 1.0
 	# Range: 1.0E-4 ~ 1000.0
-	fuelMbPerTickAtFullThrottle = 0.25
+	fuelMbPerTickAtFullThrottle = 1.0
 	#If true, entities inside active thruster plume are damaged.
 	damageEntities = true
 	#Max client particles per tick while active.
 	# Default: 4
 	# Range: 0 ~ 64
-	clientParticlesPerTick = 4
+	clientParticlesPerTick = 3
 	#Thrust is multiplied by that.
 	"Thrust multiplier" = 1.0
 	#Fuel consumption is multiplied by that.
@@ -43,11 +43,11 @@
 	#Ion thruster speed limit in blocks per second.
 	# Default: 1000
 	# Range: 1 ~ 10000000
-	ionThrusterMaxSpeed = 170
+	ionThrusterMaxSpeed = 1000
 	#Ion thruster maximum thrust cap in pN.
 	# Default: 1000.0
 	# Range: 1.0 ~ 1.0E7
-	ionThrusterMaxThrust = 10.0
+	ionThrusterMaxThrust = 1000.0
 	#Ion thruster internal FE capacity.
 	# Default: 1000
 	# Range: 1 ~ 100000000
@@ -59,7 +59,7 @@
 	#Ion thruster base thrust at redstone 15 and full obstruction efficiency.
 	# Default: 1000.0
 	# Range: 1.0 ~ 1.0E7
-	ionThrusterBaseThrust = 10.0
+	ionThrusterBaseThrust = 1000.0
 
 ["Creative Thruster"]
 	#Thrust is multiplied by that.
@@ -77,17 +77,17 @@
 	#Vector thruster maximum thrust cap in pN.
 	# Default: 900.0
 	# Range: 1.0 ~ 1.0E7
-	vectorThrusterMaxThrust = 160.0
+	vectorThrusterMaxThrust = 900.0
 	#Vector thruster base thrust at redstone 15 and full obstruction efficiency.
 	# Default: 900.0
 	# Range: 1.0 ~ 1.0E7
-	vectorThrusterBaseThrust = 9.0
+	vectorThrusterBaseThrust = 900.0
 
 [creativeVectorThruster]
 	#Creative vector thruster max thrust in pN.
 	# Default: 10000.0
 	# Range: 10.0 ~ 1000000.0
-	creativeVectorThrusterMaxThrust = 100.0
+	creativeVectorThrusterMaxThrust = 8000.0
 
 [physics]
 	#How often plume damage checks run, in ticks.

@@ -38,6 +38,7 @@ const newTextFullPath = function (event, path, textIn) {
   event.text(`${path}.txt`, textIn);
 };
 
+/**@deprecated */
 const newTag = function (replaceIn, valuesIn) {
   return {
     replace: replaceIn,
@@ -62,8 +63,13 @@ JsonBuilder.prototype.removeField = function (key) {
   }
   return this;
 };
-JsonBuilder.prototype.build = function () {
-  return JSON.parse(JSON.stringify(this.obj));
+JsonBuilder.prototype.build = function (doLog) {
+  let json = JSON.parse(JSON.stringify(this.obj));
+
+  if (doLog !== undefined)
+    console.log(json);
+
+  return json;
 };
 
 /**
@@ -690,6 +696,7 @@ const alchemyCombination = function (outputIn, modeIn, inputA, inputB) {
   }
 };
 
+/**@deprecated */
 const gristCost = function (outputIn, gristCostIn) {
   return {
     type: 'minestuck:grist_cost',
@@ -699,6 +706,33 @@ const gristCost = function (outputIn, gristCostIn) {
       item: outputIn,
     },
   }
+};
+
+function GristCost(itemIn) {
+  this.path = `recipe/grist_costs/${itemIn.toString().replace(":", "")}`;
+  this.gristObj = new JsonBuilder({});
+  this.obj = new JsonBuilder({
+    type: 'minestuck:grist_cost',
+    ingredient: {
+      item: itemIn
+    }
+  });
+}
+/**Useful to override existing recipe*/
+GristCost.prototype.setPath = function (pathIn) {
+  this.path = pathIn;
+  return this;
+};
+GristCost.prototype.addGrist = function (gristIn, amountIn) {
+  this.gristObj.setField(gristIn, amountIn);
+  return this;
+};
+GristCost.prototype.setPriority = function (valueIn) {
+  this.obj.setField("priority", valueIn);
+  return this;
+};
+GristCost.prototype.build = function (event) {
+  return newData(event, this.path, this.obj.setField("grist_cost", this.gristObj.build()).build())
 };
 
 /**
