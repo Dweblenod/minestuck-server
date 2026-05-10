@@ -69,7 +69,7 @@ disabled_generic_methods = []
 	#unlimited.
 	# Default: 16
 	# Range: > 0
-	max_requests = 16
+	max_requests = 12
 	#The number of websockets a computer can have open at one time.
 	# Default: 4
 	# Range: > 1
@@ -167,19 +167,19 @@ disabled_generic_methods = []
 	#The range of Wireless Modems at low altitude in clear weather, in meters.
 	# Default: 64
 	# Range: 0 ~ 100000
-	modem_range = 64
+	modem_range = 400
 	#The range of Wireless Modems at maximum altitude in clear weather, in meters.
 	# Default: 384
 	# Range: 0 ~ 100000
-	modem_high_altitude_range = 384
+	modem_high_altitude_range = 4000
 	#The range of Wireless Modems at low altitude in stormy weather, in meters.
 	# Default: 64
 	# Range: 0 ~ 100000
-	modem_range_during_storm = 64
+	modem_range_during_storm = 300
 	#The range of Wireless Modems at maximum altitude in stormy weather, in meters.
 	# Default: 384
 	# Range: 0 ~ 100000
-	modem_high_altitude_range_during_storm = 384
+	modem_high_altitude_range_during_storm = 3000
 	#Maximum amount of notes a speaker can play at once.
 	# Default: 8
 	# Range: > 1
