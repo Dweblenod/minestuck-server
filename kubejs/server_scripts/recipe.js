@@ -178,7 +178,6 @@ const generateRecipes = function (event) {
 
 
   //newDataFullPath(event, 'minestuck:recipe/combinations/transportalizer', alchemyCombination('minestuck:transportalizer', 'or', 'tempad:chronomark', 'endermanoverhaul:warped_pearl'));
-  //TODO not working
   new GristCost('minestuck:transportalizer').setPath('minestuck:recipe/grist_costs/transportalizer')
     .addGrist('minestuck:build', 10000)
     .addGrist('minestuck:amethyst', 800)
@@ -211,12 +210,18 @@ const generateRecipes = function (event) {
     'minestuck:ruby': 10639,
   }));*/
 
-  /*
-  newData(event, 'recipe/combinations/giant_cobblestone', alchemyCombination('twilightforest:giant_cobblestone', 'and', 'twilightforest:magic_beans', 'minecraft:cobblestone'));
-  newData(event, 'recipe/grist_costs/giant_cobblestone', gristCost('twilightforest:giant_cobblestone', { 'minestuck:build': 128 }));
-  newData(event, 'recipe/combinations/giant_leaves', alchemyCombination('twilightforest:giant_leaves', 'and', 'twilightforest:magic_beans', 'minecraft:oak_leaves'));
-  newData(event, 'recipe/grist_costs/giant_leaves', gristCost('twilightforest:giant_leaves', { 'minestuck:build': 64 }));
-*/
+  new CreateRecipe('end_fluid_to_dust', 'create:compacting',
+    [fluidEntry("minestuck:ender", 1000), tagEntry("c:dusts/quartz")],
+    [itemOutput("ae2:ender_dust")])
+    .build(event);
+
+  var enderTest = new SequencedAssembly('ender_test', itemEntry('sillyworks:quartz_dust'),
+    [itemOutput('ae2:ender_dust')], 'sillyworks:quartz_dust', 1);
+  enderTest.addSequence(new CreateRecipe(null, 'create:filling',
+    [enderTest.getTransitItem(false), fluidEntry('minestuck:ender', 500)],
+    [enderTest.getTransitItem(true)]))
+  enderTest.addSequence(sequencedRecipeEntry('create:filling', fluidEntry('minestuck:ender', 500), enderTest))
+  enderTest.build(event)
 
   console.log('Ending gen in recipes.');
 };
@@ -364,11 +369,6 @@ ServerEvents.recipes((event) => {
       id: 'minecraft:blaze_powder'
     }
   });
-
-  createRecipe(event, 'create:compacting', 'none',
-    [fluidEntry("minestuck:ender", 1000), tagEntry("c:dusts/quartz")],
-    [itemOutput("ae2:ender_dust")]
-  );
 
   event.custom(
     {

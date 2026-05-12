@@ -63,6 +63,16 @@ JsonBuilder.prototype.removeField = function (key) {
   }
   return this;
 };
+JsonBuilder.prototype.getObj = function () {
+  return this.obj;
+};
+JsonBuilder.prototype.addObject = function (jsonIn) {
+  if (Array.isArray(this.obj)) {
+    console.log("passes");
+    this.obj.push(jsonIn);
+  }
+  return this;
+};
 JsonBuilder.prototype.build = function (doLog) {
   let json = JSON.parse(JSON.stringify(this.obj));
 
@@ -609,11 +619,8 @@ const furledMap = function (destinationIn, nameIn, weightIn) {
 // RECIPE ====================================================================================================================
 
 /**
- * @param {*} typeIn takes values of: "create:basin", "create:crushing", "create:compacting", "create:cutting", "create:deploying", "create:filling", "create:haunting", "create:milling", "create:mixing", "create:pressing", "create:splashing"
- * @param {*} heatRequirementIn takes values of: "none", "heated", "superheated"
- * @param {*} ingredientsIn 
- * @param {*} resultsIn 
- * @returns 
+ * @deprecated
+ * USE `CreateRecipe` INSTEAD
  */
 const createRecipeData = function (typeIn, heatRequirementIn, ingredientsIn, resultsIn) {
   return {
@@ -622,6 +629,92 @@ const createRecipeData = function (typeIn, heatRequirementIn, ingredientsIn, res
     ingredients: ingredientsIn,
     results: resultsIn,
   };
+};
+
+/**
+ * @deprecated
+ * USE `CreateRecipe` INSTEAD
+ */
+const createRecipe = function (event, typeIn, heatRequirementIn, ingredientsIn, resultsIn) {
+  event.custom(createRecipeData(typeIn, heatRequirementIn, ingredientsIn, resultsIn));
+};
+
+/**
+ * @param {*} typeIn takes values of: "create:basin", "create:crushing", "create:compacting", "create:cutting", "create:deploying", "create:filling", "create:haunting", "create:milling", "create:mixing", "create:pressing", "create:splashing"
+ * @param {*} ingredientsIn takes an array of Entry. If this is used in a sequenced_assembly then keep the first entry the same as transitional item
+ * @param {*} resultsIn takes an array of Output. If this is used in a sequenced_assembly then keep it the same as transitional item
+ * @returns 
+ */
+function CreateRecipe(nameIn, typeIn, ingredientsIn, resultsIn) {
+  this.path = `recipe/create/${typeIn.toString().split(":")[1]}/${nameIn}`;
+  this.obj = new JsonBuilder({
+    "type": typeIn,
+    "ingredients": ingredientsIn,
+    "results": resultsIn
+  });
+}
+/**Useful to override existing recipe*/
+CreateRecipe.prototype.setPath = function (pathIn) {
+  this.path = pathIn;
+  return this;
+};
+/**
+ * @param {*} heatRequirementIn takes values of: `none`, `heated`, `superheated`
+ * None by default
+*/
+CreateRecipe.prototype.setHeat = function (heatRequirementIn) {
+  this.obj.setField("heat_requirement", heatRequirementIn);
+  return this;
+};
+CreateRecipe.prototype.build = function (event) {
+  return newData(event, this.path, this.obj.build(true))
+};
+
+/**
+ * Simplified form of CreateRecipe for use in SequencedAssembly
+ * @param {*} typeIn takes values of: "create:basin", "create:crushing", "create:compacting", "create:cutting", "create:deploying", "create:filling", "create:haunting", "create:milling", "create:mixing", "create:pressing", "create:splashing"
+ * 
+ */
+const sequencedRecipeEntry = function (typeIn, ingredientIn, sequencedAssemblyIn) {
+  return new CreateRecipe(null, typeIn, [sequencedAssemblyIn.getTransitItem(false), ingredientIn], [sequencedAssemblyIn.getTransitItem(true)])
+}
+
+/**
+ * @param {*} ingredientIn takes single Entry
+ * @param {*} resultsIn takes an array of Output
+ * @param {*} transitionalItemIn takes single item (not Entry or Output)
+ * @param {*} loopsIn takes an integer value
+ */
+function SequencedAssembly(nameIn, ingredientIn, resultsIn, transitionalItemIn, loopsIn) {
+  this.path = `recipe/create/sequenced_assembly/${nameIn}`;
+  this.obj = new JsonBuilder({
+    "type": "create:sequenced_assembly",
+    "ingredient": ingredientIn,
+    "results": resultsIn,
+    "loops": loopsIn,
+    "transitional_item": itemOutput(transitionalItemIn)
+  });
+  this.seqObj = new JsonBuilder([]);
+  this.transitionalItem = transitionalItemIn;
+}
+/**Useful to override existing recipe*/
+SequencedAssembly.prototype.setPath = function (pathIn) {
+  this.path = pathIn;
+  return this;
+};
+/**Accepts an UNBUILT `CreateRecipe` or `sequencedRecipeEntry()`*/
+SequencedAssembly.prototype.addSequence = function (createRecipeIn) {
+  this.seqObj.addObject(createRecipeIn.obj.build());
+  return this;
+};
+SequencedAssembly.prototype.getTransitItem = function (isOutput) {
+  if (isOutput)
+    return itemOutput(this.transitionalItem);
+  else
+    return itemEntry(this.transitionalItem);
+};
+SequencedAssembly.prototype.build = function (event) {
+  return newData(event, this.path, this.obj.setField("sequence", this.seqObj.build(true)).build(true))
 };
 
 const drilling = function (outputIn, stressIn, ticksIn, veinNameIn) {
@@ -770,7 +863,8 @@ const fluidEntry = function (idIn, amountIn) {
   return {
     amount: amountIn,
     fluid: idIn,
-    type: 'fluid_stack',
+    type: 'neoforge:single'
+    //type: 'fluid_stack',
   };
 };
 
@@ -921,18 +1015,6 @@ const chemicalVatRecipe = function (event, heatRequirementIn, ingredientsIn, mac
     processing_time: processingTimeIn,
     results: resultsIn,
   });
-};
-
-/**
- * 
- * @param {*} event 
- * @param {*} typeIn takes values of: "create:basin", "create:crushing", "create:compacting", "create:cutting", "create:deploying", "create:filling", "create:haunting", "create:milling", "create:mixing", "create:pressing", "create:splashing"
- * @param {*} heatRequirementIn takes values of: "none", "heated", "superheated"
- * @param {*} ingredientsIn 
- * @param {*} resultsIn 
- */
-const createRecipe = function (event, typeIn, heatRequirementIn, ingredientsIn, resultsIn) {
-  event.custom(createRecipeData(typeIn, heatRequirementIn, ingredientsIn, resultsIn));
 };
 
 /**
