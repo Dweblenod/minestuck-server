@@ -82,6 +82,10 @@ JsonBuilder.prototype.build = function (doLog) {
   return json;
 };
 
+const wipeDataAtPath = function (event, path) {
+  return newData(event, path, {});
+}
+
 /**
  * @deprecated
  * Create multiple field value pairs in JSON
@@ -619,6 +623,36 @@ const furledMap = function (destinationIn, nameIn, weightIn) {
 // RECIPE ====================================================================================================================
 
 /**
+ * @param {*} resultIn takes single `itemOutput`
+ * @param {*} patternIn takes json array with 3 strings each up to 3 characters long. Example: `['#s#', 'f f', 'fff']`
+ */
+function ShapedCrafting(nameIn, resultIn, patternIn) {
+  this.path = `recipe/${nameIn}`;
+  this.obj = new JsonBuilder({
+    "type": "minecraft:crafting_shaped",
+    "pattern": patternIn,
+    "result": resultIn
+  });
+  this.keyObj = new JsonBuilder({});
+}
+/**Useful to override existing recipe*/
+ShapedCrafting.prototype.setPath = function (pathIn) {
+  this.path = pathIn;
+  return this;
+};
+/**
+ * @param {*} keyIn takes a string with the character it matches in the pattern
+ * @param {*} valueIn takes single `itemEntry` or `tagEntry`
+ */
+ShapedCrafting.prototype.addKey = function (keyIn, valueIn) {
+  this.keyObj.setField(keyIn, valueIn);
+  return this;
+};
+ShapedCrafting.prototype.build = function (event) {
+  return newData(event, this.path, this.obj.setField("key", this.keyObj.build()).build())
+};
+
+/**
  * @deprecated
  * USE `CreateRecipe` INSTEAD
  */
@@ -643,7 +677,6 @@ const createRecipe = function (event, typeIn, heatRequirementIn, ingredientsIn, 
  * @param {*} typeIn takes values of: "create:basin", "create:crushing", "create:compacting", "create:cutting", "create:deploying", "create:filling", "create:haunting", "create:milling", "create:mixing", "create:pressing", "create:splashing"
  * @param {*} ingredientsIn takes an array of Entry. If this is used in a sequenced_assembly then keep the first entry the same as transitional item
  * @param {*} resultsIn takes an array of Output. If this is used in a sequenced_assembly then keep it the same as transitional item
- * @returns 
  */
 function CreateRecipe(nameIn, typeIn, ingredientsIn, resultsIn) {
   this.path = `recipe/create/${typeIn.toString().split(":")[1]}/${nameIn}`;
@@ -667,7 +700,7 @@ CreateRecipe.prototype.setHeat = function (heatRequirementIn) {
   return this;
 };
 CreateRecipe.prototype.build = function (event) {
-  return newData(event, this.path, this.obj.build(true))
+  return newData(event, this.path, this.obj.build())
 };
 
 /**
@@ -714,7 +747,7 @@ SequencedAssembly.prototype.getTransitItem = function (isOutput) {
     return itemEntry(this.transitionalItem);
 };
 SequencedAssembly.prototype.build = function (event) {
-  return newData(event, this.path, this.obj.setField("sequence", this.seqObj.build(true)).build(true))
+  return newData(event, this.path, this.obj.setField("sequence", this.seqObj.build()).build())
 };
 
 const drilling = function (outputIn, stressIn, ticksIn, veinNameIn) {

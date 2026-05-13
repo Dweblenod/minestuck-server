@@ -175,8 +175,48 @@ const generateRecipes = function (event) {
       id: 'supplementaries:sack',
     },
   });*/
-
-
+  new ShapedCrafting(null, itemOutput('computercraft:computer_normal'), [
+    'ABA',
+    'ACA',
+    'ADA'])
+    .setPath('computercraft:recipe/computer_normal')
+    .addKey('A', itemEntry('sillyworks:stone_brick'))
+    .addKey('B', itemEntry('create:iron_sheet'))
+    .addKey('C', tagEntry('sillyworks:processors/bad'))
+    .addKey('D', itemEntry('ae2:quartz_glass'))
+    .build(event);
+  new ShapedCrafting(null, itemOutput('computercraft:computer_advanced'), [
+    'ABA',
+    'ACA',
+    'ADA'])
+    .setPath('computercraft:recipe/computer_advanced')
+    .addKey('A', itemEntry('sillyworks:diorite_alloy'))
+    .addKey('B', itemEntry('create:golden_sheet'))
+    .addKey('C', tagEntry('sillyworks:processors/good'))
+    .addKey('D', itemEntry('ae2:quartz_glass'))
+    .build(event);
+  wipeDataAtPath(event, 'computercraft:recipe/computer_advanced_upgrade');
+  new ShapedCrafting(null, itemOutput('computercraft:pocket_computer_normal'), [
+    'ABA',
+    'ACA',
+    'ADA'])
+    .setPath('computercraft:recipe/pocket_computer_normal')
+    .addKey('A', itemEntry('sillyworks:clay_polymer_ingot'))
+    .addKey('B', itemEntry('minecraft:apple'))
+    .addKey('C', tagEntry('sillyworks:processors/good'))
+    .addKey('D', itemEntry('ae2:quartz_vibrant_glass'))
+    .build(event);
+  new ShapedCrafting(null, itemOutput('computercraft:pocket_computer_advanced'), [
+    'ABA',
+    'ACA',
+    'ADA'])
+    .setPath('computercraft:recipe/pocket_computer_advanced')
+    .addKey('A', itemEntry('sillyworks:clay_polymer_ingot'))
+    .addKey('B', itemEntry('minecraft:golden_apple'))
+    .addKey('C', itemEntry('sillyworks:microprocessor'))
+    .addKey('D', itemEntry('ae2:quartz_vibrant_glass'))
+    .build(event);
+  wipeDataAtPath(event, 'computercraft:recipe/pocket_computer_advanced_upgrade');
   //newDataFullPath(event, 'minestuck:recipe/combinations/transportalizer', alchemyCombination('minestuck:transportalizer', 'or', 'tempad:chronomark', 'endermanoverhaul:warped_pearl'));
   new GristCost('minestuck:transportalizer').setPath('minestuck:recipe/grist_costs/transportalizer')
     .addGrist('minestuck:build', 10000)
@@ -186,29 +226,6 @@ const generateRecipes = function (event) {
     .addGrist('minestuck:quartz', 800)
     .addGrist('minestuck:diamond', 20)
     .build(event);
-  /*newDataFullPath(event, 'minestuck:recipe/grist_costs/transportalizer', gristCost('minestuck:transportalizer', {
-    'minestuck:build': 10000,
-    'minestuck:amethyst': 800,
-    'minestuck:rust': 580,
-    'minestuck:uranium': 200,
-    'minestuck:quartz': 800,
-    'minestuck:diamond': 20,
-  }));
-
-  newDataFullPath(event, 'minestuck:recipe/grist_costs/skaia_fork', gristCost('minestuck:skaia_fork', {
-    'minestuck:build': 30000,
-    'minestuck:amethyst': 6300,
-    'minestuck:cobalt': 580,
-    'minestuck:quartz': 50000,
-  }));
-
-  newDataFullPath(event, 'minestuck:recipe/grist_costs/skaian_crocker_rocker', gristCost('minestuck:skaian_crocker_rocker', {
-    'minestuck:build': 30000,
-    'minestuck:chalk': 9300,
-    'minestuck:iodine': 2732,
-    'minestuck:quartz': 2914,
-    'minestuck:ruby': 10639,
-  }));*/
 
   new CreateRecipe('end_fluid_to_dust', 'create:compacting',
     [fluidEntry("minestuck:ender", 1000), tagEntry("c:dusts/quartz")],
@@ -255,46 +272,7 @@ const generateRecipes = function (event) {
 // Recipe event =============================================================================================================================================
 
 ServerEvents.recipes((event) => {
-  event.shaped('computercraft:computer_normal', [
-    'ABA',
-    'ACA',
-    'ADA',
-  ], {
-    A: 'sillyworks:stone_brick',
-    B: 'create:iron_sheet',
-    C: '#sillyworks:processors/bad',
-    D: 'ae2:quartz_glass',
-  });
-  event.shaped('computercraft:computer_advanced', [
-    'ABA',
-    'ACA',
-    'ADA',
-  ], {
-    A: 'sillyworks:diorite_alloy',
-    B: 'create:golden_sheet',
-    C: '#sillyworks:processors/good',
-    D: 'ae2:quartz_glass',
-  });
-  event.shaped('computercraft:pocket_computer_normal', [
-    'ABA',
-    'ACA',
-    'ADA',
-  ], {
-    A: 'sillyworks:clay_polymer_ingot',
-    B: 'minecraft:apple',
-    C: '#sillyworks:processors/good',
-    D: 'ae2:quartz_vibrant_glass',
-  });
-  event.shaped('computercraft:pocket_computer_advanced', [
-    'ABA',
-    'ACA',
-    'ADA',
-  ], {
-    A: 'sillyworks:clay_polymer_ingot',
-    B: 'minecraft:golden_apple',
-    C: 'sillyworks:microprocessor',
-    D: 'ae2:quartz_vibrant_glass',
-  });
+
 });
 
 
@@ -571,61 +549,6 @@ ServerEvents.recipes((event) => {
     C: 'sillyworks:supercomputer',
     D: 'sillyworks:ceramic_plate',
     E: 'minestuck:gutter_thumb_drive',
-  });
-
-
-
-
-
-
-
-
-
-  // CCTWEAKED computer & tablet recipe reworks ============================================================================================================
-
-  event.custom({
-    type: 'minestuck:grist_cost',
-    grist_cost: {
-      'minestuck:gold': 100,
-      'minestuck:garnet': 5,
-      'minestuck:cobalt': 5,
-    },
-    ingredient: {
-      item: 'computercraft:computer_advanced',
-    },
-  });
-  event.custom({
-    type: 'minestuck:grist_cost',
-    grist_cost: {
-      'minestuck:build': 100,
-      'minestuck:garnet': 5,
-      'minestuck:cobalt': 5,
-    },
-    ingredient: {
-      item: 'computercraft:computer_normal',
-    },
-  });
-  event.custom({
-    type: 'minestuck:grist_cost',
-    grist_cost: {
-      'minestuck:build': 50,
-      'minestuck:garnet': 25,
-      'minestuck:cobalt': 25,
-    },
-    ingredient: {
-      item: 'computercraft:pocket_computer_normal',
-    },
-  });
-  event.custom({
-    type: 'minestuck:grist_cost',
-    grist_cost: {
-      'minestuck:gold': 50,
-      'minestuck:garnet': 25,
-      'minestuck:cobalt': 25,
-    },
-    ingredient: {
-      item: 'computercraft:pocket_computer_advanced',
-    },
   });
 
 
