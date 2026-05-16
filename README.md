@@ -15,7 +15,7 @@ Problem solving:
 - Make sure you are using NeoForge version 21.1.228 (or whatever is specified on our website) and are in Minecraft version 1.21.1
 - If you plan on playing on the server, do not manually download the mods if it can be helped and do not update mods unless they are client only!
 - Try to avoid using the default Minecraft launcher. Instead use a launcher like MultiMC or Prism
-- This pack is not compatible with Optifine, and has issues with Embeddium/NeOculus. Sodium and Iris are already included if you want to do something with shaders!
+- This pack is not compatible with Optifine, and has issues with Embeddium/NeOculus. If there is a recommended mod that allows shader, it will be included in the pack
 - If KubeJS or configs do not appear correct, try copying the folders over to .minecraft again
 - You may be able to improve the speed at which the modpack boots up by increasing the minimum memory allocation to at least 1 GB
 - Some players may have difficulty connecting, or staying connected, to the server. Networking errors are mostly out of the servers control, but there are some general things you can do
@@ -32,9 +32,10 @@ Problem solving:
 
 # Customization
 
-There are mods and configs included in the download which have no effect out of the box.
+- If there are configs that keep seeming to reset, check for a kubejs server script called config.js and edit values through that
+- There may be mods and configs included in the download which have no effect out of the box.
 Mods which are disabled have the filetype ending `.disabled`. To reenable them, simply rename the ending to `.jar`.
-Mod launchers like MultiMC have built in functionality to enable/disable mods without needing to manually rename.
+- Mod launchers like MultiMC have built in functionality to enable/disable mods without needing to manually rename.
 
 ## Mods
 

@@ -15,14 +15,14 @@ RecipeViewerEvents.removeCategories(event => {
 });
 
 RecipeViewerEvents.removeEntries('item', event => {
-  event.remove('irons_spellbooks:wayward_compass');
+  //event.remove('irons_spellbooks:wayward_compass');
 
   event.remove('cataclysm:mech_eye');
   event.remove('cataclysm:cursed_eye');
   event.remove('cataclysm:flame_eye');
   event.remove('cataclysm:storm_eye');
 
-  event.remove('relics:infinity_ham');
+  //event.remove('relics:infinity_ham');
 
   event.remove('extrastuck:office_key');
   event.remove('extrastuck:handgun');
@@ -37,12 +37,14 @@ RecipeViewerEvents.addInformation('item', event => {
 
   event.add('create:potato_cannon', ['Can accept the following as custom ammo:', '-cannon balls', '-fungal spores', 'The deployer may accept things not listed here!']);
 
+  /*
   event.addItem('endrem:black_eye', ['Dropped by the scourge of the Prospitians']);
   event.addItem('endrem:cold_eye', ['Dropped by the strongest within a frozen prison, or by the ice inclined mages']);
   event.addItem('endrem:corrupted_eye', ['Dropped by the most powerful of Illager kind']);
   event.addItem('endrem:nether_eye', ['Dropped by that which dwells in the dormant forge']);
   event.addItem('endrem:old_eye', ['Dropped by that most powerful which dwells in the sandy catacombs']);
   event.addItem('endrem:undead_soul', ['Obtained by powerful or rare necrotic forces. Particularly those which hold dominion over others']);
+  */
 });
 
 ClientEvents.lang('en_us', event => {

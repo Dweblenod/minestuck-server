@@ -68,7 +68,7 @@ JsonBuilder.prototype.getObj = function () {
 };
 JsonBuilder.prototype.addObject = function (jsonIn) {
   if (Array.isArray(this.obj)) {
-    console.log("passes");
+    //console.log("passes");
     this.obj.push(jsonIn);
   }
   return this;
@@ -84,6 +84,26 @@ JsonBuilder.prototype.build = function (doLog) {
 
 const wipeDataAtPath = function (event, path) {
   return newData(event, path, {});
+}
+
+/**
+ * Modifies a file at the path specified using FilesJS.
+ * It works on anything within the .minecraft directory including config/asset directories
+ */
+function DataModifier(pathIn) {
+  this.path = pathIn;
+}
+DataModifier.prototype.replaceValue = function (search, replace) {
+  FilesJS.replaceInFile(this.path, search, replace);
+  return this;
+}
+DataModifier.prototype.replaceJsonField = function (key, value) {
+  var jsonText = FilesJS.readFile(this.path);
+  var jsonObj = JSON.parse(jsonText);
+  var jsonBuilder = new JsonBuilder(jsonObj);
+  var replacedObj = jsonBuilder.setField(key, value).build();
+  FilesJS.writeFile(this.path, JSON.stringify(replacedObj, null, 2));
+  return this;
 }
 
 /**

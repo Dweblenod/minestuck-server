@@ -1,0 +1,47 @@
+// priority: 1
+
+ServerEvents.generateData('before_mods', (event) => {
+    new DataModifier('config/computercraft-server.toml')
+        .replaceValue('max_requests = 16', 'max_requests = 12')
+        .replaceValue('modem_range = 64', 'modem_range = 400')
+        .replaceValue('modem_high_altitude_range = 384', 'modem_high_altitude_range = 4000')
+        .replaceValue('modem_range_during_storm = 64', 'modem_range_during_storm = 300')
+        .replaceValue('modem_high_altitude_range_during_storm = 384', 'modem_high_altitude_range_during_storm = 3000')
+
+    new DataModifier('config/ftbchunks-world.snbt')
+        .replaceValue('claim_dimension_blacklist: [ ]', 'claim_dimension_blacklist: ["minecraft:overworld" ]')
+        .replaceValue('party_limit_mode: "largest"', 'party_limit_mode: "sum"')
+        .replaceValue('max_force_loaded_chunks: 25', 'max_force_loaded_chunks: 1')
+
+    new DataModifier('config/minestuck-client.toml')
+        .replaceValue('npcDialogueTextColors = true', 'npcDialogueTextColors = false')
+
+    new DataModifier('config/parcool-server.toml')
+        .replaceValue('allow_infinite_stamina = true', 'allow_infinite_stamina = false')
+
+    const solBenefit = function (thresholdIn, benefitIn) {
+        return {
+            "threshold": thresholdIn,
+            "benefit": benefitIn
+        }
+    }
+    var solHealth = "{key:\"minecraft:generic.max_health\",op:0,type:\"att\",val:1.0d}";
+    var solStamina = "{key:\"parcool:max_stamina\",op:0,type:\"att\",val:750.0d}";
+    new DataModifier('config/solonion.json')
+        .replaceJsonField(
+            'benefits',
+            new JsonBuilder([])
+                .addObject(solBenefit(3, solHealth))
+                .addObject(solBenefit(5, solHealth))
+                .addObject(solBenefit(7, solStamina))
+                .addObject(solBenefit(10, solHealth))
+                .addObject(solBenefit(13, solHealth))
+                .addObject(solBenefit(18, solStamina))
+                .addObject(solBenefit(25, solHealth))
+                .addObject(solBenefit(31, solHealth))
+                .addObject(solBenefit(36, solStamina))
+                .addObject(solBenefit(40, solHealth))
+                .addObject(solBenefit(43, solHealth))
+                .build()
+        )
+});
