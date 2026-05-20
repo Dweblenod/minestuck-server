@@ -115,46 +115,46 @@ ServerEvents.basicCommand('returnToSpawnpoint', event => {
 });
 
 ServerEvents.basicCommand('simplePredefine', event => {
-    const player = event.player;
-    const server = event.level.server;
-    const playerTags = player.getTags();
+  const player = event.player;
+  const server = event.level.server;
+  const playerTags = player.getTags();
 
-    function getTag(playerTags, tags) {
-      for (const tag of tags) {
-        if (playerTags.some(element => element == tag)) { //soft matching, several attempts at exact matching have failed
-          return tag;
-        }
+  function getTag(playerTags, tags) {
+    for (const tag of tags) {
+      if (playerTags.some(element => element == tag)) { //soft matching, several attempts at exact matching have failed
+        return tag;
       }
-      
-      return null;
     }
 
-    const aspects = ['breath', 'life', 'light', 'time', 'heart', 'rage', 'blood', 'doom', 'void', 'space', 'mind', 'hope'];
-    const titleLands = ['wind', 'rabbits', 'light', 'clockwork', 'cake', 'monsters', 'pulse', 'thunder', 'silence', 'frogs', 'thought', 'towers'];
-    const aspect = getTag(playerTags, aspects);
+    return null;
+  }
 
-    const classes = ['page', 'heir', 'maid', 'knight', 'sylph', 'seer', 'witch', 'mage', 'thief', 'rogue', 'prince', 'bard'];
-    const titleClass = getTag(playerTags, classes);
-    
-    const terrainLands = ['end', 'flora', 'forest', 'taiga', 'frost', 'fungi', 'heat', 'rainbow', 'rain', 'rock', 'petrification', 'sand', 'lush_deserts', 'red_sand', 'sandstone', 'red_sandstone', 'shade', 'wood'];
-    const terrainLand = getTag(playerTags, terrainLands);
+  const aspects = ['breath', 'life', 'light', 'time', 'heart', 'rage', 'blood', 'doom', 'void', 'space', 'mind', 'hope'];
+  const titleLands = ['wind', 'rabbits', 'light', 'clockwork', 'cake', 'monsters', 'pulse', 'thunder', 'silence', 'frogs', 'thought', 'towers'];
+  const aspect = getTag(playerTags, aspects);
 
-    if (aspect !== null && titleClass !== null && terrainLand !== null) {
-        var titleLand = titleLands[aspects.indexOf(aspect)];
-        //commandLoud(server, player, `sburbpredefine define @s ${titleClass} ${aspect} minestuck:${titleLand} minestuck:${terrainLand}`);
-        commandLoud(server, player, `sburbpredefine terrain_land @s minestuck:${terrainLand}`);
-        commandLoud(server, player, `sburbpredefine title_land @s minestuck:${titleLand}`);
-        commandLoud(server, player, `sburbpredefine title @s ${titleClass} ${aspect}`);
-        console.log(`${player.displayName} predefined with values: ${titleClass} ${aspect} ${titleLand} ${terrainLand}`);
-        //commandLoud(server, player, `tellraw @s "${titleClass} ${aspect} ${titleLand} ${terrainLand}"`);
-    } else {
-      command(server, player, `tellraw @s "Could not predefine the following: ${titleClass} ${aspect} ${titleLand} ${terrainLand}"`);
-    }
+  const classes = ['page', 'heir', 'maid', 'knight', 'sylph', 'seer', 'witch', 'mage', 'thief', 'rogue', 'prince', 'bard'];
+  const titleClass = getTag(playerTags, classes);
 
-    aspects.forEach(iterate => command(server, player, `tag @s remove ${iterate}`));
-    titleLands.forEach(iterate => command(server, player, `tag @s remove ${iterate}`));
-    classes.forEach(iterate => command(server, player, `tag @s remove ${iterate}`));
-    terrainLands.forEach(iterate => command(server, player, `tag @s remove ${iterate}`));
+  const terrainLands = ['end', 'flora', 'forest', 'taiga', 'frost', 'fungi', 'heat', 'rainbow', 'rain', 'rock', 'petrification', 'sand', 'lush_deserts', 'red_sand', 'sandstone', 'red_sandstone', 'shade', 'wood'];
+  const terrainLand = getTag(playerTags, terrainLands);
+
+  if (aspect !== null && titleClass !== null && terrainLand !== null) {
+    var titleLand = titleLands[aspects.indexOf(aspect)];
+    //commandLoud(server, player, `sburbpredefine define @s ${titleClass} ${aspect} minestuck:${titleLand} minestuck:${terrainLand}`);
+    commandLoud(server, player, `sburbpredefine terrain_land @s minestuck:${terrainLand}`);
+    commandLoud(server, player, `sburbpredefine title_land @s minestuck:${titleLand}`);
+    commandLoud(server, player, `sburbpredefine title @s ${titleClass} ${aspect}`);
+    console.log(`${player.displayName} predefined with values: ${titleClass} ${aspect} ${titleLand} ${terrainLand}`);
+    //commandLoud(server, player, `tellraw @s "${titleClass} ${aspect} ${titleLand} ${terrainLand}"`);
+  } else {
+    command(server, player, `tellraw @s "Could not predefine the following: ${titleClass} ${aspect} ${titleLand} ${terrainLand}"`);
+  }
+
+  aspects.forEach(iterate => command(server, player, `tag @s remove ${iterate}`));
+  titleLands.forEach(iterate => command(server, player, `tag @s remove ${iterate}`));
+  classes.forEach(iterate => command(server, player, `tag @s remove ${iterate}`));
+  terrainLands.forEach(iterate => command(server, player, `tag @s remove ${iterate}`));
 });
 
 
@@ -225,7 +225,28 @@ function bedHandle(event) {
 const generateMisc = function (event) {
   console.log('Started generating custom data in misc. If no finish log, then something may be broken!');
 
-  /*newDataFullPath(event, 'restrictedportals:advancement/thenether', dummyAdvancement('minecraft:crying_obsidian', 'Unlock The Nether'));
+  new AdvancementBuilder('custom/world_top')
+    .setCriteria('minecraft:location', new JsonBuilder().setField('player',
+      {
+        location: {
+          position: {
+            y: {
+              min: 300,
+              max: 3000,
+            },
+          },
+          dimension: 'minecraft:overworld',
+        }
+      }).build())
+    .setRewards(new JsonBuilder().setField('function', 'custom:world_top').build())
+    .build(event);
+
+  new DataModifier('kubejs/data/custom/function/world_top.mcfunction')
+    .createFile('say test')
+    .append('advancement revoke @a only custom:custom/world_top');
+  
+  /*
+  newDataFullPath(event, 'restrictedportals:advancement/thenether', dummyAdvancement('minecraft:crying_obsidian', 'Unlock The Nether'));
   newDataFullPath(event, 'restrictedportals:advancement/theend', dummyAdvancement('minecraft:end_portal_frame', 'Unlock The End'));
   newDataFullPath(event, 'restrictedportals:advancement/theveil', dummyAdvancement('minestuck:meteoric_stone', 'Unlock The Veil'));
   newDataFullPath(event, 'restrictedportals:advancement/prospit', dummyAdvancement('minestuck:prospit_tarnished_brick', 'Unlock Prospit'));
@@ -271,34 +292,6 @@ const generateMisc = function (event) {
     },
     rewards: {
       function: 'custom:weeping_well_jump',
-    },
-    sends_telemetry_event: false,
-  });
-
-  newData(event, 'advancement/custom/world_bottom', {
-    criteria: {
-      requirement: {
-        trigger: 'minecraft:location',
-        conditions: {
-          player: {
-            location: {
-              position: {
-                y: {
-                  min: -2000,
-                  max: -128,
-                },
-              },
-              dimension: 'minecraft:overworld',
-            },
-            effects: {
-              'minecraft:bad_omen': {},
-            },
-          },
-        },
-      },
-    },
-    rewards: {
-      function: 'custom:world_bottom',
     },
     sends_telemetry_event: false,
   });

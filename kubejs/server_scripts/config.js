@@ -8,13 +8,26 @@ ServerEvents.generateData('before_mods', (event) => {
         .replaceValue('modem_range_during_storm = 64', 'modem_range_during_storm = 300')
         .replaceValue('modem_high_altitude_range_during_storm = 384', 'modem_high_altitude_range_during_storm = 3000')
 
+    new DataModifier('config/extradelight-common.toml')
+        .replaceValue('enableCheatModeForCreative = true', 'enableCheatModeForCreative = false')
+
     new DataModifier('config/ftbchunks-world.snbt')
         .replaceValue('claim_dimension_blacklist: [ ]', 'claim_dimension_blacklist: ["minecraft:overworld" ]')
         .replaceValue('party_limit_mode: "largest"', 'party_limit_mode: "sum"')
         .replaceValue('max_force_loaded_chunks: 25', 'max_force_loaded_chunks: 1')
 
+    new DataModifier('config/jei-server.toml')
+        .replaceValue('mintSpreadRate = 6', 'mintSpreadRate = 1')
+        .replaceValue('allYearSpooky = false', 'allYearSpooky = true')
+
     new DataModifier('config/minestuck-client.toml')
-        .replaceValue('npcDialogueTextColors = true', 'npcDialogueTextColors = false')
+
+    new DataModifier('config/minestuck-server.toml')
+        .replaceValue('globalSession = false', 'globalSession = true')
+        .replaceValue('dataCheckerPermission = "OPS_OR_GAMEMODE"', 'dataCheckerPermission = "ANYONE"')
+        .replaceValue('puzzleBlockTickRate = 6', 'puzzleBlockTickRate = 7')
+        .replaceValue('statStorerRadius = 10', 'statStorerRadius = 8')
+        .replaceValue('forbiddenWorldsTpz = []', 'forbiddenWorldsTpz = ["minestuck:prospit"]')
 
     new DataModifier('config/parcool-server.toml')
         .replaceValue('allow_infinite_stamina = true', 'allow_infinite_stamina = false')

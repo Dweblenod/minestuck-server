@@ -47,10 +47,11 @@ const newTag = function (replaceIn, valuesIn) {
 };
 
 /**
- * @param {*} jsonIn accepts an initial set of json
+ * @param {*} jsonIn accepts an initial set of json. If none is given, will default to an empty object
  */
 function JsonBuilder(jsonIn) {
-  // initial/default fields & values
+  if (jsonIn == undefined)
+    jsonIn = {};
   this.obj = jsonIn;
 }
 JsonBuilder.prototype.setField = function (key, value) {
@@ -87,7 +88,7 @@ const wipeDataAtPath = function (event, path) {
 }
 
 /**
- * Modifies a file at the path specified using FilesJS.
+ * Modifies or creates a file at the path specified using FilesJS.
  * It works on anything within the .minecraft directory including config/asset directories
  */
 function DataModifier(pathIn) {
@@ -97,12 +98,31 @@ DataModifier.prototype.replaceValue = function (search, replace) {
   FilesJS.replaceInFile(this.path, search, replace);
   return this;
 }
+/**
+ * @param {*} key accepts a String, for the targeted key/field
+ * @param {*} value accepts a Json object, such as through JsonBuilder
+ */
 DataModifier.prototype.replaceJsonField = function (key, value) {
   var jsonText = FilesJS.readFile(this.path);
   var jsonObj = JSON.parse(jsonText);
   var jsonBuilder = new JsonBuilder(jsonObj);
   var replacedObj = jsonBuilder.setField(key, value).build();
   FilesJS.writeFile(this.path, JSON.stringify(replacedObj, null, 2));
+  return this;
+}
+/**
+ * Adds the contents to a new line at the end of the specified file. File must already be created
+ */
+DataModifier.prototype.append = function (contentIn) {
+  FilesJS.appendFile(this.path, "\n" + contentIn);
+  return this;
+}
+/**
+ * Creates a file. Can be filled with the first line of the file
+ */
+DataModifier.prototype.createFile = function (fileIn) {
+  //FilesJS.writeFile(this.path, fileIn);
+  FilesJS.createFiles(this.path, fileIn);
   return this;
 }
 
@@ -113,7 +133,6 @@ DataModifier.prototype.replaceJsonField = function (key, value) {
  * Will skip any field value pairs where the value was never defined
  * 
  * @param {*} pairs formatted as [[fieldA, valueA], [fieldB, valueB], ...]
- * @returns 
  */
 const createExtendablePair = function (pairs) {
   const jsonObject = {};
@@ -146,6 +165,50 @@ const lootItemEntry = function (idIn, weightIn, componentIn) {
   return output;
 };
 
+/**
+ * @param {*} pathIn takes a string with the path. Already prepended with `advancement/`
+ */
+function AdvancementBuilder(pathIn) {
+  this.path = "advancement/" + pathIn;
+  this.obj = new JsonBuilder({ 'sends_telemetry_event': false });
+  this.reqObj = new JsonBuilder([]);
+}
+AdvancementBuilder.prototype.replaceValue = function (search, replace) {
+  FilesJS.replaceInFile(this.path, search, replace);
+  return this;
+}
+AdvancementBuilder.prototype.setRewards = function (jsonIn) {
+  this.obj.setField("rewards", jsonIn);
+  return this;
+}
+AdvancementBuilder.prototype.setDisplay = function (jsonIn) {
+  this.obj.setField("display", jsonIn);
+  return this;
+}
+/**Also adds the relevant requirement entry, with the name `req`*/
+AdvancementBuilder.prototype.setCriteria = function (triggerIn, jsonIn) {
+  this.obj.setField("criteria", new JsonBuilder({
+    "req": {
+      "trigger": triggerIn,
+      "conditions": jsonIn
+    }
+  }).build());
+  this.obj.setField("requirements", new JsonBuilder([
+    [
+      "req"
+    ]
+  ]).build());
+  return this;
+}
+AdvancementBuilder.prototype.setParent = function (parentIn) {
+  this.obj.setField("parent", parentIn);
+  return this;
+}
+AdvancementBuilder.prototype.build = function (event) {
+  return newData(event, this.path, this.obj.build(true));
+};
+
+/**@deprecated */
 const dimensionAdvancement = function (parentIn, dimensionIn, descriptionIn, iconIn, titleIn) {
   return {
     parent: parentIn,
@@ -178,6 +241,7 @@ const dimensionAdvancement = function (parentIn, dimensionIn, descriptionIn, ico
   };
 };
 
+/**@deprecated */
 const dummyAdvancement = function (iconIn, titleIn) {
   return {
     display: {
@@ -203,6 +267,7 @@ const dummyAdvancement = function (iconIn, titleIn) {
   };
 };
 
+/**@deprecated */
 const dummyAdvancementFunction = function (iconIn, titleIn, functionIn) {
   return {
     display: {
@@ -653,7 +718,7 @@ function ShapedCrafting(nameIn, resultIn, patternIn) {
     "pattern": patternIn,
     "result": resultIn
   });
-  this.keyObj = new JsonBuilder({});
+  this.keyObj = new JsonBuilder();
 }
 /**Useful to override existing recipe*/
 ShapedCrafting.prototype.setPath = function (pathIn) {
@@ -856,7 +921,7 @@ const gristCost = function (outputIn, gristCostIn) {
 
 function GristCost(itemIn) {
   this.path = `recipe/grist_costs/${itemIn.toString().replace(":", "")}`;
-  this.gristObj = new JsonBuilder({});
+  this.gristObj = new JsonBuilder();
   this.obj = new JsonBuilder({
     type: 'minestuck:grist_cost',
     ingredient: {

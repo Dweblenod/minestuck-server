@@ -78,14 +78,18 @@ const CODONS = [
 
 const NUCLEOTIDES = ['A', 'T', 'C', 'G'];
 
+const SALT1 = 197371;
+const SALT2 = 7999993;
+const SALT3 = 7.27;
+
 /**
  * creates a random sequence between 21 and 205 units long
  */
-function randSequence(salt1In, salt2In) {
+function randSequence() {
   let randomString = '';
-  let randNum = 777777777777 + salt1In * salt2In;
+  let randNum = 777777777777 + SALT1 * SALT2;
   for (let i = 0; i < 21 + (randNum % 184); i++) {
-    randNum += 777777 + salt1In + salt2In - i;
+    randNum += 777777 + SALT1 + SALT2 - i;
     randomString += NUCLEOTIDES[randNum % 4];
   }
   //console.log(`${randomString.length}`);
@@ -102,15 +106,15 @@ function encodedSequence(captchaIn) {
   return string;
 };
 
-function generateShuffledSequence(captchaIn, salt1In, salt2In) {
-  let sequenceString = randSequence(salt1In, salt2In);
+function generateShuffledSequence(captchaIn, SALT1, SALT2) {
+  let sequenceString = randSequence(SALT1, SALT2);
   sequenceString += START_CODON;
   sequenceString += encodedSequence(captchaIn);
   sequenceString += STOP_CODON;
-  sequenceString += randSequence(salt1In - 777, salt2In + 333);
+  sequenceString += randSequence(SALT1 - 777, SALT2 + 333);
 
   //50% chance to flip
-  if (salt1In % 2 == 1) {
+  if (SALT1 % 2 == 1) {
     let reverseString = sequenceString.split("").reverse().join("");
     let nucFlipString = '';
     for (let char of reverseString.split("")) {
@@ -127,11 +131,11 @@ function newLine(textIn) {
   return { text: `${textIn}`, foreground: "fffffffffffffffffffffffff" };
 }
 
-function lootEntries(captchas, salt1, salt2) {
+function lootEntries(captchas) {
   let entriesIn = [];
   let iterate = 973;
   for (let [captcha, item] of captchas) {
-    let sequence = generateShuffledSequence(captcha, salt1 + iterate, salt2 + iterate);
+    let sequence = generateShuffledSequence(captcha, SALT1 + iterate, SALT2 + iterate);
     let linesIn = [];
     let text = sequence + ' '.repeat(526);
     for (let j = 0; j < 21; j++) {
@@ -151,13 +155,13 @@ function lootEntries(captchas, salt1, salt2) {
   return entriesIn;
 }
 
-function randomizeCaptcha(captchaIn, salt1In, salt2In, salt3In) {
+function randomizeCaptcha(captchaIn) {
   let randomString = '';
   let charCombine = 777;
 
   for (let i = 0; i < 8; i++) {
-    charCombine += captchaIn.codePointAt(i) * salt3In;
-    let combined = (charCombine + salt1In * salt2In);
+    charCombine += captchaIn.codePointAt(i) * SALT3;
+    let combined = (charCombine + SALT1 * SALT2);
     randomString += CHARACTERS.charAt(combined % CHARACTERS.length);
   }
 
@@ -173,27 +177,23 @@ function randomizeCaptcha(captchaIn, salt1In, salt2In, salt3In) {
 const generateCaptchas = function (event) {
   console.log('Started generating custom data in captchas. If no finish log, then something may be broken!');
 
-  let salt1 = 197371;
-  let salt2 = 7999993;
-  let salt3 = 7.27;
 
-  /*
   let captchas = [
     //royal_deringer handled via season_x
-    [randomizeCaptcha('SPclNEdl', salt1, salt2, salt3), 'minestuck:quill_of_echidna'],
-    [randomizeCaptcha('wHaMzIlY', salt1, salt2, salt3), 'minestuck:zillyhoo_hammer'],
-    [randomizeCaptcha('sLcEzIlY', salt1, salt2, salt3), 'minestuck:cutlass_of_zillywair'],
-    [randomizeCaptcha('mAgCzIlY', salt1, salt2, salt3), 'minestuck:thistle_of_zillywich'],
-    [randomizeCaptcha('PeEwzIlY', salt1, salt2, salt3), 'alchemyexpanded:flintlock_of_zillyhau'],
-    [randomizeCaptcha('BoOmzIlY', salt1, salt2, salt3), 'alchemyexpanded:blunderbuss_of_zillywigh'],
-    [randomizeCaptcha('stonSord', salt1, salt2, salt3), 'minecraft:stone_sword'],
-    [randomizeCaptcha('ironSord', salt1, salt2, salt3), 'minecraft:iron_sword'],
-    [randomizeCaptcha('dimdSord', salt1, salt2, salt3), 'minecraft:diamond_sword'],
-    [randomizeCaptcha('ntrtSord', salt1, salt2, salt3), 'minecraft:netherite_sword'],
-    [randomizeCaptcha('ZoMoRrOd', salt1, salt2, salt3), 'minestuck:subtractshumidire_zomorrodnegative']
+    [randomizeCaptcha('SPclNEdl'), 'minestuck:quill_of_echidna'],
+    [randomizeCaptcha('wHaMzIlY'), 'minestuck:zillyhoo_hammer'],
+    [randomizeCaptcha('sLcEzIlY'), 'minestuck:cutlass_of_zillywair'],
+    [randomizeCaptcha('mAgCzIlY'), 'minestuck:thistle_of_zillywich'],
+    [randomizeCaptcha('PeEwzIlY'), 'alchemyexpanded:flintlock_of_zillyhau'],
+    [randomizeCaptcha('BoOmzIlY'), 'alchemyexpanded:blunderbuss_of_zillywigh'],
+    [randomizeCaptcha('stonSord'), 'minecraft:stone_sword'],
+    [randomizeCaptcha('ironSord'), 'minecraft:iron_sword'],
+    [randomizeCaptcha('dimdSord'), 'minecraft:diamond_sword'],
+    [randomizeCaptcha('ntrtSord'), 'minecraft:netherite_sword'],
+    [randomizeCaptcha('ZoMoRrOd'), 'minestuck:subtractshumidire_zomorrodnegative']
   ];
 
-  let entriesIn = lootEntries(captchas, salt1, salt2);
+  let entriesIn = lootEntries(captchas);
 
   newData(event, `loot_table/chests/captcha_codes`, {
     "type": "minecraft:empty",
@@ -209,7 +209,6 @@ const generateCaptchas = function (event) {
   });
 
   newData(event, `minestuck/captcha_codes`, createExtendablePair(captchas));
-  */
 
   console.log('Ending gen in captchas.');
 };
