@@ -1,3 +1,5 @@
+// priority: 16
+
 LootJS.modifiers((event) => {
   event.removeGlobalModifiers(/.*relics.*/); // remove relics from loot
 
@@ -10,6 +12,14 @@ LootJS.modifiers((event) => {
 
 
 LootJS.lootTables((event) => {
+  /*global.REPLACED_LOOT_TABLES.forEach(entry => {
+
+  });*/
+  
+  //global.REMOVED_LOOT_TABLES.forEach(entry => {
+  //  event.clearLootTables(/.*chest.*/);
+  //});
+
   /*event.create('custom:chests/rare').createPool((pool) => {
     pool.addEntry(LootEntry.reference('minestuck:chests/rare_item')).rolls([1, 3]);
     pool.addEntry(LootEntry.reference('minestuck:chests/supply_item')).rolls([4, 7]);

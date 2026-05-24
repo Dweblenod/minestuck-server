@@ -272,7 +272,16 @@ const generateRecipes = function (event) {
 // Recipe event =============================================================================================================================================
 
 ServerEvents.recipes((event) => {
-
+  global.REPLACED_RECIPES.forEach(entry => {
+    event.replaceInput(
+      { input: entry[0] },
+      entry[0],
+      Ingredient.of(entry[1])
+    );
+  });
+  global.REMOVED_RECIPES.forEach(entry => {
+    event.remove({output: entry});
+  });
 });
 
 

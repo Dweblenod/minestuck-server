@@ -81,3 +81,11 @@ Rules/guidelines:
 - Try to make use of the helper functions for KubeJS. It helps with readability to have everything structured the same, and it makes it easier to adapt to changes between versions
 
 https://github.com/Dweblenod/minestuck-server
+
+Resources:
+- [KubeJS main website](https://kubejs.com/)
+- [Old website](https://wiki.latvian.dev/books/kubejs)
+- [KubeJS github](https://github.com/KubeJS-Mods/KubeJS)
+- [Useful Starter Script Repository](https://github.com/liopyu/ussr)
+- [NeoForge docs](https://docs.neoforged.net/docs/1.21.1/gettingstarted/)
+- [Recipe modify examples](https://gist.github.com/KCtops6/cba8c98405381dfb992862946452489d)

@@ -220,10 +220,34 @@ function bedHandle(event) {
 
 
 // Custom data =====================================================================================================================================================
-/**/
-// ServerEvents.generateData('last', (event) => {
 const generateMisc = function (event) {
   console.log('Started generating custom data in misc. If no finish log, then something may be broken!');
+
+  //reset to prevent errors when reloading midgame
+  //global.REMOVED_RECIPES = [];
+  //global.REPLACED_RECIPES = [];
+
+  new ItemUnifier('paldelight:knafeh')
+    .addDuplicateItem('ramadandelight:knafeh_tray_block') //missing texture
+    .addDuplicateItem('ramadandelight:knafeh')
+    //date syrup
+
+  new ItemUnifier('ramadandelight:maqluba_block')
+    .addDuplicateItem('paldelight:maqluba')
+    //olive oil onion
+
+  new ItemUnifier('extradelight:ginger')
+    .addDuplicateItem('ubesdelight:ginger', false)
+    .addDuplicateItem('peruviansdelight:kion', false)
+
+  new ItemUnifier('extradelight:garlic')
+    .addDuplicateItem('ubesdelight:garlic', false)
+
+  new ItemUnifier('extradelight:soybean_pod')
+    .addDuplicateItem('peruviansdelight:vaina_soya', false)
+
+  new ItemUnifier('extradelight:soybeans')
+    .addDuplicateItem('peruviansdelight:granos_soya', false)
 
   new AdvancementBuilder('custom/world_top')
     .setCriteria('minecraft:location', new JsonBuilder().setField('player',
@@ -244,7 +268,7 @@ const generateMisc = function (event) {
   new DataModifier('kubejs/data/custom/function/world_top.mcfunction')
     .createFile('say test')
     .append('advancement revoke @a only custom:custom/world_top');
-  
+
   /*
   newDataFullPath(event, 'restrictedportals:advancement/thenether', dummyAdvancement('minecraft:crying_obsidian', 'Unlock The Nether'));
   newDataFullPath(event, 'restrictedportals:advancement/theend', dummyAdvancement('minecraft:end_portal_frame', 'Unlock The End'));

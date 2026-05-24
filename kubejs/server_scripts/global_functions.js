@@ -83,8 +83,9 @@ JsonBuilder.prototype.build = function (doLog) {
   return json;
 };
 
+//follows the recommended neoforge data
 const wipeDataAtPath = function (event, path) {
-  return newData(event, path, {});
+  return newData(event, path, { "neoforge:conditions": [{ "type": "neoforge:false" }] });
 }
 
 /**
@@ -120,9 +121,31 @@ DataModifier.prototype.append = function (contentIn) {
 /**
  * Creates a file. Can be filled with the first line of the file
  */
-DataModifier.prototype.createFile = function (fileIn) {
-  //FilesJS.writeFile(this.path, fileIn);
-  FilesJS.createFiles(this.path, fileIn);
+DataModifier.prototype.createFile = function (firstLine) {
+  FilesJS.createFiles(this.path, firstLine);
+  return this;
+}
+
+/**
+ * One stop shop for replacing/hiding data for overlapping items
+ * @param {*} targetIn takes a String of the item you want to be prioritized
+ */
+function ItemUnifier(targetIn, replaceIn) {
+  this.target = targetIn;
+}
+/**
+ * Makes the item entered dissapear from JEI/recipes
+ * @param {*} shouldRemove true or unentered if relevant content should be removed entirely, false if it should instead be replaced
+*/
+ItemUnifier.prototype.addDuplicateItem = function (itemIn, shouldRemove) {
+  if (shouldRemove == undefined || shouldRemove) {
+    global.REMOVED_RECIPES.push(itemIn);
+    global.REMOVED_LOOT_TABLES.push(itemIn);
+  } else {
+    global.REPLACED_RECIPES.push([itemIn, this.target]);
+    global.REPLACED_LOOT_TABLES.push([itemIn, this.target]);
+  }
+  global.HIDE_JEI.push(itemIn);
   return this;
 }
 
