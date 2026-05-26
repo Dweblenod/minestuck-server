@@ -1,8 +1,9 @@
 // priority: 1
 
-//const generateConfig = function (event) {
+ServerEvents.loaded((event) => {
 
-ServerEvents.generateData('before_mods', (event) => {
+    //CONFIGS
+
     new DataModifier('kubejs/config/defaultoptions.txt')
         .createFile('modelPart_cape:false')
         .append('key_key.jei.toggleCheatMode:key.keyboard.unknown')
@@ -44,7 +45,14 @@ ServerEvents.generateData('before_mods', (event) => {
         'Channels ',
         'specified shader program',
         'artifacts:',
+        'railways:track_natures',
+        'railways:track_byg',
+        'railways:blocks/track_byg',
+        'railways:blocks/track_natures',
+        'casualness_delight',
+        'No migration necessary',
         '"type":"fluid_stack"',
+        'Failed to load icon for pack',
         'FileNotFoundException: minecraft:models/compass_'
     ]).build();
     new DataModifier('config/logbegone.json')
@@ -97,4 +105,22 @@ ServerEvents.generateData('before_mods', (event) => {
     new DataModifier('config/ubesdelight.json')
         .replaceValue('"generateWildGarlic": true', '"generateWildGarlic": false')
         .replaceValue('"generateWildGinger": true', '"generateWildGinger": false')
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //MCFUNCTIONS
+
+    new DataModifier('kubejs/data/custom/function/world_top.mcfunction')
+        .createFile('say test')
+        .append('advancement revoke @a only custom:custom/world_top');
 });

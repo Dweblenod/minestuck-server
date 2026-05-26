@@ -119,7 +119,8 @@ DataModifier.prototype.append = function (contentIn) {
   return this;
 }
 /**
- * Creates a file. Can be filled with the first line of the file
+ * Creates a file. Can be filled with the first line of the file.
+ * Will give an error if used before the server level is loaded
  */
 DataModifier.prototype.createFile = function (firstLine) {
   FilesJS.createFiles(this.path, firstLine);
@@ -130,7 +131,7 @@ DataModifier.prototype.createFile = function (firstLine) {
  * One stop shop for replacing/hiding data for overlapping items
  * @param {*} targetIn takes a String of the item you want to be prioritized
  */
-function ItemUnifier(targetIn, replaceIn) {
+function ItemUnifier(targetIn) {
   this.target = targetIn;
 }
 /**
@@ -146,6 +147,12 @@ ItemUnifier.prototype.addDuplicateItem = function (itemIn, shouldRemove) {
     global.REPLACED_LOOT_TABLES.push([itemIn, this.target]);
   }
   global.HIDE_JEI.push(itemIn);
+  return this;
+}
+/**
+ * Blank function for keeping relevant data inline
+ */
+ItemUnifier.prototype.modifyData = function () {
   return this;
 }
 
@@ -228,7 +235,7 @@ AdvancementBuilder.prototype.setParent = function (parentIn) {
   return this;
 }
 AdvancementBuilder.prototype.build = function (event) {
-  return newData(event, this.path, this.obj.build(true));
+  return newData(event, this.path, this.obj.build());
 };
 
 /**@deprecated */
@@ -757,7 +764,7 @@ ShapedCrafting.prototype.addKey = function (keyIn, valueIn) {
   return this;
 };
 ShapedCrafting.prototype.build = function (event) {
-  return newData(event, this.path, this.obj.setField("key", this.keyObj.build()).build())
+  return newData(event, this.path, this.obj.setField("key", this.keyObj.build()).build(true))
 };
 
 /**
@@ -856,6 +863,53 @@ SequencedAssembly.prototype.getTransitItem = function (isOutput) {
 };
 SequencedAssembly.prototype.build = function (event) {
   return newData(event, this.path, this.obj.setField("sequence", this.seqObj.build()).build())
+};
+
+/**
+ * Farmers Delight style recipe, accepts 6 ingredients.
+ * Gives experience value of 1.0 and has cook time of 200 ticks by default
+ * @param {*} resultIn takes an ItemOutput
+ * @param {*} recipeTabIn takes value of: "meals", "drinks", "misc"
+ */
+function CookingRecipe(nameIn, resultIn, recipeTabIn) {
+  //this.path = `recipe/cooking/${nameIn.path()}`;
+  this.path = `recipe/cooking/${nameIn}`;
+  this.obj = new JsonBuilder({
+    "type": "farmersdelight:cooking",
+    "recipe_book_tab": recipeTabIn,
+    "result": resultIn
+  });
+  this.ingObj = new JsonBuilder([]);
+}
+/**Useful to override existing recipe*/
+CookingRecipe.prototype.setPath = function (pathIn) {
+  this.path = pathIn;
+  return this;
+};
+/**
+ * @param {*} ingredientIn takes an Entry
+ * There can be a max of 6 ingredients
+ */
+CookingRecipe.prototype.addIngredient = function (ingredientIn) {
+  this.ingObj.addObject(ingredientIn);
+  return this;
+};
+/**
+ * @param {*} experienceIn takes a float value
+ */
+CookingRecipe.prototype.setExperience = function (experienceIn) {
+  this.obj.setField("experience", experienceIn);
+  return this;
+};
+/**
+ * @param {*} timeIn takes an integer
+ */
+CookingRecipe.prototype.setCookTime = function (timeIn) {
+  this.obj.setField("cookingtime", timeIn);
+  return this;
+};
+CookingRecipe.prototype.build = function (event) {
+  return newData(event, this.path, this.obj.setField("ingredients", this.ingObj.build()).build())
 };
 
 const drilling = function (outputIn, stressIn, ticksIn, veinNameIn) {
@@ -975,13 +1029,12 @@ GristCost.prototype.build = function (event) {
  * countIn has the default value of 1
  * */
 const itemEntry = function (idIn, countIn) {
-  if (countIn === undefined)
-    countIn = 1; //gives an error if assigned in formal parameters
+  var entry = new JsonBuilder({"item": idIn})
+  
+  if (countIn !== undefined)
+    entry.setField("count", countIn);
 
-  return {
-    item: idIn,
-    count: countIn
-  };
+  return entry.build();
 };
 
 /**
@@ -990,13 +1043,12 @@ const itemEntry = function (idIn, countIn) {
  * countIn has the default value of 1
  * */
 const tagEntry = function (idIn, countIn) {
-  if (countIn === undefined)
-    countIn = 1;
+  var entry = new JsonBuilder({"tag": idIn})
+  
+  if (countIn !== undefined)
+    entry.setField("count", countIn);
 
-  return {
-    tag: idIn,
-    count: countIn,
-  };
+  return entry.build();
 };
 
 /**DOES NOT WORK IN CAULDRONS. USE fluidCauldronEntry() for that purpose*/
@@ -1041,16 +1093,14 @@ const spiritEntry = function (idIn, countIn) {
  * chanceIn takes a decimal value between 0.00 and 1.00
  * */
 const itemOutput = function (idIn, countIn, chanceIn) {
-  if (countIn === undefined)
-    countIn = 1;
-  if (chanceIn === undefined)
-    chanceIn = 1.0;
+  var output = new JsonBuilder({"id": idIn})
+  
+  if (countIn !== undefined)
+    output.setField("count", countIn);
+  if (chanceIn !== undefined)
+    output.setField("chance", chanceIn);
 
-  return {
-    id: idIn,
-    count: countIn,
-    chance: chanceIn,
-  };
+  return output.build();
 };
 
 const fluidOutput = function (idIn, amountIn) {

@@ -280,7 +280,7 @@ ServerEvents.recipes((event) => {
     );
   });
   global.REMOVED_RECIPES.forEach(entry => {
-    event.remove({output: entry});
+    event.remove({ output: entry });
   });
 });
 

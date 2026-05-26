@@ -230,24 +230,43 @@ const generateMisc = function (event) {
   new ItemUnifier('paldelight:knafeh')
     .addDuplicateItem('ramadandelight:knafeh_tray_block') //missing texture
     .addDuplicateItem('ramadandelight:knafeh')
-    //date syrup
+
+  new CookingRecipe(null, itemOutput('paldelight:knafeh', 3), 'misc')
+    .setPath('paldelight:cooking/farmers/knafeh')
+    //.setCookTime(260)
+    //.setExperience(1.2)
+    .addIngredient(tagEntry('c:foods/dough'))
+    .addIngredient(tagEntry('c:foods/milk'))
+    //.addIngredient(tagEntry('c:foods/cheese'))
+    .addIngredient(itemEntry('minecraft:sugar'))
+    //.addIngredient(itemEntry('ramadandelight:date_syrup'))
+    .addIngredient(itemEntry('paldelight:rose_water'))
+    .build(event)
 
   new ItemUnifier('ramadandelight:maqluba_block')
     .addDuplicateItem('paldelight:maqluba')
-    //olive oil onion
+  //olive oil onion
 
   new ItemUnifier('extradelight:ginger')
     .addDuplicateItem('ubesdelight:ginger', false)
     .addDuplicateItem('peruviansdelight:kion', false)
 
+  new ItemUnifier('extradelight:wild_ginger')
+    .addDuplicateItem('ubesdelight:wild_ginger', false)
+    .addDuplicateItem('peruviansdelight:kion_silvestre', false)
+
   new ItemUnifier('extradelight:garlic')
     .addDuplicateItem('ubesdelight:garlic', false)
+    .addDuplicateItem('ubesdelight:wild_garlic')
 
-  new ItemUnifier('extradelight:soybean_pod')
-    .addDuplicateItem('peruviansdelight:vaina_soya', false)
+  new ItemUnifier('extradelight:wild_garlic_block')
+    .addDuplicateItem('ubesdelight:wild_garlic', false)
 
   new ItemUnifier('extradelight:soybeans')
     .addDuplicateItem('peruviansdelight:granos_soya', false)
+
+  new ItemUnifier('extradelight:soybean_pod')
+    .addDuplicateItem('peruviansdelight:vaina_soya', false)
 
   new AdvancementBuilder('custom/world_top')
     .setCriteria('minecraft:location', new JsonBuilder().setField('player',
@@ -264,10 +283,6 @@ const generateMisc = function (event) {
       }).build())
     .setRewards(new JsonBuilder().setField('function', 'custom:world_top').build())
     .build(event);
-
-  new DataModifier('kubejs/data/custom/function/world_top.mcfunction')
-    .createFile('say test')
-    .append('advancement revoke @a only custom:custom/world_top');
 
   /*
   newDataFullPath(event, 'restrictedportals:advancement/thenether', dummyAdvancement('minecraft:crying_obsidian', 'Unlock The Nether'));

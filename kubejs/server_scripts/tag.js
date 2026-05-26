@@ -1,10 +1,12 @@
 // priority: 18
 
 ServerEvents.tags('item', event => {
-    event.add('c:foods/vegetable', 'peruviandelight:aji_amarillo');
-    event.add('c:foods/vegetable', 'peruviandelight:camote');
-    event.add('c:foods/vegetable', 'peruviandelight:yuca');
-    event.add('c:foods/vegetable', 'peruviandelight:palta_cortada');
+    event.add('c:foods/vegetable', 'peruviansdelight:aji_amarillo');
+    event.add('c:foods/vegetable', 'peruviansdelight:camote');
+    event.add('c:foods/vegetable', 'peruviansdelight:yuca');
+    event.add('c:foods/vegetable', 'peruviansdelight:palta_cortada');
+
+    event.add('c:foods/milk', '#c:drinks/milk');
     /*
     event.add('kubejs:malum_compatible', 'minestuck:spines_of_fluthlu')
     event.add('kubejs:malum_compatible/scythe', 'minestuck:claw_of_nrubyiglith')
