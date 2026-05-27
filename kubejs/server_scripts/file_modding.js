@@ -102,6 +102,10 @@ ServerEvents.loaded((event) => {
                 .build()
         )
 
+    new DataModifier('config/supplementaries-common.toml')
+        .replaceValue('max_search_radius = 200', 'max_search_radius = 150')
+        .replaceValue('creative_tab = false', 'creative_tab = true')
+
     new DataModifier('config/ubesdelight.json')
         .replaceValue('"generateWildGarlic": true', '"generateWildGarlic": false')
         .replaceValue('"generateWildGinger": true', '"generateWildGinger": false')

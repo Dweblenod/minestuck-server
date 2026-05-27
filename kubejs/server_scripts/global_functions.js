@@ -764,7 +764,7 @@ ShapedCrafting.prototype.addKey = function (keyIn, valueIn) {
   return this;
 };
 ShapedCrafting.prototype.build = function (event) {
-  return newData(event, this.path, this.obj.setField("key", this.keyObj.build()).build(true))
+  return newData(event, this.path, this.obj.setField("key", this.keyObj.build()).build())
 };
 
 /**
