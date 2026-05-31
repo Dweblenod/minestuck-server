@@ -1,16 +1,28 @@
 # Installation
 
-Installation has been streamlined with this pack so that everything is in the same directory space!
+Installation has been streamlined with this pack so that everything is in the same directory space! All the files you need to run this pack, besides the mods themselves, is including in this download.
 
 - Find the .minecraft folder/directory in your computers files
-- Select every folder in the same filepath as this instruction file (i.e. the folders called "mods"/"config"/"kubejs")
+- Select every folder in the same filepath as this instruction file (i.e. the folders called `mods`/`config`/`kubejs`)
 - Copy or drag all the selected folders over to .minecraft
+- Open the mods folder, you should see some .txt files, a jar file called ModsDownloader, and a Bash script
+- Links to all the mods needed to run the pack are in `mods.txt`. There are 3 main options for downloading the mods
+  - Option 1
+      - Run ModsDownloader.jar. By default it will download jars every 5 seconds and will include the optional mods. You can change these settings by editing `config.txt`
+      - Links to Modrinth will download the jar directly, but due to API restrictions links to Curseforge will take the form of .url files instead. The .url files can be clicked to open the link in your default browser
+  - Option 2
+    - If you are on Linux, you can run `linux_alternate_downloader.sh` in your terminal instead of ModsDownloader.jar. If you are running Windows and have activated the embedded virtual Linux machine, it is possible you can also use this script
+    - Like Option 1, Curseforge mods will be in the form of .url files which can be clicked to bring you to the browser
+  - Option 3
+      - Manually copy each line into your browser. They should either immediately try to download the jar or bring you to the page where you can do so yourself. Running scripts you are not familiar with
 
 
 You can of course install additional client side mods/content. The public server runs Simple Discord.
 
 
 Problem solving:
+- ModsDownloader might not work if your system defaults to using anything below Java 21. The .url files made by ModsDownloader (Option 1) and the Linux script (Option 2) are not guaranteed to work on all systems. If you have issues with either of the automated systems, its smartest to fall back to copy pasting the links yourself (Option 3)
+- Its possible to get rate limited by Modrinth even with the automated system default settings. If you are rate limited, wait at least 15 minutes before trying again and try increasing the timeout between each download
 - If the Minecraft launcher you are using to run this modpack has already been used for another pack, make sure there isnt any left over mods still in your mods folder
 - Make sure you are using NeoForge version 21.1.228 (or whatever is specified on our website) and are in Minecraft version 1.21.1
 - If you plan on playing on the server, do not manually download the mods if it can be helped and do not update mods unless they are client only!
@@ -19,7 +31,7 @@ Problem solving:
 - If KubeJS or configs do not appear correct, try copying the folders over to .minecraft again
 - You may be able to improve the speed at which the modpack boots up by increasing the minimum memory allocation to at least 1 GB
 - Some players may have difficulty connecting, or staying connected, to the server. Networking errors are mostly out of the servers control, but there are some general things you can do
-  - Use "Direct Connection" in the multiplayer menu
+  - Use `Direct Connection` in the multiplayer menu
   - Checking your personal firewall settings
   - Switching networks (moving your computer, stopping/starting use of a VPN, etc)
   - Using a wired/ethernet connection as opposed to relying on wifi
@@ -29,7 +41,7 @@ Problem solving:
   - temp
 
 
-
+-----------------------------------------------------------------------------
 # Customization
 
 - If there are configs that keep seeming to reset, check for a kubejs server script called config.js and edit values through that
@@ -39,20 +51,20 @@ Mods which are disabled have the filetype ending `.disabled`. To reenable them, 
 
 ## Mods
 
-### AmbientSounds (disabled by default)
+#### AmbientSounds (disabled by default)
 This mod does what it sounds like, and adds atmospheric sound effects to the game to make it feel more alive!
 
-### DistantHorizons (disabled by default)
+#### DistantHorizons (disabled by default)
 This mod allows for LODs. Allowing blocks in far away chunks to be viewed at a lower resolution!
 It can be a source of lag and occassional crashes. Configs are available to change performance cost. It may be compatible with shaders!
 
-### Ears
+#### Ears
 This mod makes use of blank space in your player skin file in order to render ears/claws/horns/tails/wings.
 You can see the custom changes of others when in a server too!
 
 [Create an Ears mod compatibile skin here!](https://ears.y2k.diy/manipulator/)
 
-### Sound Physics Remastered (disabled by default)
+#### Sound Physics Remastered (disabled by default)
 This mod processes in-game sounds to make them echo or be muffled as if they are real sound waves!
 It can be a source of lag. Configs are available to change performance cost.
 
@@ -61,14 +73,14 @@ There is support for Shaders through Iris HOWEVER they must not edit skyboxes si
 BSL and Complimentary are not compatible despite working with Iris/Distant Horizons as they ruin the End skybox and skyboxes in the Medium
 
 
-
+-----------------------------------------------------------------------------
 # Incompatabilities
 
 - Optifine is incompatible with mods in the pack and cannot be recommended
 - Shaders which modify the skybox are likely to be incompatible. This includes BSL and Complimentary. They can cause issues in the Medium and in the End
 
 
-
+-----------------------------------------------------------------------------
 # Contributing to the pack
 
 Anyone can make suggestions for the modpack in the public Minestuck discord server, but to have a more direct effect on development/upkeep of the pack. Consider forking the Repository and making Pull Requests!
@@ -89,3 +101,4 @@ Resources:
 - [Useful Starter Script Repository](https://github.com/liopyu/ussr)
 - [NeoForge docs](https://docs.neoforged.net/docs/1.21.1/gettingstarted/)
 - [Recipe modify examples](https://gist.github.com/KCtops6/cba8c98405381dfb992862946452489d)
+- [Useful mod](https://www.curseforge.com/minecraft/mc-mods/kubejs-offline/download/7307002)

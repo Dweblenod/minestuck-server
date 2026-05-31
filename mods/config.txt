@@ -1,0 +1,5 @@
+# Rate limiting or other issues are more likely to occur with values below 2
+timeout=5
+
+# Set to false to avoid downloading optional client mods
+include_optional=true

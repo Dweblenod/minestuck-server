@@ -1,0 +1,5 @@
+https://cdn.modrinth.com/data/uCdwusMi/versions/KkaaQtTD/DistantHorizons-3.0.2-b-1.21.1-fabric-neoforge.jar
+https://cdn.modrinth.com/data/fokFjwwh/versions/UbE4gXrR/KeybindAtlas-v1.4.0-mc1.21.1-neoforge.jar?mr_download_reason=standalone
+https://cdn.modrinth.com/data/fRiHVvU7/versions/5sIPA1To/emi-1.1.24%2B1.21.1%2Bneoforge.jar?mr_download_reason=standalone
+
+https://cdn.modrinth.com/data/GNxdLCoP/versions/V7PU4g8I/cullleaves-neoforge-4.1.1%2B1.21.1.jar?mr_download_reason=standalone&mr_game_version=1.21.1
