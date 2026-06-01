@@ -1,25 +1,15 @@
 // priority: 1
 
+//check similarly named script in client for client configs
 ServerEvents.loaded((event) => {
-
     //CONFIGS
 
-    new DataModifier('kubejs/config/defaultoptions.txt')
-        .createFile('modelPart_cape:false')
-        .append('key_key.jei.toggleCheatMode:key.keyboard.unknown')
-        .append('key_key.jei.cheatOneItem:key.keyboard.unknown')
-        .append('key_key.jei.cheatOneItem2:key.keyboard.unknown')
-        .append('key_key.jei.cheatItemStack:key.keyboard.unknown')
-        .append('key_key.jei.cheatItemStack2:key.keyboard.unknown')
-        .append('key_key.minestuck.captchalogue:key.keyboard.c')
-        .append('key_key.parcool.Crawl:key.keyboard.x')
-    //key_cos.key.opencosarmorinventory:key.keyboard.unknown
-    //key_iris.keybind.reload:key.keyboard.unknown
-    //key_iris.keybind.toggleShaders:key.keyboard.unknown
-
-
-    new DataModifier('config/jei/jei-client.ini')
-        .replaceValue('showTagRecipesEnabled = false', 'showTagRecipesEnabled = true')
+    new DataModifier('config/ohmymeteors/ohmymeteors_config.yml')
+        .replaceValue('announce_meteor_spawn:false', 'announce_meteor_spawn:true')
+        .replaceValue('area_explosion_sound:false', 'area_explosion_sound:true')
+        .replaceValue('min_meteor_cooldown_time:20','min_meteor_cooldown_time:4')
+        .replaceValue('spawn_dimensions:[minecraft:overworld, minecraft:the_end]', 'spawn_dimensions:[minecraft:overworld, minecraft:the_end, minestuck:veil, minestuck:skaia]')
+        .replaceValue('max_meteors_in_shower:20', 'max_meteors_in_shower:30')
 
     new DataModifier('config/computercraft-server.toml')
         .replaceValue('max_requests = 16', 'max_requests = 12')
@@ -63,8 +53,6 @@ ServerEvents.loaded((event) => {
                 .setField('regex', logbegone)
                 .build()
         )
-
-    new DataModifier('config/minestuck-client.toml')
 
     new DataModifier('config/minestuck-server.toml')
         .replaceValue('globalSession = false', 'globalSession = true')

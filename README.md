@@ -51,10 +51,10 @@ Mods which are disabled have the filetype ending `.disabled`. To reenable them, 
 
 ## Mods
 
-#### AmbientSounds (disabled by default)
+#### AmbientSounds (optional mod)
 This mod does what it sounds like, and adds atmospheric sound effects to the game to make it feel more alive!
 
-#### DistantHorizons (disabled by default)
+#### DistantHorizons (optional mod)
 This mod allows for LODs. Allowing blocks in far away chunks to be viewed at a lower resolution!
 It can be a source of lag and occassional crashes. Configs are available to change performance cost. It may be compatible with shaders!
 
@@ -64,13 +64,12 @@ You can see the custom changes of others when in a server too!
 
 [Create an Ears mod compatibile skin here!](https://ears.y2k.diy/manipulator/)
 
-#### Sound Physics Remastered (disabled by default)
+#### Sound Physics Remastered (optional mod)
 This mod processes in-game sounds to make them echo or be muffled as if they are real sound waves!
 It can be a source of lag. Configs are available to change performance cost.
 
 ## Shaders
-There is support for Shaders through Iris HOWEVER they must not edit skyboxes significantly in order to be compatible. 
-BSL and Complimentary are not compatible despite working with Iris/Distant Horizons as they ruin the End skybox and skyboxes in the Medium
+Shaders are not compatible with the pack
 
 
 -----------------------------------------------------------------------------
@@ -92,7 +91,9 @@ Rules/guidelines:
 - Make sure to check that the KubeJS scripts did not fail before creating a PR
 - Try to make use of the helper functions for KubeJS. It helps with readability to have everything structured the same, and it makes it easier to adapt to changes between versions
 
-https://github.com/Dweblenod/minestuck-server
+[Server Github](https://github.com/Dweblenod/minestuck-server)
+
+[Mods Downloader Github](https://github.com/Dweblenod/ModsDownloader)
 
 Resources:
 - [KubeJS main website](https://kubejs.com/)
