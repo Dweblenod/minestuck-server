@@ -240,6 +240,20 @@ const generateRecipes = function (event) {
   enderTest.addSequence(sequencedRecipeEntry('create:filling', fluidEntry('minestuck:ender', 500), enderTest))
   enderTest.build(event)
 
+  new CookingRecipe('knafeh', itemOutput('paldelight:knafeh', 3), 'misc')
+    .setPath('paldelight:cooking/farmers/knafeh')
+    //.setCookTime(260)
+    //.setExperience(1.2)
+    //.addIngredient(tagEntry('c:foods/dough'))
+    //.addIngredient(tagEntry('c:foods/milk'))
+    //.addIngredient(tagEntry('c:foods/cheese'))
+    .addIngredient(itemEntry('minecraft:sugar'))
+    .addIngredient(itemEntry('minecraft:sugar'))
+    
+    //.addIngredient(itemEntry('ramadandelight:date_syrup'))
+    //.addIngredient(itemEntry('paldelight:rose_water'))
+    .build(event)
+
   console.log('Ending gen in recipes.');
 };
 
@@ -272,6 +286,7 @@ const generateRecipes = function (event) {
 // Recipe event =============================================================================================================================================
 
 ServerEvents.recipes((event) => {
+  //TODO using replace causes means tags are swapped for individual items in recipes
   global.REPLACED_RECIPES.forEach(entry => {
     event.replaceInput(
       { input: entry[0] },

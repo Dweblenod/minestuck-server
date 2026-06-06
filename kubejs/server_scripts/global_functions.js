@@ -140,8 +140,7 @@ function ItemUnifier(targetIn) {
 */
 ItemUnifier.prototype.addDuplicateItem = function (itemIn, shouldRemove) {
   if (shouldRemove == undefined || shouldRemove) {
-    global.REMOVED_RECIPES.push(itemIn);
-    global.REMOVED_LOOT_TABLES.push(itemIn);
+    removeItem(itemIn);
   } else {
     global.REPLACED_RECIPES.push([itemIn, this.target]);
     global.REPLACED_LOOT_TABLES.push([itemIn, this.target]);
@@ -154,6 +153,15 @@ ItemUnifier.prototype.addDuplicateItem = function (itemIn, shouldRemove) {
  */
 ItemUnifier.prototype.modifyData = function () {
   return this;
+}
+
+/**
+ * Removes specified item from recipes/loot tables
+ */
+const removeItem = function (itemIn) {
+  global.REMOVED_RECIPES.push(itemIn);
+  global.REMOVED_LOOT_TABLES.push(itemIn);
+  global.REMOVED_FROM_TAGS.push(itemIn);
 }
 
 /**
@@ -1029,8 +1037,8 @@ GristCost.prototype.build = function (event) {
  * countIn has the default value of 1
  * */
 const itemEntry = function (idIn, countIn) {
-  var entry = new JsonBuilder({"item": idIn})
-  
+  var entry = new JsonBuilder({ "item": idIn })
+
   if (countIn !== undefined)
     entry.setField("count", countIn);
 
@@ -1043,8 +1051,8 @@ const itemEntry = function (idIn, countIn) {
  * countIn has the default value of 1
  * */
 const tagEntry = function (idIn, countIn) {
-  var entry = new JsonBuilder({"tag": idIn})
-  
+  var entry = new JsonBuilder({ "tag": idIn })
+
   if (countIn !== undefined)
     entry.setField("count", countIn);
 
@@ -1093,8 +1101,8 @@ const spiritEntry = function (idIn, countIn) {
  * chanceIn takes a decimal value between 0.00 and 1.00
  * */
 const itemOutput = function (idIn, countIn, chanceIn) {
-  var output = new JsonBuilder({"id": idIn})
-  
+  var output = new JsonBuilder({ "id": idIn })
+
   if (countIn !== undefined)
     output.setField("count", countIn);
   if (chanceIn !== undefined)

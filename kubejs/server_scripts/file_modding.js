@@ -6,8 +6,9 @@ ServerEvents.loaded((event) => {
 
     new DataModifier('config/ohmymeteors/ohmymeteors_config.yml')
         .replaceValue('announce_meteor_spawn:false', 'announce_meteor_spawn:true')
+        .replaceValue('actionbar_announcements:true', 'actionbar_announcements:false')
         .replaceValue('area_explosion_sound:false', 'area_explosion_sound:true')
-        .replaceValue('min_meteor_cooldown_time:20','min_meteor_cooldown_time:4')
+        .replaceValue('min_meteor_cooldown_time:20','min_meteor_cooldown_time:6')
         .replaceValue('spawn_dimensions:[minecraft:overworld, minecraft:the_end]', 'spawn_dimensions:[minecraft:overworld, minecraft:the_end, minestuck:veil, minestuck:skaia]')
         .replaceValue('max_meteors_in_shower:20', 'max_meteors_in_shower:30')
 

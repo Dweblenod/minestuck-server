@@ -1,6 +1,10 @@
-// priority: 18
+// priority: 14
 
 ServerEvents.tags('item', event => {
+    global.REMOVED_FROM_TAGS.forEach(entry => {
+        event.removeAllTagsFrom(entry);
+    });
+
     event.add('c:foods/vegetable', 'peruviansdelight:aji_amarillo');
     event.add('c:foods/vegetable', 'peruviansdelight:camote');
     event.add('c:foods/vegetable', 'peruviansdelight:yuca');

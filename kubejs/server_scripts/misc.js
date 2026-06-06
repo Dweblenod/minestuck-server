@@ -231,7 +231,7 @@ const generateMisc = function (event) {
     .addDuplicateItem('ramadandelight:knafeh_tray_block') //missing texture
     .addDuplicateItem('ramadandelight:knafeh')
 
-  new CookingRecipe(null, itemOutput('paldelight:knafeh', 3), 'misc')
+  new CookingRecipe('knafeh', itemOutput('paldelight:knafeh', 3), 'misc')
     .setPath('paldelight:cooking/farmers/knafeh')
     //.setCookTime(260)
     //.setExperience(1.2)
@@ -248,25 +248,18 @@ const generateMisc = function (event) {
   //olive oil onion
 
   new ItemUnifier('extradelight:ginger')
-    .addDuplicateItem('ubesdelight:ginger', false)
     .addDuplicateItem('peruviansdelight:kion', false)
 
   new ItemUnifier('extradelight:wild_ginger')
-    .addDuplicateItem('ubesdelight:wild_ginger', false)
     .addDuplicateItem('peruviansdelight:kion_silvestre', false)
-
-  new ItemUnifier('extradelight:garlic')
-    .addDuplicateItem('ubesdelight:garlic', false)
-    .addDuplicateItem('ubesdelight:wild_garlic')
-
-  new ItemUnifier('extradelight:wild_garlic_block')
-    .addDuplicateItem('ubesdelight:wild_garlic', false)
 
   new ItemUnifier('extradelight:soybeans')
     .addDuplicateItem('peruviansdelight:granos_soya', false)
 
   new ItemUnifier('extradelight:soybean_pod')
     .addDuplicateItem('peruviansdelight:vaina_soya', false)
+
+  removeItem('createcybernetics:wetware_spidereyes') //brings fps to 0
 
   new AdvancementBuilder('custom/world_top')
     .setCriteria('minecraft:location', new JsonBuilder().setField('player',

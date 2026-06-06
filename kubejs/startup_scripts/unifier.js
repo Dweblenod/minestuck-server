@@ -11,5 +11,6 @@ StartupEvents.init((event) => {
     global.REPLACED_LOOT_TABLES = [];
     global.REMOVED_RECIPES = [];
     global.REMOVED_LOOT_TABLES = [];
+    global.REMOVED_FROM_TAGS = [];
     global.HIDE_JEI = [];
 });

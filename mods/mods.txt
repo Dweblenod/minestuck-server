@@ -1,8 +1,8 @@
-https://www.curseforge.com/minecraft/mc-mods/minestuck/download/7923789
+https://www.curseforge.com/minecraft/mc-mods/minestuck/download/8183503
 https://cdn.modrinth.com/data/8BmcQJ2H/versions/gFmrC8Ru/geckolib-neoforge-1.21.1-4.8.4.jar
 https://www.curseforge.com/minecraft/mc-mods/infiniverse/download/5486311
 https://cdn.modrinth.com/data/XFHyvWHX/versions/pyUyWWW8/minestuckdungeons-1.1.0-neoforge-1.21.1.jar
-https://cdn.modrinth.com/data/1H3bl8Ep/versions/J8K7kftP/ms_extras-1.0.14-neoforge-1.21.1.jar
+https://cdn.modrinth.com/data/1H3bl8Ep/versions/BcxdOYuo/ms_extras-1.0.15-neoforge-1.21.1.jar?mr_download_reason=standalone
 https://cdn.modrinth.com/data/Tv2nPFOF/versions/nVD2y3AB/faygoplus-1.0.7-neoforge-1.21.1.jar
 https://cdn.modrinth.com/data/Rbjy2PXg/versions/16jSxn5k/minestuck_extended-1.3.0.jar?mr_download_reason=standalone
 https://cdn.modrinth.com/data/Q81oCKcB/versions/kAIovD1X/extrastuck-0.8.3.jar
@@ -31,7 +31,7 @@ https://www.curseforge.com/minecraft/mc-mods/admin-chunk-manager/download/797491
 
 https://cdn.modrinth.com/data/R2OftAxM/versions/9gp7w8NC/FarmersDelight-1.21.1-1.3.1.jar
 https://cdn.modrinth.com/data/aiBaSA5C/versions/7MuLsEQQ/paldelight-1.21.1-1.3.0.jar
-https://cdn.modrinth.com/data/PYjpoAys/versions/Nvae2Qs4/ubesdelight-neoforge-1.21.1-0.4.13.jar?mr_download_reason=standalone
+https://cdn.modrinth.com/data/ggMu7cuJ/versions/tUhGFg7d/moldfluffy-1.0.0-neoforge-1.21.1.jar?mr_download_reason=standalone
 https://cdn.modrinth.com/data/yHN0njMr/versions/YxSK1qNm/ends_delight-2.5.1%2Bneoforge.1.21.1.jar?mr_download_reason=standalone
 https://cdn.modrinth.com/data/XdtLqgmY/versions/oVuZhBYj/RamadanDelight-1.21.1-1.7.jar?mr_download_reason=standalone
 https://cdn.modrinth.com/data/yRrY3XII/versions/XntyupDn/extradelight-2.6.5.jar?mr_download_reason=standalone
@@ -90,6 +90,7 @@ https://cdn.modrinth.com/data/nvQzSEkH/versions/yd8FKCmx/Jade-1.21.1-NeoForge-15
 https://cdn.modrinth.com/data/EsAfCjCV/versions/uAKA6Laj/appleskin-neoforge-mc1.21-3.0.9.jar
 https://cdn.modrinth.com/data/aC3cM3Vq/versions/9I21YYxf/MouseTweaks-neoforge-mc1.21-2.26.1.jar?mr_download_reason=standalone&mr_game_version=1.21.1
 
+https://cdn.modrinth.com/data/GNxdLCoP/versions/V7PU4g8I/cullleaves-neoforge-4.1.1%2B1.21.1.jar?mr_download_reason=standalone&mr_game_version=1.21.1
 https://cdn.modrinth.com/data/NNAgCjsB/versions/LrKSuU8e/entityculling-neoforge-1.10.1-mc1.21.1.jar
 https://cdn.modrinth.com/data/uXXizFIs/versions/x7kQWVju/ferritecore-7.0.3-neoforge.jar
 https://cdn.modrinth.com/data/nmDcB62a/versions/6U8JVjdw/modernfix-neoforge-5.27.4%2Bmc1.21.1.jar
