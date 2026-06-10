@@ -259,6 +259,9 @@ const generateMisc = function (event) {
   new ItemUnifier('extradelight:soybean_pod')
     .addDuplicateItem('peruviansdelight:vaina_soya', false)
 
+  new ItemUnifier('extradelight:soy_sauce_item')
+    .addDuplicateItem('peruviansdelight:sillao', false)
+
   removeItem('createcybernetics:wetware_spidereyes') //brings fps to 0
 
   new AdvancementBuilder('custom/world_top')

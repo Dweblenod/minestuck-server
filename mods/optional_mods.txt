@@ -7,5 +7,6 @@ https://cdn.modrinth.com/data/qyVF9oeo/versions/Dd2tmpsk/sound-physics-remastere
 
 https://cdn.modrinth.com/data/fRiHVvU7/versions/5sIPA1To/emi-1.1.24%2B1.21.1%2Bneoforge.jar?mr_download_reason=standalone
 https://cdn.modrinth.com/data/bpRHnWUb/versions/bxgGyUjY/extra-mod-integrations-all-neoforge-1.0.3%2B1.21.1.jar?mr_download_reason=standalone
+https://cdn.modrinth.com/data/tcEn0k7K/versions/yOeCh9kk/emi_accelerator-1.1.3.jar?mr_download_reason=standalone
 https://cdn.modrinth.com/data/qbbO7Jns/versions/QXkODMCT/emi_loot-0.7.9%2B1.21%2Bneoforge.jar?mr_download_reason=standalone
 https://cdn.modrinth.com/data/hYykXjDp/versions/MAPG6cXE/fzzy_config-0.7.6%2B1.21%2Bneoforge.jar?mr_download_reason=dependency&mr_game_version=1.21.1

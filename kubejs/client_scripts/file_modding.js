@@ -20,5 +20,11 @@ ClientEvents.loggedIn((event) => {
     new DataModifier('config/jei/jei-client.ini')
         .replaceValue('showTagRecipesEnabled = false', 'showTagRecipesEnabled = true')
 
+    new DataModifier('config/DistantHorizons.toml')
+        .replaceValue('enableAutoUpdater = true', 'enableAutoUpdater = false')
+
+    new DataModifier('config/emi.css')
+        .replaceValue('effect-location: top', 'effect-location: right-compressed')
+
     new DataModifier('config/minestuck-client.toml')
 });

@@ -8,7 +8,7 @@ ServerEvents.loaded((event) => {
         .replaceValue('announce_meteor_spawn:false', 'announce_meteor_spawn:true')
         .replaceValue('actionbar_announcements:true', 'actionbar_announcements:false')
         .replaceValue('area_explosion_sound:false', 'area_explosion_sound:true')
-        .replaceValue('min_meteor_cooldown_time:20','min_meteor_cooldown_time:6')
+        .replaceValue('min_meteor_cooldown_time:20', 'min_meteor_cooldown_time:6')
         .replaceValue('spawn_dimensions:[minecraft:overworld, minecraft:the_end]', 'spawn_dimensions:[minecraft:overworld, minecraft:the_end, minestuck:veil, minestuck:skaia]')
         .replaceValue('max_meteors_in_shower:20', 'max_meteors_in_shower:30')
 
@@ -18,6 +18,12 @@ ServerEvents.loaded((event) => {
         .replaceValue('modem_high_altitude_range = 384', 'modem_high_altitude_range = 4000')
         .replaceValue('modem_range_during_storm = 64', 'modem_range_during_storm = 300')
         .replaceValue('modem_high_altitude_range_during_storm = 384', 'modem_high_altitude_range_during_storm = 3000')
+
+    new DataModifier('config/createcybernetics-common.toml')
+        .replaceValue('tattooUploadMode = "OP_ONLY_AUTO_APPROVE"', 'tattooUploadMode = "ANY_PLAYER_PENDING_APPROVAL"')
+
+    new DataModifier('config/emi.css')
+        .replaceValue('cheat-mode: creative', 'cheat-mode: false')
 
     new DataModifier('config/extradelight-common.toml')
         .replaceValue('mintSpreadRate = 6', 'mintSpreadRate = 1')
@@ -94,10 +100,6 @@ ServerEvents.loaded((event) => {
     new DataModifier('config/supplementaries-common.toml')
         .replaceValue('max_search_radius = 200', 'max_search_radius = 150')
         .replaceValue('creative_tab = false', 'creative_tab = true')
-
-    new DataModifier('config/ubesdelight.json')
-        .replaceValue('"generateWildGarlic": true', '"generateWildGarlic": false')
-        .replaceValue('"generateWildGinger": true', '"generateWildGinger": false')
 
 
 
