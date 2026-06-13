@@ -1,10 +1,97 @@
 // priority: 16
 
+const $EntityPredicate = Java.loadClass('net.minecraft.advancements.critereon.EntityPredicate');
+
+
 LootJS.modifiers((event) => {
   event.removeGlobalModifiers(/.*relics.*/); // remove relics from loot
+  //event.removeGlobalModifiers(/.*butchery.*/);
 
-  // let mods = event.getGlobalModifiers()
-  // console.info(mods) //shows all global modifiers
+  /*
+  function weightPred(weightIn) {
+    return new JsonBuilder({
+      "condition": "minecraft:entity_properties",
+      "entity": "this",
+      "predicate": {
+        "nbt": `{SaltsAnimalFarm:{Weight:${weightIn}}}`
+      }
+    }).build();
+  };
+  let sickPred = weightPred(0);
+  let greatPred = weightPred(4);
+  let greaterPred = weightPred(5);
+  let maxPred = weightPred(6);
+
+  //"minecraft:chicken"
+  //"minecraft:cow"
+  //"minecraft:goat"
+  //"minecraft:pig"
+  //"minecraft:rabbit"
+  //"minecraft:sheep"
+  event.addEntityModifier()
+    //.removeLoot(ItemFilter.ANY) //removes everything
+    //.replaceLoot()
+    .addLoot(LootEntry.of("minecraft:diamond").matchCustomCondition(weightPred(1)))
+    //.addLoot().matchEntity($EntityPredicate.Builder.entity())
+  /**/
+
+  /*const entry = LootEntry.of("minecraft:diamond").matchCustomCondition({
+    "condition": "minecraft:entity_properties",
+    "entity": "this",
+    "predicate": {
+      "nbt": "{SaltsAnimalFarm:{Weight:1}}"
+    }
+  });
+
+  event.addEntityModifier("minecraft:chicken").addLoot(entry);*/
+
+
+  /**/
+  //console.log("eeee")
+  handleAnimal('chicken', LootEntry.of('minecraft:feather'), LootEntry.of('minecraft:chicken'));
+  handleAnimal('cow', LootEntry.of('minecraft:leather'), LootEntry.of('minecraft:beef'));
+  handleAnimal('goat', LootEntry.of('minecraft:leather'), LootEntry.of('minecraft:white_wool'));
+  handleAnimal('pig', LootEntry.of('minecraft:leather'), LootEntry.of('minecraft:porkchop'));
+  handleAnimal('rabbit', LootEntry.of('minecraft:rabbit_hide'), LootEntry.of('minecraft:rabbit'));
+  handleAnimal('sheep', LootEntry.of('minecraft:leather'), LootEntry.of('minecraft:mutton'));
+
+  function handleAnimal(animalIn, lootEntryIn, extraLootEntryIn) {
+    event.addEntityModifier(`minecraft:${animalIn}`).customAction((context, loot) => {
+      let entity = context.entity;
+      let nbt = entity.getNbt();
+      let weight = nbt.toString().match(/Weight\s*:\s*([0-9]+(?:\.[0-9]+)?)/i);
+      weight = weight ? Number(weight[1]) : undefined;
+
+      if (weight == undefined)
+        return;
+
+      let moddedWeight = Math.round(weight / 2);
+      console.log(`animal weight: ${weight}. modded weight = ${moddedWeight}`);
+
+      //loot.clear();
+      let leather = ItemFilter.item("minecraft:leather", false);
+      //let hadLeather = loot.hasItem(leather);
+      let hide = ItemFilter.item("minecraft:rabbit_hide", false);
+      //let hadHide = loot.hasItem(hide);
+      let feather = ItemFilter.item("minecraft:leather", false);
+      //let hadFeather = loot.hasItem(feather);
+      loot.remove(ItemFilter.tag("#c:foods"));
+      loot.remove(leather);
+      loot.remove(hide);
+      loot.remove(feather);
+
+      if (weight > 0) {
+        loot.addItem(`butchery_lite:${animalIn}_carcass`);
+
+        if (moddedWeight >= 1) {
+          //addEntry is causing issues
+          //loot.addEntry(lootEntryIn).rolls([1, moddedWeight]);
+          //loot.addEntry(extraLootEntryIn).rolls([1, moddedWeight]);
+        }
+      }
+    });
+  }
+  /**/
 });
 
 
@@ -12,10 +99,13 @@ LootJS.modifiers((event) => {
 
 
 LootJS.lootTables((event) => {
+  //console.log("blahblah");
+  //event.getEntityTable("minecraft:sheep").firstPool();
+
   /*global.REPLACED_LOOT_TABLES.forEach(entry => {
 
   });*/
-  
+
   //global.REMOVED_LOOT_TABLES.forEach(entry => {
   //  event.clearLootTables(/.*chest.*/);
   //});

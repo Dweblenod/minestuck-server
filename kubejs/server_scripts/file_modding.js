@@ -12,6 +12,13 @@ ServerEvents.loaded((event) => {
         .replaceValue('spawn_dimensions:[minecraft:overworld, minecraft:the_end]', 'spawn_dimensions:[minecraft:overworld, minecraft:the_end, minestuck:veil, minestuck:skaia]')
         .replaceValue('max_meteors_in_shower:20', 'max_meteors_in_shower:30')
 
+    new DataModifier('config/Butchery-LITE.toml')
+        .replaceValue('"First Join Book" = true', '"First Join Book" = false')
+        //.replaceValue('"Only Cleavers Drop Carcasses" = true', '"Only Cleavers Drop Carcasses" = false')
+        .replaceValue('"Farmers Delight" = false', '"Farmers Delight" = true')
+        .replaceValue('Carcass" = true', 'Carcass" = false') //carcasses are dropped through loot.js
+        .replaceValue('Rabbit = true', 'Rabbit = false')
+
     new DataModifier('config/computercraft-server.toml')
         .replaceValue('max_requests = 16', 'max_requests = 12')
         .replaceValue('modem_range = 64', 'modem_range = 400')
@@ -47,10 +54,25 @@ ServerEvents.loaded((event) => {
         'railways:blocks/track_byg',
         'railways:blocks/track_natures',
         'casualness_delight',
+        'cold_sweat',
+        'aether',
+        'just_blahaj',
+        'northstar',
+        'irons_spellbooks',
+        'create_enchantment_industry',
+        'allthetweaks',
         'No migration necessary',
         '"type":"fluid_stack"',
         'Failed to load icon for pack',
-        'FileNotFoundException: minecraft:models/compass_'
+        'FileNotFoundException: minecraft:models/compass_',
+        'minecraft:0block/acacia_planks',
+        'FileNotFoundException: compendium',
+        'Exception loading blockstate definition',
+        'ravager_carcass',
+        'Invalid path in pack',
+        'Skipping entity cyberware roll',
+        'unknown protocol: jij',
+        'Failed to get Road Sign Block Entity during generation'
     ]).build();
     new DataModifier('config/logbegone.json')
         .replaceJsonField(
@@ -70,6 +92,24 @@ ServerEvents.loaded((event) => {
 
     new DataModifier('config/parcool-server.toml')
         .replaceValue('allow_infinite_stamina = true', 'allow_infinite_stamina = false')
+
+    new DataModifier('config/salts_animal_farm.json')
+        .replaceValue('"minimumWeight": 1', '"minimumWeight": 0')
+        .replaceValue('"maximumWeight": 8', '"maximumWeight": 6')
+        .replaceValue('"loseWeightWhenWitnessingAnimalDeath": false', '"loseWeightWhenWitnessingAnimalDeath": true')
+        .replaceValue('"hostileScanIntervalTicks": 40', '"hostileScanIntervalTicks": 70')
+        .replaceJsonField(
+            'Farm Animals',
+            new JsonBuilder([])
+                .addObject("minecraft:cow")
+                .addObject("minecraft:mooshroom")
+                .addObject("minecraft:pig")
+                .addObject("minecraft:sheep")
+                .addObject("minecraft:chicken")
+                .addObject("minecraft:rabbit")
+                .addObject("minecraft:goat") //did not have goat
+                .build()
+        )
 
     const solBenefit = function (thresholdIn, benefitIn) {
         return {

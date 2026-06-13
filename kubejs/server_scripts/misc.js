@@ -264,6 +264,8 @@ const generateMisc = function (event) {
 
   removeItem('createcybernetics:wetware_spidereyes') //brings fps to 0
 
+  removeItem('reestrogen:ringof_dreams')
+
   new AdvancementBuilder('custom/world_top')
     .setCriteria('minecraft:location', new JsonBuilder().setField('player',
       {

@@ -4,27 +4,19 @@
 ClientEvents.loggedIn((event) => {
     //CONFIGS
 
-    new DataModifier('kubejs/config/defaultoptions.txt')
-        .createFile('modelPart_cape:false')
-        .append('key_key.jei.toggleCheatMode:key.keyboard.unknown')
-        .append('key_key.jei.cheatOneItem:key.keyboard.unknown')
-        .append('key_key.jei.cheatOneItem2:key.keyboard.unknown')
-        .append('key_key.jei.cheatItemStack:key.keyboard.unknown')
-        .append('key_key.jei.cheatItemStack2:key.keyboard.unknown')
-        .append('key_key.minestuck.captchalogue:key.keyboard.c')
-        .append('key_key.parcool.Crawl:key.keyboard.x')
-    //key_cos.key.opencosarmorinventory:key.keyboard.unknown
-    //key_iris.keybind.reload:key.keyboard.unknown
-    //key_iris.keybind.toggleShaders:key.keyboard.unknown
+    //kubejs defaultoptions.txt is defined manually at kubejs/config/
 
-    new DataModifier('config/jei/jei-client.ini')
-        .replaceValue('showTagRecipesEnabled = false', 'showTagRecipesEnabled = true')
+    new DataModifier('config/jei/cosycritters.json')
+        .replaceValue('"#c:is_jungle",', '"#c:is_jungle", #c:is_plains,')
 
     new DataModifier('config/DistantHorizons.toml')
         .replaceValue('enableAutoUpdater = true', 'enableAutoUpdater = false')
 
     new DataModifier('config/emi.css')
         .replaceValue('effect-location: top', 'effect-location: right-compressed')
+
+    new DataModifier('config/jei/jei-client.ini')
+        .replaceValue('showTagRecipesEnabled = false', 'showTagRecipesEnabled = true')
 
     new DataModifier('config/minestuck-client.toml')
 });
