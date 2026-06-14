@@ -1,0 +1,41 @@
+{
+  "DO_NOT_CHANGE_IT": 2,
+  "modpackName": "PublicMinestuck",
+  "modpackHost": true,
+  "generateModpackOnStart": true,
+  "syncedFiles": [
+    "!/config/discordintegration-server.toml",
+    "!/kubejs/server_scripts/secure/**",
+    "/mods/*.jar",
+    "/kubejs/**",
+    "/emotes/*"
+  ],
+  "allowEditsInFiles": [
+    "/config/**",
+    "/options.txt",
+    "/kubejs/**"
+  ],
+  "forceCopyFilesToStandardLocation": [],
+  "nonModpackFilesToDelete": {},
+  "autoExcludeServerSideMods": true,
+  "autoExcludeUnnecessaryFiles": true,
+  "requireAutoModpackOnClient": false,
+  "nagUnModdedClients": true,
+  "nagMessage": "This server provides dedicated modpack through AutoModpack!",
+  "nagClickableMessage": "Click here to get the AutoModpack!",
+  "nagClickableLink": "https://modrinth.com/project/automodpack",
+  "bindAddress": "",
+  "bindPort": -1,
+  "addressToSend": "",
+  "portToSend": -1,
+  "disableInternalTLS": false,
+  "requireMagicPackets": false,
+  "updateIpsOnEveryStart": false,
+  "bandwidthLimit": 0,
+  "validateSecrets": true,
+  "secretLifetime": 336,
+  "selfUpdater": false,
+  "acceptedLoaders": [
+    "neoforge"
+  ]
+}

@@ -1,4 +1,4 @@
-// priority: 0
+// priority: 2
 
 // Visit the wiki for more info - https://kubejs.com/
 
