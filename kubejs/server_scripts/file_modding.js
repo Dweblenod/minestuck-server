@@ -97,6 +97,7 @@ ServerEvents.loaded((event) => {
         .replaceValue('"minimumWeight": 1', '"minimumWeight": 0')
         .replaceValue('"maximumWeight": 8', '"maximumWeight": 6')
         .replaceValue('"loseWeightWhenWitnessingAnimalDeath": false', '"loseWeightWhenWitnessingAnimalDeath": true')
+        .replaceValue('"allowNonBredAnimalsToBecomeSick": false', '"allowNonBredAnimalsToBecomeSick": true')
         .replaceValue('"hostileScanIntervalTicks": 40', '"hostileScanIntervalTicks": 70')
         .replaceJsonField(
             'Farm Animals',
