@@ -10,7 +10,43 @@ ServerEvents.tags('item', event => {
     event.add('c:foods/vegetable', 'peruviansdelight:yuca');
     event.add('c:foods/vegetable', 'peruviansdelight:palta_cortada');
 
+    event.add('c:fat', 'extradelight:butter');
+    event.add('c:heart', 'peruviansdelight:beef_heart');
+    event.add('c:heart', 'createcybernetics:bodypart_heart');
+    event.add('c:offal', 'createcybernetics:ground_offal');
+    event.add('c:liver', 'createcybernetics:bodypart_liver');
+    event.add('c:brain', 'createcybernetics:bodypart_brain');
+    event.add('c:beef/cubed/raw', 'farmersdelight:minced_beef');
+    event.add('c:beef/roast', 'minecraft:cooked_beef');
+    event.add('c:beef/scrap', 'farmersdelight:minced_beef');
+    event.add('c:beef/oxtail', 'minecraft:beef');
+    event.add('c:chicken/wing/cooked', 'farmersdelight:cooked_chicken_cuts');
+    event.add('c:chicken/breast/raw', 'farmersdelight:chicken_cuts');
+    event.add('c:chicken/cubed/raw', 'farmersdelight:chicken_cuts');
+    event.add('c:chicken/thigh/raw', 'farmersdelight:chicken_cuts');
+    event.add('c:mutton/ribs', 'farmersdelight:mutton_chops');
+    event.add('c:mutton/cooked', '#c:foods/cooked_mutton');
+    event.add('c:pork/roast', 'minecraft:porkchop');
+    event.add('c:pork/ground/raw', 'minecraft:porkchop');
+    event.add('c:pork/scrap/cooked', 'peruviansdelight:chuleta_cortada');
+    event.add('c:sausage/raw', 'createcybernetics:andoille_sausage');
+    event.add('c:sausage/raw', 'mynethersdelight:hoglin_sausage');
+    event.add('c:sausage/cooked', 'createcybernetics:roasted_andouille');
+    event.add('c:sausage/cooked', '#c:foods/cooked_sausage');
+    event.add('c:sausage', '#c:sausage/raw');
+    event.add('c:sausage', '#c:sausage/cooked');
+    event.add('c:meat/ribs/raw', 'farmersdelight:mutton_chops');
+    event.add('c:meat/roast/raw', 'minecraft:beef');
+    event.add('c:meat/roast/raw', 'minecraft:mutton');
+
     event.add('c:foods/milk', '#c:drinks/milk');
+
+    event.add('c:tools/hammer', 'butchery_lite:bone_hammer');
+    event.add('c:tools/hammer', 'butchery_lite:copper_hammer');
+    event.add('c:tools/hammer', 'butchery_lite:iron_hammer');
+    event.add('c:tools/hammer', 'butchery_lite:diamond_hammer');
+    event.add('c:tools/hammer', 'butchery_lite:gold_hammer');
+    event.add('c:tools/hammer', 'butchery_lite:netherite_hammer');
     
     event.add('curios:ring', 'minestuck:black_queens_ring')
     event.add('curios:ring', 'minestuck:white_queens_ring')

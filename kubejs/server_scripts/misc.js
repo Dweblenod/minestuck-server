@@ -217,9 +217,24 @@ const generateMisc = function (event) {
   new ItemUnifier('extradelight:soy_sauce_item')
     .addDuplicateItem('peruviansdelight:sillao', false)
 
-  removeItem('createcybernetics:wetware_spidereyes') //brings fps to 0
+  new ItemUnifier('farmersdelight:fried_egg')
+    .addDuplicateItem('incubation:fried_egg')
 
-  removeItem('reestrogen:ringof_dreams')
+  new ItemUnifier('extradelight:scrambled_eggs')
+    .addDuplicateItem('incubation:scrambled_eggs')
+
+  removeItem('createcybernetics:wetware_spidereyes'); //brings fps to 0
+
+  removeItem('reestrogen:ringof_dreams');
+
+  let compendiumMaterials = ['copper', 'gold', 'iron', 'netherite', 'amethyst', 'crying_obsidian', 'diamond', 'emerald', 'ender_pearl', 'lapis', 'obsidian', 'prismarine', 'quartz'];
+  let compendiumTools = ['_zweihander_item', '_hammer_item']
+  compendiumMaterials.forEach(material => {
+    compendiumTools.forEach(tool => {
+      removeItem(`compendium:${material}${tool}`);
+    });
+  });
+  removeItem('compendium:crude_hammer');
 
   new AdvancementBuilder('custom/world_top')
     .setCriteria('minecraft:location', new JsonBuilder().setField('player',

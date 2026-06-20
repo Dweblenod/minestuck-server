@@ -1,6 +1,6 @@
 // priority: 1
 
-//check similarly named script in client for client configs
+//client configs done more manually due to FilesJS restrictions
 ServerEvents.loaded((event) => {
     //CONFIGS
 
@@ -72,7 +72,9 @@ ServerEvents.loaded((event) => {
         'Invalid path in pack',
         'Skipping entity cyberware roll',
         'unknown protocol: jij',
-        'Failed to get Road Sign Block Entity during generation'
+        'Failed to get Road Sign Block Entity during generation',
+        'Failed to create block entity minecraft:sign',
+        'Failed to create block entity minecraft:mob_spawner'
     ]).build();
     new DataModifier('config/logbegone.json')
         .replaceJsonField(
@@ -136,6 +138,91 @@ ServerEvents.loaded((event) => {
                 .addObject(solBenefit(40, solHealth))
                 .addObject(solBenefit(43, solHealth))
                 .build()
+        )
+
+    //modified manually and then copied in here
+    //no villagers/illagers
+    new DataModifier('config/structurify.json')
+        .replaceJsonField(
+            'structure_sets',
+            new JsonBuilder([
+                {
+                    "spacing": 16,
+                    "separation": 4,
+                    "name": "ae2:meteorite",
+                    "is_disabled": false,
+                    "salt": 124895654,
+                    "frequency": 1.0,
+                    "override_global_spacing_and_separation_modifier": false,
+                    "structure_weights": {
+                        "ae2:meteorite": 1
+                    }
+                },
+                {
+                    "spacing": 48,
+                    "separation": 8,
+                    "name": "minecraft:desert_pyramids",
+                    "is_disabled": false,
+                    "salt": 14357617,
+                    "frequency": 1.0,
+                    "override_global_spacing_and_separation_modifier": false,
+                    "structure_weights": {
+                        "minecraft:desert_pyramid": 1
+                    }
+                },
+                {
+                    "spacing": 48,
+                    "separation": 8,
+                    "name": "minecraft:jungle_temples",
+                    "is_disabled": false,
+                    "salt": 14357619,
+                    "frequency": 1.0,
+                    "override_global_spacing_and_separation_modifier": false,
+                    "structure_weights": {
+                        "minecraft:jungle_pyramid": 1
+                    }
+                },
+                {
+                    "spacing": 32,
+                    "separation": 8,
+                    "name": "minecraft:pillager_outposts",
+                    "is_disabled": true,
+                    "salt": 165745296,
+                    "frequency": 0.2,
+                    "override_global_spacing_and_separation_modifier": false,
+                    "structure_weights": {
+                        "minecraft:pillager_outpost": 1
+                    }
+                },
+                {
+                    "spacing": 34,
+                    "separation": 8,
+                    "name": "minecraft:villages",
+                    "is_disabled": true,
+                    "salt": 10387312,
+                    "frequency": 1.0,
+                    "override_global_spacing_and_separation_modifier": false,
+                    "structure_weights": {
+                        "minecraft:village_snowy": 1,
+                        "minecraft:village_plains": 1,
+                        "minecraft:village_taiga": 1,
+                        "minecraft:village_savanna": 1,
+                        "minecraft:village_desert": 1
+                    }
+                },
+                {
+                    "spacing": 80,
+                    "separation": 20,
+                    "name": "minecraft:woodland_mansions",
+                    "is_disabled": true,
+                    "salt": 10387319,
+                    "frequency": 1.0,
+                    "override_global_spacing_and_separation_modifier": false,
+                    "structure_weights": {
+                        "minecraft:mansion": 1
+                    }
+                }
+            ]).build()
         )
 
     new DataModifier('config/supplementaries-common.toml')
