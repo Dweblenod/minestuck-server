@@ -227,15 +227,6 @@ const generateMisc = function (event) {
 
   removeItem('reestrogen:ringof_dreams');
 
-  let compendiumMaterials = ['copper', 'gold', 'iron', 'netherite', 'amethyst', 'crying_obsidian', 'diamond', 'emerald', 'ender_pearl', 'lapis', 'obsidian', 'prismarine', 'quartz'];
-  let compendiumTools = ['_zweihander_item', '_hammer_item']
-  compendiumMaterials.forEach(material => {
-    compendiumTools.forEach(tool => {
-      removeItem(`compendium:${material}${tool}`);
-    });
-  });
-  removeItem('compendium:crude_hammer');
-
   new AdvancementBuilder('custom/world_top')
     .setCriteria('minecraft:location', new JsonBuilder().setField('player',
       {

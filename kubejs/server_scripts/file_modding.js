@@ -66,7 +66,6 @@ ServerEvents.loaded((event) => {
         'Failed to load icon for pack',
         'FileNotFoundException: minecraft:models/compass_',
         'minecraft:0block/acacia_planks',
-        'FileNotFoundException: compendium',
         'Exception loading blockstate definition',
         'ravager_carcass',
         'Invalid path in pack',

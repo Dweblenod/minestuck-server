@@ -17,7 +17,6 @@ https://cdn.modrinth.com/data/OvPZ16yX/versions/7yLp83Iz/entityjs-1.4.5-1.21.jar
 https://cdn.modrinth.com/data/T38eAZQC/versions/1qmcLagN/kubejs-create-neoforge-2101.3.1-build.18.jar
 https://www.curseforge.com/minecraft/mc-mods/filesjs/download/6756617
 https://cdn.modrinth.com/data/5A34Stj8/versions/BqhDf7W8/ponderjs-neoforge-1.21.1-2.4.0.jar?mr_download_reason=standalone
-https://cdn.modrinth.com/data/3Y7FeCuI/versions/y1b8XpvV/worldjs-1.21.1-1.0.0.jar?mr_download_reason=standalone
 
 https://www.curseforge.com/minecraft/mc-mods/ftb-library-forge/files/7746959
 https://www.curseforge.com/minecraft/mc-mods/ftb-teams-forge/files/7878281
@@ -57,6 +56,7 @@ https://cdn.modrinth.com/data/L3Jv0QZI/versions/dZa50kut/railways-0.2.0-beta.2%2
 https://cdn.modrinth.com/data/eYbO4GyQ/versions/CpMnMjEV/cbbees-1.3.3.jar?mr_download_reason=standalone&mr_game_version=1.21.1
 https://cdn.modrinth.com/data/vnZAETyV/versions/7zLGnu6H/universalkeyboard-1.2.2.jar?mr_download_reason=standalone
 https://cdn.modrinth.com/data/9t7jysm4/versions/SlKqW6kl/createcybernetics-0.4.7b-neoforge-1.21.1-HOTFIX.jar?mr_download_reason=standalone
+https://cdn.modrinth.com/data/z69Pxatv/versions/ECkmsrG4/create_easy_structures-0.2a-neoforge-1.21.1.jar?mr_download_reason=standalone
 
 https://cdn.modrinth.com/data/gu7yAYhd/versions/tufB2KsB/cc-tweaked-1.21.1-forge-1.118.0.jar?mr_download_reason=standalone&mr_game_version=1.21.1
 https://cdn.modrinth.com/data/fXt291FO/versions/k3OVsWus/cccbridge-mc1.21.1-v1.7.2-neoforge.jar?mr_download_reason=standalone
@@ -72,7 +72,7 @@ https://cdn.modrinth.com/data/vvuO3ImH/versions/yohfFbgD/curios-neoforge-9.5.1%2
 https://cdn.modrinth.com/data/pJGcKPh1/versions/Ix4uAd2i/corpsecurioscompat-1.21.1-NeoForge-4.0.1.jar?mr_download_reason=standalone
 https://cdn.modrinth.com/data/OfKzpbRU/versions/guIAbyuH/baguettelib-1.21.1-NeoForge-2.0.3.jar?mr_download_reason=standalone&mr_game_version=1.21.1
 https://cdn.modrinth.com/data/Q5xngUCT/versions/eFdG8i22/weaversparadise-1.5.jar?mr_download_reason=standalone&mr_game_version=1.21.1
-https://cdn.modrinth.com/data/BGUYUAbf/versions/a3WyQ6SX/reestrogen-2.9.9-neoforge-1.21.1.jar?mr_download_reason=standalone
+https://cdn.modrinth.com/data/BGUYUAbf/versions/xvfYcbcK/reestrogen-2.13.1-neoforge-1.21.1.jar?mr_download_reason=standalone
 
 https://cdn.modrinth.com/data/pZ2wrerK/versions/fu6N0NgM/emotecraft-for-MC1.21.1-2.4.12-neoforge.jar?mr_download_reason=standalone
 https://cdn.modrinth.com/data/mfzaZK3Z/versions/Dxc2NR3x/ears-neoforge-1.21-1.4.7.jar?mr_download_reason=standalone&mr_game_version=1.21.1
@@ -86,7 +86,8 @@ https://cdn.modrinth.com/data/zB6Kpa0e/versions/V4dNcu7e/butchery_lite-1.4-neofo
 https://cdn.modrinth.com/data/eHGYGKJz/versions/4YRKCovn/Spice%20of%20Life%20Onion_NEOFORGE_v1.5.6_mc1.21.1.jar?mr_download_reason=standalone
 https://cdn.modrinth.com/data/OsZiaDHq/versions/ObUu8hxJ/CreativeCore_NEOFORGE_v2.13.38_mc1.21.1.jar?mr_download_reason=dependency
 https://cdn.modrinth.com/data/oBDFFKkX/versions/ClmIQpn9/alchemancy-2.1.3-NeoForge-1.21.1.jar?mr_download_reason=standalone
-https://www.curseforge.com/minecraft/mc-mods/compendium/download/8209715
+https://cdn.modrinth.com/data/1bLZdx1u/versions/q8hWZBAq/neoforge-urban_decor-1.21.1-1.2.1.jar?mr_download_reason=standalone
+https://cdn.modrinth.com/data/mk0Htq87/versions/tk5EQpUG/neoforge-runiclib-1.21.1-5.0.7.jar?mr_download_reason=standalone
 https://cdn.modrinth.com/data/CTUytsiA/versions/1dSHfqZO/vmnr-1.0.1-neoforge-1.21.1.jar?mr_download_reason=standalone
 https://cdn.modrinth.com/data/X2m1QNPV/versions/mgoxBwQq/salts_animal_farm-1.21.1-NeoForge-0.2.jar?mr_download_reason=standalone
 https://cdn.modrinth.com/data/A4Xrv60A/versions/4iwA7bGH/incubation-1.21.1-5.0.2.jar?mr_download_reason=standalone
@@ -94,6 +95,8 @@ https://cdn.modrinth.com/data/VsM5EDoI/versions/5JOCYuQM/blueprint-1.21.1-8.1.0.
 
 https://cdn.modrinth.com/data/8VDCUS3b/versions/k60WL1kI/lostcities-1.21-8.3.10.jar?mr_download_reason=dependency
 https://cdn.modrinth.com/data/HdIQwHGq/versions/jSiag2bY/lostcities-modern-tweaks-v2.0.7.jar?mr_download_reason=standalone
+https://cdn.modrinth.com/data/tb5O1ssC/versions/5Tdb8ziQ/abridged-2.0.2-neoforge-21.1.jar?mr_download_reason=standalone
+https://cdn.modrinth.com/data/XaDC71GB/versions/qPASucBM/lithostitched-1.7.13-neoforge-21.1.jar?mr_download_reason=standalone
 
 https://cdn.modrinth.com/data/u6dRKJwZ/versions/YAcQ6elZ/jei-1.21.1-neoforge-19.27.0.340.jar
 https://cdn.modrinth.com/data/1fkSpqmV/versions/GJ7IAX1H/createjeicompat-1.0.2.jar?mr_download_reason=standalone
@@ -110,6 +113,7 @@ https://cdn.modrinth.com/data/NNAgCjsB/versions/LrKSuU8e/entityculling-neoforge-
 https://cdn.modrinth.com/data/uXXizFIs/versions/x7kQWVju/ferritecore-7.0.3-neoforge.jar
 https://cdn.modrinth.com/data/nmDcB62a/versions/6U8JVjdw/modernfix-neoforge-5.27.4%2Bmc1.21.1.jar
 https://cdn.modrinth.com/data/qQyHxfxd/versions/ZV8eL55E/NoChatReports-NEOFORGE-1.21.1-v2.9.1.jar
+https://cdn.modrinth.com/data/z440MEwJ/versions/GtCgmBXp/NoChatRestrictions-NeoForge-MC1.21.11-v1.0.0.jar?mr_download_reason=standalone&mr_game_version=1.21.1
 https://cdn.modrinth.com/data/DSVgwcji/versions/dGNP90t0/AI-Improvements-1.21-0.5.3.jar?mr_download_reason=standalone&mr_game_version=1.21.1
 https://cdn.modrinth.com/data/codAaoxh/versions/6Gv5jvTB/midnightlib-neoforge-1.9.3%2B1.21.1.jar?mr_download_reason=dependency&mr_game_version=1.21.1
 https://cdn.modrinth.com/data/bQh7xzFq/versions/8SBaRv1t/Not%20Enough%20Recipe%20Book-NEOFORGE-0.4.3%2B1.21.jar?mr_download_reason=standalone&mr_game_version=1.21.1
