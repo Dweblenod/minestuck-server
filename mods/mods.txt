@@ -95,6 +95,8 @@ https://cdn.modrinth.com/data/VsM5EDoI/versions/5JOCYuQM/blueprint-1.21.1-8.1.0.
 
 https://cdn.modrinth.com/data/8VDCUS3b/versions/k60WL1kI/lostcities-1.21-8.3.10.jar?mr_download_reason=dependency
 https://cdn.modrinth.com/data/HdIQwHGq/versions/jSiag2bY/lostcities-modern-tweaks-v2.0.7.jar?mr_download_reason=standalone
+https://www.curseforge.com/minecraft/mc-mods/create-lost-cities-subways/download/8327979
+https://www.curseforge.com/minecraft/mc-mods/the-lost-cities-autoloader/download/8303578
 https://cdn.modrinth.com/data/tb5O1ssC/versions/5Tdb8ziQ/abridged-2.0.2-neoforge-21.1.jar?mr_download_reason=standalone
 https://cdn.modrinth.com/data/XaDC71GB/versions/qPASucBM/lithostitched-1.7.13-neoforge-21.1.jar?mr_download_reason=standalone
 

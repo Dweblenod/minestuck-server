@@ -6,6 +6,7 @@
   "syncedFiles": [
     "!/config/discordintegration-server.toml",
     "!/kubejs/server_scripts/secure/**",
+    "!/mods/DiscordIntegration*",
     "/mods/*.jar",
     "/kubejs/**",
     "/emotes/*"

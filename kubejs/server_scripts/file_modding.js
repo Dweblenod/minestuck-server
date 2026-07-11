@@ -4,14 +4,6 @@
 ServerEvents.loaded((event) => {
     //CONFIGS
 
-    new DataModifier('config/ohmymeteors/ohmymeteors_config.yml')
-        .replaceValue('announce_meteor_spawn:false', 'announce_meteor_spawn:true')
-        .replaceValue('actionbar_announcements:true', 'actionbar_announcements:false')
-        .replaceValue('area_explosion_sound:false', 'area_explosion_sound:true')
-        .replaceValue('min_meteor_cooldown_time:20', 'min_meteor_cooldown_time:6')
-        .replaceValue('spawn_dimensions:[minecraft:overworld, minecraft:the_end]', 'spawn_dimensions:[minecraft:overworld, minecraft:the_end, minestuck:veil, minestuck:skaia]')
-        .replaceValue('max_meteors_in_shower:20', 'max_meteors_in_shower:30')
-
     new DataModifier('config/Butchery-LITE.toml')
         .replaceValue('"First Join Book" = true', '"First Join Book" = false')
         //.replaceValue('"Only Cleavers Drop Carcasses" = true', '"Only Cleavers Drop Carcasses" = false')
@@ -82,6 +74,12 @@ ServerEvents.loaded((event) => {
                 .setField('phrases', logbegone)
                 .setField('regex', logbegone)
                 .build()
+        )
+
+    new DataModifier('config/lostcities-server.toml')
+        .replaceValue(
+            'avoidStructures = ["minecraft:mansion", "minecraft:jungle_pyramid", "minecraft:desert_pyramid", "minecraft:igloo", "minecraft:swamp_huts", "minecraft:pillager_outpost"]', 
+            'avoidStructures = ["minecraft:jungle_pyramid", "minecraft:desert_pyramid", "minecraft:igloo", "minecraft:swamp_huts", "create_easy_structures:big_1", "create_easy_structures:big_2", "create_easy_structures:camp_1", "create_easy_structures:camp_2", "create_easy_structures:camp_3", "create_easy_structures:camp_4", "create_easy_structures:camp_5", "create_easy_structures:factory_1", "create_easy_structures:factory_2", "create_easy_structures:foresttracks", "create_easy_structures:freight_station", "create_easy_structures:house_2", "create_easy_structures:house_3", "create_easy_structures:undergroundtrain", "create_easy_structures:windmill"]'
         )
 
     new DataModifier('config/minestuck-server.toml')
