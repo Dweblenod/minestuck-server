@@ -54,6 +54,15 @@ ItemEvents.modifyTooltips(event => {
 	event.add('minecraft:lead', Text.gray('Check JEI for more info regarding animal care and butchery. Keep animals on the lead to deal 2x damage.'));
 });
 
+ServerEvents.command(event => {
+	const command = event.getCommandName();
+  const isOp = event.getParseResults().getContext().getSource().hasPermission(2);
+  
+  //prevent non admin use of command until patch
+  if(!isOp && command.includes("animalfarm"))
+    event.cancel();
+});
+
 
 
 
@@ -238,7 +247,7 @@ const generateMisc = function (event) {
 
   removeItem('reestrogen:ringof_dreams');
 
-  new AdvancementBuilder('custom/world_top')
+  /*new AdvancementBuilder('custom/world_top')
     .setCriteria('minecraft:location', new JsonBuilder().setField('player',
       {
         location: {
@@ -253,6 +262,7 @@ const generateMisc = function (event) {
       }).build())
     .setRewards(new JsonBuilder().setField('function', 'custom:world_top').build())
     .build(event);
+    */
 
   console.log('Ending gen in misc.');
 };

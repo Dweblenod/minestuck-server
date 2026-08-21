@@ -240,7 +240,8 @@ ServerEvents.loaded((event) => {
 
     //MCFUNCTIONS
 
-    new DataModifier('kubejs/data/custom/function/world_top.mcfunction')
+    /*new DataModifier('kubejs/data/custom/function/world_top.mcfunction')
         .createFile('say test')
         .append('advancement revoke @a only custom:custom/world_top');
+        */
 });
