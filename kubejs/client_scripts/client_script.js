@@ -26,6 +26,12 @@ RecipeViewerEvents.removeEntries('item', event => {
 RecipeViewerEvents.addInformation('item', event => {
   event.add('minestuck:sburb_code', ['Check the Quests for help if you get stuck!']);
 
+  event.add('minecraft:lead', [
+    'Animals are reactive creatures. When well fed they provide better food, and when they are sick they will provide nothing.',
+    'To avoid weight loss, ensure they have access to water, sunlight, shade. They also need to be free from overcrowding and injury.',
+    'They will fall sick if death is not immediate. Make sure to lead them far away from other animals before butchery, and afterwards place their body on a hook or rope.'
+  ]);
+
   event.add('create:potato_cannon', ['Can accept the following as custom ammo:', '-cannon balls', '-fungal spores', 'The deployer may accept things not listed here!']);
 });
 

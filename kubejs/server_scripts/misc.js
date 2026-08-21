@@ -43,6 +43,17 @@ EntityEvents.spawned((event) => {
   //bossConversion('twilightforest:snow_queen', 'cataclysm:ignis', 'cataclysm:maledictus');
 });
 
+EntityEvents.beforeHurt((event) => {
+  const { entity } = event;
+
+  if(entity.isLeashed())
+    event.setDamage(event.getDamage() * 2);
+});
+
+ItemEvents.modifyTooltips(event => {
+	event.add('minecraft:lead', Text.gray('Check JEI for more info regarding animal care and butchery. Keep animals on the lead to deal 2x damage.'));
+});
+
 
 
 
